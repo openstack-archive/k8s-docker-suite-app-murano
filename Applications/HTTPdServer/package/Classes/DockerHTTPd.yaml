@@ -1,0 +1,47 @@
+Namespaces:
+  =: io.murano.apps.docker
+  std: io.murano
+
+Name: DockerHTTPd
+
+Extends: DockerApplication
+
+Properties:
+  name:
+    Contract: $.string().notNull()
+
+  publish:
+    Contract: $.bool().notNull()
+    Default: true
+
+
+Methods:
+  initialize:
+    Body:
+      - $._environment: $.find(std:Environment).require()
+      - $._scope: switch($.publish, $ => public, not $ => internal)
+
+
+  getContainer:
+    Body:
+      Return:
+        name: $.name
+        image: httpd
+        ports:
+          - port: 80
+            scope: $._scope
+
+
+  onInstallationStart:
+    Body:
+      - $._environment.reporter.report($this, 'Installing HTTPd')
+
+
+  onInstallationFinish:
+    Body:
+      - If: $.publish
+        Then:
+          - $endpoints: $.applicationEndpoints.where($.scope = $this._scope).select(format('http://{0}:{1}', $.address, $.port))
+          - $._environment.reporter.report($this, 'HTTPd {0} is available at {1}'.format($.name, join(', ', $endpoints)))
+        Else:
+          - $._environment.reporter.report($this, 'HTTPd {0} has deployed but is not accessible from outside'.format($.name))

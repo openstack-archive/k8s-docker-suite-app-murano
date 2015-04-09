@@ -1,0 +1,26 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Update Pod
+
+Parameters:
+  podDefinition: $podDefinition
+  isNew: $isNew
+
+Body: |
+  import json
+  import uuid
+  fileName = '/var/run/murano-kubernetes/' + str(uuid.uuid4()) + '.json'
+  with open(fileName, 'w') as f:
+    json.dump(args.podDefinition, f)
+
+  return updatePod('{0} {1} {2} {3}'.format(args.isNew, args.podDefinition['id'], args.podDefinition['kind'], fileName )).stdout
+
+Scripts:
+  updatePod:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: updatePod.sh
+    Files: []
+    Options:
+      captureStdout: true
+      captureStderr: true

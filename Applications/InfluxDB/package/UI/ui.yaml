@@ -1,0 +1,42 @@
+Version: 2
+
+Application:
+  ?:
+    type: io.murano.apps.docker.DockerInfluxDB
+  name: $.appConfiguration.name
+  host: $.appConfiguration.host
+  publish: $.appConfiguration.publish
+  preCreateDB: $.appConfiguration.preCreateDB
+
+
+Forms:
+  - appConfiguration:
+      fields:
+        - name: name
+          type: string
+          label: Application Name
+          initial: 'DockerInfluxDB'
+          description: >-
+            Enter a desired name for the application. Just A-Z, a-z, 0-9, dash and
+            underline are allowed
+        - name: host
+          type:
+            - io.murano.apps.docker.kubernetes.KubernetesPod
+            - io.murano.apps.docker.DockerStandaloneHost
+          label: Container Host
+          description: >-
+            Select an instance of Docker contaniner hosting provider to run the app
+        - name: preCreateDB
+          type: string
+          label: DB list to pre-create
+          initial: 'db1;db2'
+          required: false
+          description: >-
+            Enter a semicolon separated list of databases. These databases will be pre-created on a container start
+        - name: publish
+          type: boolean
+          label: Visible from outside
+          initial: true
+          required: false
+          description: >-
+            Check if you intend to access application from the Internet

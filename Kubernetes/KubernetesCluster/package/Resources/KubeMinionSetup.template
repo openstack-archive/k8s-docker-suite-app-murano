@@ -1,0 +1,42 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Setup Kubernetes Minion
+
+Parameters:
+  name: $name
+  ip: $ip
+  masterIp: $masterIp
+  enableMonitoring: $enableMonitoring
+  dockerRegistry: $dockerRegistry
+
+Body: |
+  if args.dockerRegistry:
+    setupRegistry(args.dockerRegistry)
+  setup('{0} {1} {2} {3}'.format(args.name, args.ip, args.masterIp, args.enableMonitoring))
+
+Scripts:
+  setup:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: minion-kube-setup.sh
+    Files:
+      - default_scripts/kube-proxy
+      - default_scripts/kubelet
+      - init_conf/kubelet.conf
+      - init_conf/kube-proxy.conf
+      - initd_scripts/kubelet
+      - initd_scripts/kube-proxy
+      - cadvisor.manifest
+
+    Options:
+      captureStdout: true
+      captureStderr: true
+
+  setupRegistry:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: setupDockerRegistry.sh
+    Files: []
+    Options:
+      captureStdout: true
+      captureStderr: true

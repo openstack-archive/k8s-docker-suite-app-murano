@@ -1,0 +1,18 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Pull image
+
+Parameters:
+  image: $image
+
+Body: |
+  runDockerCommand('pull {0}'.format(args.image))
+
+Scripts:
+  runDockerCommand:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: runDockerCommand.sh
+    Options:
+      captureStdout: true
+      captureStderr: true

@@ -1,0 +1,38 @@
+Version: 2
+
+Application:
+  ?:
+    type: io.murano.apps.docker.kubernetes.KubernetesPod
+  name: $.appConfiguration.name
+  labels: $.appConfiguration.labels
+  kubernetesCluster: $.appConfiguration.kubernetesCluster
+  replicas: $.appConfiguration.replicas
+
+
+Forms:
+  - appConfiguration:
+      fields:
+        - name: name
+          type: string
+          label: Pod Name
+          description: >-
+            Name of the pod to create.
+            This name must be unique throughout the cluster
+        - name: labels
+          type: string
+          label: Labels
+          required: false
+          description: >-
+            Comma separated list of labels. Allows easy selecting in the future
+        - name: kubernetesCluster
+          type: io.murano.apps.docker.kubernetes.KubernetesCluster
+          label: Kubernetes cluster
+          description: >-
+            Kubernetes service
+        - name: replicas
+          type: integer
+          label: Replicas (0 = disabled)
+          initial: 2
+          minValue: 0
+          description: >-
+            Number of cluster Replicas. Setting to '0' prevents Replication Controller creation

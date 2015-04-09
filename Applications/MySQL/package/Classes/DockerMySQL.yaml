@@ -1,0 +1,54 @@
+Namespaces:
+  =: io.murano.apps.docker
+  std: io.murano
+
+Name: DockerMySQL
+
+Extends: DockerApplication
+
+Properties:
+  name:
+    Contract: $.string().notNull()
+
+  publish:
+    Contract: $.bool().notNull()
+    Default: true
+
+  password:
+    Contract: $.string().notNull()
+
+
+Methods:
+  initialize:
+    Body:
+      - $._environment: $.find(std:Environment).require()
+      - $._scope: switch($.publish, $ => public, not $ => internal)
+
+
+  getContainer:
+    Body:
+      Return:
+        name: $.name
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: $.password
+        ports:
+          - port: 3306
+            scope: $._scope
+
+
+  onInstallationStart:
+    Body:
+      - $._environment.reporter.report($this, 'Installing MySQL')
+
+
+  onInstallationFinish:
+    Body:
+      - If: $.publish
+        Then:
+          - $endpoints: $.applicationEndpoints.where($.scope = $this._scope).
+              select(format('{0}:{1}', $.address, $.port))
+
+          - $._environment.reporter.report($this, 'MySQL {0} is available at {1}'.format($.name, join(', ', $endpoints)))
+        Else:
+          - $._environment.reporter.report($this, 'MySQL {0} has deployed but is not accessible from outside'.format($.name))

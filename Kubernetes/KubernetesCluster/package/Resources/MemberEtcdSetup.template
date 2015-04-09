@@ -1,0 +1,25 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Setup etcd Member
+
+Parameters:
+  name: $name
+  ip: $ip
+  clusterConfig: $clusterConfig
+
+Body: |
+  return setup('{0} {1} {2}'.format(args.name, args.ip, args.clusterConfig)).stdout
+Scripts:
+  setup:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: member-etcd-setup.sh
+    Files:
+      - default_scripts/etcd-member
+      - init_conf/etcd.conf
+      - initd_scripts/etcd
+
+
+    Options:
+      captureStdout: true
+      captureStderr: true

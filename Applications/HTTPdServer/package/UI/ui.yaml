@@ -1,0 +1,34 @@
+Version: 2
+
+Application:
+  ?:
+    type: io.murano.apps.docker.DockerHTTPd
+  name: $.appConfiguration.name
+  host: $.appConfiguration.host
+  publish: $.appConfiguration.publish
+
+
+Forms:
+  - appConfiguration:
+      fields:
+        - name: name
+          type: string
+          label: Application Name
+          initial: DockerHTTPd
+          description: >-
+            Enter a desired name for the application. Just A-Z, a-z, 0-9, dash and
+            underline are allowed
+        - name: host
+          type:
+            - io.murano.apps.docker.kubernetes.KubernetesPod
+            - io.murano.apps.docker.DockerStandaloneHost
+          label: Container Host
+          description: >-
+            Select an instance of Docker contaniner hosting provider to run the app
+        - name: publish
+          type: boolean
+          label: Visible from outside
+          initial: true
+          required: false
+          description: >-
+            Check if you intend to access application from the Internet

@@ -1,0 +1,40 @@
+Version: 2
+
+Application:
+  ?:
+    type: io.murano.apps.docker.DockerGlassFish
+  name: $.appConfiguration.name
+  host: $.appConfiguration.host
+  publish: $.appConfiguration.publish
+  password: $.appConfiguration.password
+
+
+Forms:
+  - appConfiguration:
+      fields:
+        - name: name
+          type: string
+          label: Application Name
+          initial: 'DockerGlassFish'
+          description: >-
+            Enter a desired name for the application. Just A-Z, a-z, 0-9, dash and
+            underline are allowed
+        - name: password
+          type: password
+          required: true
+          label: GlassFish Admin Password
+          description: Password for admin user in GlassFish
+        - name: host
+          type:
+            - io.murano.apps.docker.kubernetes.KubernetesPod
+            - io.murano.apps.docker.DockerStandaloneHost
+          label: Container Host
+          description: >-
+            Select an instance of Docker contaniner hosting provider to run the app
+        - name: publish
+          type: boolean
+          label: Visible from outside
+          initial: true
+          required: false
+          description: >-
+            Check if you intend to access the application from the Internet

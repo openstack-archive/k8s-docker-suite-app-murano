@@ -1,0 +1,18 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Setup Flannel
+
+Parameters:
+
+Body: |
+  setupFlannel()
+
+Scripts:
+  setupFlannel:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: setupFlannelMaster.sh
+
+    Options:
+      captureStdout: true
+      captureStderr: true

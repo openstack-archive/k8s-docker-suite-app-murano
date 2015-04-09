@@ -1,0 +1,30 @@
+Namespaces:
+  =: io.murano.apps.docker
+  std: io.murano
+
+Name: DockerContainerHost
+
+Extends: std:Application
+
+Properties:
+  name:
+    Contract: $.string().notNull()
+
+Methods:
+  hostContainer:
+    Arguments:
+      - container:
+          Contract: $.class(DockerContainer).notNull()
+
+
+  deleteContainer:
+    Arguments:
+      - name:
+          Contract: $.string().notNull()
+
+  getEndpoints:
+    Arguments:
+      - applicationName:
+          Contract: $.string().notNull()
+
+  getInternalScopeId:

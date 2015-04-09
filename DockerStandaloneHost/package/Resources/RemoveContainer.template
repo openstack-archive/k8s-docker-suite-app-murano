@@ -1,0 +1,19 @@
+FormatVersion: 2.0.0
+Version: 1.0.0
+Name: Remove container
+
+Parameters:
+  name: $name
+
+Body: |
+  runDockerCommand('rm -f {0}'.format(args.name))
+
+Scripts:
+  runDockerCommand:
+    Type: Application
+    Version: 1.0.0
+    EntryPoint: runDockerCommand.sh
+    Options:
+      captureStdout: false
+      captureStderr: false
+      verifyExitcode: false
