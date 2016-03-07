@@ -31,7 +31,7 @@ Properties:
     Contract: $.class(DockerMongoDB).notNull()
 
 Methods:
-  initialize:
+  .init:
     Body:
       - $._environment: $.find(std:Environment).require()
       - $._scope: switch($.publish, $ => public, not $ => internal)
