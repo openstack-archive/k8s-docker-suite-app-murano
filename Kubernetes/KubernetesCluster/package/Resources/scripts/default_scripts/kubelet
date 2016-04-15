@@ -12,4 +12,4 @@ KUBELET_OPTS="--address=%%IP%% \
   --log_dir=/var/log/kubernetes \
   --allow_privileged=true"
 
-# Add more envionrment settings used by kube-scheduler here
+# Add more environment settings used by kube-scheduler here
