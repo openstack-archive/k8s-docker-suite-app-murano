@@ -3,12 +3,13 @@ install-packages curl wget linux-libc-dev git gcc libc6-dev bridge-utils haproxy
 
 SVC_ROOT=/opt/bin
 
+MCP_REGISTRY_URI="mcp-ci.ng.mirantis.net:5002"
+MCP_IMAGE_NAME="hyperkube-amd64"
+MCP_IMAGE_TAG="v1.4.0-alpha.2-1582-ge32e1b_51"
 ETCD_LATEST_VERSION="v3.0.4"
-KUBE_LATEST_VERSION="v1.3.0"
 FLANNEL_LATEST_VERSION="v0.5.5"
 
 ETCD_LATEST_URL="https://github.com/coreos/etcd/releases/download/${ETCD_LATEST_VERSION}/etcd-${ETCD_LATEST_VERSION}-linux-amd64.tar.gz"
-KUBE_LATEST_URL="https://github.com/GoogleCloudPlatform/kubernetes/releases/download/${KUBE_LATEST_VERSION}/kubernetes.tar.gz"
 FLANNEL_LATEST_URL="https://github.com/coreos/flannel/archive/${FLANNEL_LATEST_VERSION}.tar.gz"
 
 mkdir -p ${SVC_ROOT}
@@ -18,21 +19,27 @@ pushd ${SVC_ROOT}
 wget -O ${SVC_ROOT}/etcd-latest.tar.gz $ETCD_LATEST_URL
 tar xzvf ${SVC_ROOT}/etcd-latest.tar.gz
 rm -f ${SVC_ROOT}/etcd-latest.tar.gz
-
 mv ${SVC_ROOT}/etcd-${ETCD_LATEST_VERSION}-linux-amd64/etcd ${SVC_ROOT}/
 mv ${SVC_ROOT}/etcd-${ETCD_LATEST_VERSION}-linux-amd64/etcdctl ${SVC_ROOT}/
-
 rm -rf ${SVC_ROOT}/etcd-${ETCD_LATEST_VERSION}-linux-amd64
 
-# Install latest kubernetes
-wget -O ${SVC_ROOT}/kubernetes-latest.tar.gz $KUBE_LATEST_URL
-tar xzvf ${SVC_ROOT}/kubernetes-latest.tar.gz
-rm -f ${SVC_ROOT}/kubernetes-latest.tar.gz
+# Install latest kubernetes and calico from MCP image. MCP registry should be available
+service docker start 
 
-tar xzvf ${SVC_ROOT}/kubernetes/server/kubernetes-server-linux-amd64.tar.gz
-mv ${SVC_ROOT}/kubernetes ${SVC_ROOT}/kubernetes-latest
+docker pull ${MCP_REGISTRY_URI}/${MCP_IMAGE_NAME}:${MCP_IMAGE_TAG}
+CONTAINER_ID=`docker ps --no-trunc -q`
+docker cp ${CONTAINER_ID}:/hyperkube ${SVC_ROOT}
+docker cp ${CONTAINER_ID}:/make-ca-cert.sh /
+docker cp ${CONTAINER_ID}:/setup-files.sh /
+docker cp ${CONTAINER_ID}:/etc/kubernetes ${SVC_ROOT}
+CERTS=`./setup-files.sh 127.0.0.1`
+docker rmi -f ${MCP_REGISTRY_URI}/${MCP_IMAGE_NAME}:${MCP_IMAGE_TAG}
+rm /make-ca-cert.sh /setup-files.sh
 
-cp ${SVC_ROOT}/kubernetes-latest/server/bin/* ${SVC_ROOT}/
+docker cp ${CONTAINER_ID}:/opt/cni ${SVC_ROOT}
+
+# Install calico
+#TBD
 
 # Install Go
 wget -O go.tar.gz https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
@@ -44,22 +51,15 @@ export PATH=$PATH:/usr/local/go/bin
 wget -O ${SVC_ROOT}/flannel-latest.tar.gz $FLANNEL_LATEST_URL
 tar xzvf ${SVC_ROOT}/flannel-latest.tar.gz
 rm -f ${SVC_ROOT}/flannel-latest.tar.gz
-
 mv ${SVC_ROOT}/flannel-* ${SVC_ROOT}/flannel
-
 pushd ${SVC_ROOT}/flannel
 ${SVC_ROOT}/flannel/build
 popd
-
 cp ${SVC_ROOT}/flannel/bin/flanneld ${SVC_ROOT}/flanneld
-
 rm -rf ${SVC_ROOT}/flannel
-
 
 # Update system PATH
 sed -i 's/PATH="/PATH="\/opt\/bin:\/opt\/go\/bin:/g' /etc/environment
-
-
 wget -O confd https://github.com/kelseyhightower/confd/releases/download/v0.7.1/confd-0.7.1-linux-amd64
 mv confd /usr/local/bin/confd
 chmod +x /usr/local/bin/confd
