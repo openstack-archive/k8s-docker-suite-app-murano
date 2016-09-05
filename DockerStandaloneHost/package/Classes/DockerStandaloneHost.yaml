@@ -150,6 +150,8 @@ Methods:
             portMap => $portBindings,
             volumeMap => $volumeMap,
             commands => $container.commands,
+            memoryLimit => $container.resources.memory.limit,
+            memoryReservation => $container.resources.memory.request,
             privileged => $container.privileged
           ))
       - $._removeApplicationEndpoints($container.name)

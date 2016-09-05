@@ -21,6 +21,8 @@ Parameters:
   env: $env
   image: $image
   commands: $commands
+  memoryLimit: $memoryLimit
+  memoryReservation: $memoryReservation
   privileged: $privileged
 
 Body: |
@@ -31,6 +33,10 @@ Body: |
     options.append("-v '{0}':'{1}'".format(host_dir, container_dir))
   for key, value in args.env.iteritems():
     options.append("-e '{0}'='{1}'".format(key, value))
+  if args.memoryLimit != -1:
+    options.append('--memory="{0}"'.format(args.memoryLimit))
+  if args.memoryReservation != -1:
+    options.append('--memory-reservation="{0}"'.format(args.memoryReservation))
   if args.privileged:
     options.append("--privileged")
   runDockerCommand('run {0} {1} {2}'.format(' '.join(options), args.image, ' '.join(args.commands)).rstrip())

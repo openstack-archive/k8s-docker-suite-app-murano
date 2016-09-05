@@ -29,3 +29,5 @@ Classes:
  com.mirantis.docker.DockerTempVolume: DockerTempVolume.yaml
  com.mirantis.docker.DockerVolume: DockerVolume.yaml
  com.mirantis.docker.ApplicationPort: ApplicationPort.yaml
+ com.mirantis.docker.DockerResources: DockerResources.yaml
+ com.mirantis.docker.DockerMemoryResource: DockerMemoryResource.yaml

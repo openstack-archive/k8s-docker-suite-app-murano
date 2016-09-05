@@ -121,6 +121,18 @@ Methods:
       - $newVolumes: $container.volumes.values().select(
           $this._buildVolumeEntry($container.name, $))
 
+      - If: $container.resources.memory.limit != -1 or $container.resources.memory.request != -1
+        Then:
+          - $containerDef.resources: {}
+          - If: $container.resources.memory.limit != -1
+            Then:
+              - $containerDef.resources[limits]:
+                  memory: $container.resources.memory.limit
+          - If: $container.resources.memory.request != -1
+            Then:
+              - $containerDef.resources[requests]:
+                  memory: $container.resources.memory.request
+
       - $diff:
           spec:
             containers: [$containerDef]
