@@ -129,6 +129,8 @@ KubernetesPod has the following actions:
 
 * `scalePodUp`: increase the number of pod replicas by 1.
 * `scalePodDown`: decrease the number of pod replicas by 1.
+* `recreatePod`: delete the pod and create the new one from scratch.
+* `restartContainers`: restart Docker containers belonging to the pod.
 
 
 Applications documentation
@@ -212,6 +214,11 @@ deploying both Kubernetes and it's nodes.
     and call `.deploy()`.
     Can be used as an Action.
 
+`restartContainers(podName)`
+    * `podName` string holding the name of the pod.
+
+    Call `restartContainers($podName)` on each minion node.
+
 KubernetesNode
 ~~~~~~~~~~~~~~
 Base class for all Kubernetes nodes.
@@ -294,3 +301,9 @@ fact that the function has been called.
     `$.instance.releaseResources()`. Also clear up memoized values for
     `deployInstance`, `setupEtcd`, `setupNode`, allowing you to call these
     functions again.
+
+`restartContainers(podName)`
+    * `podName` string holding the name of the pod.
+
+    Filter docker containers on the node containing the specified `podName` in
+    their names and call `docker restart` command on them.
