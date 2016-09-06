@@ -1,0 +1,1043 @@
+2016-09-16 17:08:57,842 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 17:08:58,833 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 17:08:58,982 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T11:59:02', u'name': u'murano_ci_test_2016_09_16_17_08_58', u'created': u'2016-09-16T11:59:02', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'25707dc5cde64d87a5db0024baea74c0'}>
+2016-09-16 17:08:59,101 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ca534707-5b90-4ccc-b47d-1fd77c6f81a5'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'fcab8cc0-5435-43b9-b820-ed82b1798209'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae235a10-7312-41f4-8614-0e7ef5393f7e'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'cc0dded1-04b2-4a8d-b936-a4c119825ecd'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd9a6b18b-569a-47b5-8c9c-b3deb3205cab'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '95698e39-b4fe-49c8-b5b7-183171b6a1da'}}, '?': {'_ea50020b7c394943a56474c8b60cde22': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '68974d3e-8491-468c-9563-afdc2afc82b7'}, 'dockerRegistry': ''}
+2016-09-16 17:08:59,253 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae235a10-7312-41f4-8614-0e7ef5393f7e'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'cc0dded1-04b2-4a8d-b936-a4c119825ecd'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ca534707-5b90-4ccc-b47d-1fd77c6f81a5'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'fcab8cc0-5435-43b9-b820-ed82b1798209'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd9a6b18b-569a-47b5-8c9c-b3deb3205cab'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '95698e39-b4fe-49c8-b5b7-183171b6a1da'}}, '?': {'_ea50020b7c394943a56474c8b60cde22': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '68974d3e-8491-468c-9563-afdc2afc82b7'}, 'name': 'KubeClusterTest'}
+2016-09-16 17:08:59,264 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae235a10-7312-41f4-8614-0e7ef5393f7e'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'cc0dded1-04b2-4a8d-b936-a4c119825ecd'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ca534707-5b90-4ccc-b47d-1fd77c6f81a5'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'fcab8cc0-5435-43b9-b820-ed82b1798209'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd9a6b18b-569a-47b5-8c9c-b3deb3205cab'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '95698e39-b4fe-49c8-b5b7-183171b6a1da'}}, '?': {'_ea50020b7c394943a56474c8b60cde22': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '68974d3e-8491-468c-9563-afdc2afc82b7'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_bc46bcaecc244cc19e9dffeecbe966dd': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '543751d0-04a2-47d4-ad5f-c757e446d4b0'}, 'replicas': 2}
+2016-09-16 17:08:59,415 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae235a10-7312-41f4-8614-0e7ef5393f7e'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'cc0dded1-04b2-4a8d-b936-a4c119825ecd'}}], '?': {'_ea50020b7c394943a56474c8b60cde22': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '68974d3e-8491-468c-9563-afdc2afc82b7'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd9a6b18b-569a-47b5-8c9c-b3deb3205cab'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '95698e39-b4fe-49c8-b5b7-183171b6a1da'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ca534707-5b90-4ccc-b47d-1fd77c6f81a5'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_08_58'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'fcab8cc0-5435-43b9-b820-ed82b1798209'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_bc46bcaecc244cc19e9dffeecbe966dd': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '543751d0-04a2-47d4-ad5f-c757e446d4b0'}, 'replicas': 2}
+2016-09-16 17:09:00,047 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:09:00,288 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T11:59:03 - Action deploy is scheduled
+
+2016-09-16 17:09:30,548 - tests.base - DEBUG - Deployment status:deploy failure...nothing new..
+2016-09-16 17:09:30,789 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T11:59:04 - Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+	2016-09-16T11:59:04 - Deployment finished with errors
+
+2016-09-16 17:09:30,921 - tests.base - ERROR - Exception found:
+ Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/murano/common/engine.py", line 183, in _execute
+    obj = executor.load(self.model)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 216, in load
+    return self._load(data)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 222, in _load
+    result = self._object_store.load(data.get(constants.DM_OBJECTS), None)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/object_store.py", line 99, in load
+    obj = factory(init_context, **value)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_type.py", line 286, in initializer
+    obj.initialize(init_context, object_store, params)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_object.py", line 127, in initialize
+    property_name, property_value, context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_object.py", line 237, in set_property
+    self.real_this, context, default=default)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_property.py", line 40, in transform
+    return super(MuranoProperty, self).transform(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/typespec.py", line 49, in transform
+    this, owner, default, helpers.get_type(context))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 372, in transform
+    return self._map(data, self._spec, context, '')
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 358, in _map
+    return self._map_list(data, spec, child_context, path)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 335, in _map_list
+    return tuple(map_func())
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 333, in map_func
+    item, spec_item, context, '{0}[{1}]'.format(path, index))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 350, in _map
+    result = spec(context=child_context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_expression.py", line 85, in __call__
+    return self._parsed_expression.evaluate(context=context)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 165, in evaluate
+    return self(utils.NO_VALUE, context, self.engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 156, in __call__
+    return super(Statement, self).__call__(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51, in call
+    result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142, in <lambda>
+    return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341, in func
+    six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/yaql/standard_library/system.py", line 34, in op_dot
+    return expr(receiver)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 269, in func
+    engine, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 236, in _call
+    result = value(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51, in call
+    result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142, in <lambda>
+    return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341, in func
+    six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 167, in class_
+    calling_type, default_name)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/helpers.py", line 547, in instantiate
+    return object_store.load(data, owner, context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/object_store.py", line 74, in load
+    obj_type, version_spec)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 541, in load_class_package
+    class_name, version_spec)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 138, in load_class_package
+    exc_info[2])
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 132, in load_class_package
+    package_definition = self._get_definition(filter_opts)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 204, in _get_definition
+    raise LookupError()
+NoPackageForClassFound: Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+
+2016-09-16 17:09:31,035 - tests.base - DEBUG - Report:
+ 	2016-09-16T11:59:03 - Action deploy is scheduled
+	2016-09-16T11:59:04 - Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+	2016-09-16T11:59:04 - Deployment finished with errors
+
+
+2016-09-16 17:11:21,081 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 17:11:22,263 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 17:11:22,404 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T12:01:25', u'name': u'murano_ci_test_2016_09_16_17_11_22', u'created': u'2016-09-16T12:01:25', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'b213a162b13d4973b6b50e07a2a23b71'}>
+2016-09-16 17:11:22,522 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '48873518-56e2-462f-b70d-4669c86e5940'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '99362dff-d803-4142-b6c8-3f634007bf49'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3d92e5b6-ce8d-49b1-afd0-c109283d8e9a'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '6d3e575a-2ee5-45ab-ab97-077f04dc1055'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd805c443-371a-4a1a-93c5-8507ec9838c3'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '74fe0117-2e02-44e1-bd27-3a085fd0fcd7'}}, '?': {'_5bd6c14c7b544434a54b09bc69d276e5': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '2f0e93b1-37e8-4529-8038-e38811be43f4'}, 'dockerRegistry': ''}
+2016-09-16 17:11:22,671 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3d92e5b6-ce8d-49b1-afd0-c109283d8e9a'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '6d3e575a-2ee5-45ab-ab97-077f04dc1055'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '48873518-56e2-462f-b70d-4669c86e5940'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '99362dff-d803-4142-b6c8-3f634007bf49'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd805c443-371a-4a1a-93c5-8507ec9838c3'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '74fe0117-2e02-44e1-bd27-3a085fd0fcd7'}}, '?': {'_5bd6c14c7b544434a54b09bc69d276e5': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '2f0e93b1-37e8-4529-8038-e38811be43f4'}, 'name': 'KubeClusterTest'}
+2016-09-16 17:11:22,683 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3d92e5b6-ce8d-49b1-afd0-c109283d8e9a'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '6d3e575a-2ee5-45ab-ab97-077f04dc1055'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '48873518-56e2-462f-b70d-4669c86e5940'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '99362dff-d803-4142-b6c8-3f634007bf49'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd805c443-371a-4a1a-93c5-8507ec9838c3'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '74fe0117-2e02-44e1-bd27-3a085fd0fcd7'}}, '?': {'_5bd6c14c7b544434a54b09bc69d276e5': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '2f0e93b1-37e8-4529-8038-e38811be43f4'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_d33534fa26954534bc7f5e88289448df': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '84069d94-f22a-4a9a-976f-5b8c42cf7a3e'}, 'replicas': 2}
+2016-09-16 17:11:22,829 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3d92e5b6-ce8d-49b1-afd0-c109283d8e9a'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '6d3e575a-2ee5-45ab-ab97-077f04dc1055'}}], '?': {'_5bd6c14c7b544434a54b09bc69d276e5': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '2f0e93b1-37e8-4529-8038-e38811be43f4'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd805c443-371a-4a1a-93c5-8507ec9838c3'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '74fe0117-2e02-44e1-bd27-3a085fd0fcd7'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '48873518-56e2-462f-b70d-4669c86e5940'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_11_21'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '99362dff-d803-4142-b6c8-3f634007bf49'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_d33534fa26954534bc7f5e88289448df': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '84069d94-f22a-4a9a-976f-5b8c42cf7a3e'}, 'replicas': 2}
+2016-09-16 17:11:23,452 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:11:23,686 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:01:26 - Action deploy is scheduled
+
+2016-09-16 17:11:53,929 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:11:54,169 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:01:28 - Creating VMs for Kubernetes cluster
+	2016-09-16T12:01:29 - Setting up Kubernetes cluster
+	2016-09-16T12:01:29 - Creating Kubernetes Master
+	2016-09-16T12:01:29 - Creating Gateway node for Kubernetes services
+	2016-09-16T12:01:29 - Creating Kubernetes Node minion-1
+
+2016-09-16 17:12:24,437 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:12:54,939 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:12:55,183 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:02:41 - Configuring etcd master node
+
+2016-09-16 17:13:25,442 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:13:25,685 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:02:59 - Configuring etcd node minion-1
+	2016-09-16T12:03:11 - Configuring etcd node gateway-0
+	2016-09-16T12:03:24 - Setup Flannel network on master node
+	2016-09-16T12:03:24 - Setup Kubernetes API host
+
+2016-09-16 17:13:55,943 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 17:13:56,184 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:03:30 - Kubernetes API is now available at http://172.17.32.182:8080
+	2016-09-16T12:03:30 - Setup Flannel network on minion-1
+	2016-09-16T12:03:30 - Setup Flannel network on gateway-0
+	2016-09-16T12:03:32 - Setup Kubernetes Node on minion-1
+	2016-09-16T12:03:32 - Setup Load Balancer on gateway-0
+	2016-09-16T12:03:34 - Gateway gateway-0 is now available at 172.17.32.179
+	2016-09-16T12:03:35 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.183:4194
+	2016-09-16T12:03:49 - Kubernetes cluster is up and running
+	2016-09-16T12:03:49 - Deployment finished
+
+2016-09-16 17:14:26,312 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_17_11_22" is ready
+2016-09-16 17:14:26,817 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 17:14:26,868 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 17:14:26,918 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 17:14:26,919 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 17:14:27,717 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:14:27,972 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 17:14:58,235 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 17:14:58,493 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:04:33 - The maximum number of nodes has been reached
+	2016-09-16T12:04:33 - Deployment finished
+
+2016-09-16 17:15:28,625 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_17_11_22" is ready
+2016-09-16 17:15:30,323 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.182): Private key file is encrypted
+2016-09-16 17:19:31,360 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 17:25:32,048 - tests.base - WARNING - Environment "b213a162b13d4973b6b50e07a2a23b71" from test test_deploy_scale_k8s abandoned
+2016-09-16 17:25:34,527 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 17:25:34,683 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T12:15:37', u'name': u'murano_ci_test_2016_09_16_17_25_34', u'created': u'2016-09-16T12:15:37', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'a197a3c9b30c4ca19a319e7c8308f42c'}>
+2016-09-16 17:25:34,808 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'e86f76d5-c2cf-435a-8766-6d4e10dc8942'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ffbf8f0d-a53b-419b-bef6-b9830d35134f'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1a38b969-8a9f-4651-9210-85dfd5d3e8a8'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '26ecf6db-8aa9-4742-9d03-5bc610252d8c'}}], 'name': 'KubeClusterTest', 'nodeCount': 2, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'bf4d53ea-8ba5-4550-a84c-328487e9abfc'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '42d7bd5b-1b10-4f76-8127-03addfba1aa5'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_2434b98c98784884946debf33936a014': {'name': 'Kubernetes Cluster'}, 'id': '1c419567-5572-43c7-94c2-8a031c59cc97'}, 'dockerRegistry': ''}
+2016-09-16 17:25:34,968 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1a38b969-8a9f-4651-9210-85dfd5d3e8a8'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '26ecf6db-8aa9-4742-9d03-5bc610252d8c'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'e86f76d5-c2cf-435a-8766-6d4e10dc8942'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ffbf8f0d-a53b-419b-bef6-b9830d35134f'}, 'exposeCAdvisor': True}], 'nodeCount': 2, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'bf4d53ea-8ba5-4550-a84c-328487e9abfc'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '42d7bd5b-1b10-4f76-8127-03addfba1aa5'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_2434b98c98784884946debf33936a014': {'name': 'Kubernetes Cluster'}, 'id': '1c419567-5572-43c7-94c2-8a031c59cc97'}, 'name': 'KubeClusterTest'}
+2016-09-16 17:25:34,981 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1a38b969-8a9f-4651-9210-85dfd5d3e8a8'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '26ecf6db-8aa9-4742-9d03-5bc610252d8c'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'e86f76d5-c2cf-435a-8766-6d4e10dc8942'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ffbf8f0d-a53b-419b-bef6-b9830d35134f'}, 'exposeCAdvisor': True}], 'nodeCount': 2, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'bf4d53ea-8ba5-4550-a84c-328487e9abfc'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '42d7bd5b-1b10-4f76-8127-03addfba1aa5'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_2434b98c98784884946debf33936a014': {'name': 'Kubernetes Cluster'}, 'id': '1c419567-5572-43c7-94c2-8a031c59cc97'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '6a4a95ad-c171-4602-94e5-13d25c10b254', '_aa8ac5f17769414185a0bafbde583e99': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 17:25:35,144 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1a38b969-8a9f-4651-9210-85dfd5d3e8a8'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '26ecf6db-8aa9-4742-9d03-5bc610252d8c'}}], '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_2434b98c98784884946debf33936a014': {'name': 'Kubernetes Cluster'}, 'id': '1c419567-5572-43c7-94c2-8a031c59cc97'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 2, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'bf4d53ea-8ba5-4550-a84c-328487e9abfc'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '42d7bd5b-1b10-4f76-8127-03addfba1aa5'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'e86f76d5-c2cf-435a-8766-6d4e10dc8942'}, 'keyname': 'murano_ci_keypair_2016_09_16_17_25_34'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ffbf8f0d-a53b-419b-bef6-b9830d35134f'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '6a4a95ad-c171-4602-94e5-13d25c10b254', '_aa8ac5f17769414185a0bafbde583e99': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 17:25:35,812 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 17:25:36,055 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:15:37 - Action deploy is scheduled
+
+2016-09-16 17:55:22,301 - tests.base - DEBUG - Deployment status:deploy failure...nothing new..
+2016-09-16 17:55:22,541 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:15:38 - Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+	2016-09-16T12:15:38 - Deployment finished with errors
+
+2016-09-16 17:55:22,664 - tests.base - ERROR - Exception found:
+ Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/murano/common/engine.py", line 183, in _execute
+    obj = executor.load(self.model)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 216, in load
+    return self._load(data)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 222, in _load
+    result = self._object_store.load(data.get(constants.DM_OBJECTS), None)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/object_store.py", line 99, in load
+    obj = factory(init_context, **value)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_type.py", line 286, in initializer
+    obj.initialize(init_context, object_store, params)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_object.py", line 127, in initialize
+    property_name, property_value, context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_object.py", line 237, in set_property
+    self.real_this, context, default=default)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_property.py", line 40, in transform
+    return super(MuranoProperty, self).transform(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/typespec.py", line 49, in transform
+    this, owner, default, helpers.get_type(context))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 372, in transform
+    return self._map(data, self._spec, context, '')
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 358, in _map
+    return self._map_list(data, spec, child_context, path)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 335, in _map_list
+    return tuple(map_func())
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 333, in map_func
+    item, spec_item, context, '{0}[{1}]'.format(path, index))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 350, in _map
+    result = spec(context=child_context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_expression.py", line 85, in __call__
+    return self._parsed_expression.evaluate(context=context)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 165, in evaluate
+    return self(utils.NO_VALUE, context, self.engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 156, in __call__
+    return super(Statement, self).__call__(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49, in call
+    name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in choose_overload
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117, in <genexpr>
+    args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113, in <lambda>
+    and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51, in call
+    result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142, in <lambda>
+    return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341, in func
+    six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/yaql/standard_library/system.py", line 34, in op_dot
+    return expr(receiver)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 269, in func
+    engine, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 236, in _call
+    result = value(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37, in __call__
+    return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65, in <lambda>
+    data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51, in call
+    result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142, in <lambda>
+    return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341, in func
+    six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/type_scheme.py", line 167, in class_
+    calling_type, default_name)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/helpers.py", line 547, in instantiate
+    return object_store.load(data, owner, context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/object_store.py", line 74, in load
+    obj_type, version_spec)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 541, in load_class_package
+    class_name, version_spec)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 138, in load_class_package
+    exc_info[2])
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 132, in load_class_package
+    package_definition = self._get_definition(filter_opts)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/package_loader.py", line 204, in _get_definition
+    raise LookupError()
+NoPackageForClassFound: Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+
+2016-09-16 17:55:22,781 - tests.base - DEBUG - Report:
+ 	2016-09-16T12:15:37 - Action deploy is scheduled
+	2016-09-16T12:15:38 - Package for class "com.mirantis.docker.kubernetes.KubernetesCluster" is not found
+	2016-09-16T12:15:38 - Deployment finished with errors
+
+
+2016-09-16 18:03:37,493 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:03:39,286 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:03:39,433 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T12:53:39', u'name': u'murano_ci_test_2016_09_16_18_03_39', u'created': u'2016-09-16T12:53:39', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'f31a08038bb94eb4882ed22542bd474c'}>
+2016-09-16 18:03:39,552 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e6a352d-b7c8-45b5-b486-41a1d19a123c'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'e2bddbe8-7f5a-4997-b1a8-5a05d016f477'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6946b540-06aa-454e-9e78-377f43c75ba4'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '39bce975-b0f9-4b53-9147-9988a32257f1'}}], 'name': 'KubeClusterTest', 'nodeCount': 2, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1bd8b531-0e73-4019-940c-007602285a3b'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '16fe3ca3-d98b-43c5-ac0e-e9f39e8246d2'}}, '?': {'_3762d9aa048142f7894d95d156c227d4': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '19331cd1-e51a-4e31-bef5-d038f04c47b7'}, 'dockerRegistry': ''}
+2016-09-16 18:03:39,703 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6946b540-06aa-454e-9e78-377f43c75ba4'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '39bce975-b0f9-4b53-9147-9988a32257f1'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e6a352d-b7c8-45b5-b486-41a1d19a123c'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'e2bddbe8-7f5a-4997-b1a8-5a05d016f477'}, 'exposeCAdvisor': True}], 'nodeCount': 2, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1bd8b531-0e73-4019-940c-007602285a3b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '16fe3ca3-d98b-43c5-ac0e-e9f39e8246d2'}}, '?': {'_3762d9aa048142f7894d95d156c227d4': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '19331cd1-e51a-4e31-bef5-d038f04c47b7'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:03:39,713 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6946b540-06aa-454e-9e78-377f43c75ba4'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '39bce975-b0f9-4b53-9147-9988a32257f1'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e6a352d-b7c8-45b5-b486-41a1d19a123c'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'e2bddbe8-7f5a-4997-b1a8-5a05d016f477'}, 'exposeCAdvisor': True}], 'nodeCount': 2, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1bd8b531-0e73-4019-940c-007602285a3b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '16fe3ca3-d98b-43c5-ac0e-e9f39e8246d2'}}, '?': {'_3762d9aa048142f7894d95d156c227d4': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '19331cd1-e51a-4e31-bef5-d038f04c47b7'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_31e890860e874412bda039496b80f6b3': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '806de67c-e558-44e4-8afd-d20d666ce069'}, 'replicas': 2}
+2016-09-16 18:03:39,861 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6946b540-06aa-454e-9e78-377f43c75ba4'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '39bce975-b0f9-4b53-9147-9988a32257f1'}}], '?': {'_3762d9aa048142f7894d95d156c227d4': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '19331cd1-e51a-4e31-bef5-d038f04c47b7'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 2, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1bd8b531-0e73-4019-940c-007602285a3b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '16fe3ca3-d98b-43c5-ac0e-e9f39e8246d2'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e6a352d-b7c8-45b5-b486-41a1d19a123c'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_03_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'e2bddbe8-7f5a-4997-b1a8-5a05d016f477'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_31e890860e874412bda039496b80f6b3': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '806de67c-e558-44e4-8afd-d20d666ce069'}, 'replicas': 2}
+2016-09-16 18:03:40,495 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:03:40,740 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:53:40 - Action deploy is scheduled
+
+2016-09-16 18:04:10,988 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:04:11,228 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:53:43 - Creating VMs for Kubernetes cluster
+	2016-09-16T12:53:44 - Setting up Kubernetes cluster
+	2016-09-16T12:53:44 - Creating Kubernetes Master
+	2016-09-16T12:53:44 - Creating Kubernetes Node minion-1
+	2016-09-16T12:53:44 - Creating Gateway node for Kubernetes services
+
+2016-09-16 18:04:41,483 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:05:11,991 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:05:12,239 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:54:55 - Configuring etcd master node
+	2016-09-16T12:55:01 - Configuring etcd node minion-1
+
+2016-09-16 18:05:42,480 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:05:42,719 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:55:32 - Configuring etcd node gateway-0
+
+2016-09-16 18:06:12,974 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:06:13,215 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:55:45 - Setup Flannel network on master node
+	2016-09-16T12:55:45 - Setup Kubernetes API host
+	2016-09-16T12:55:48 - Kubernetes API is now available at http://172.17.32.186:8080
+	2016-09-16T12:55:48 - Setup Flannel network on minion-1
+	2016-09-16T12:55:48 - Setup Flannel network on gateway-0
+	2016-09-16T12:55:50 - Setup Kubernetes Node on minion-1
+	2016-09-16T12:55:50 - Setup Load Balancer on gateway-0
+	2016-09-16T12:55:51 - Gateway gateway-0 is now available at 172.17.32.190
+	2016-09-16T12:55:52 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.168:4194
+	2016-09-16T12:56:07 - Kubernetes cluster is up and running
+	2016-09-16T12:56:07 - Deployment finished
+
+2016-09-16 18:06:43,345 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_03_39" is ready
+2016-09-16 18:06:43,856 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:06:43,907 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:06:43,957 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:06:43,957 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:06:44,745 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:06:45,002 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 18:07:15,269 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:07:15,521 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T12:56:47 - The maximum number of nodes has been reached
+	2016-09-16T12:56:47 - Deployment finished
+
+2016-09-16 18:07:45,654 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_03_39" is ready
+2016-09-16 18:07:46,894 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.186): Private key file is encrypted
+2016-09-16 18:12:02,597 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:13:00,821 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:13:00,972 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:03:00', u'name': u'murano_ci_test_2016_09_16_18_13_00', u'created': u'2016-09-16T13:03:00', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'a895489c9aa84a2c85bbde6ce4514b98'}>
+2016-09-16 18:13:01,090 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '24621d7b-f60b-4ed2-b86b-7c56c9744df2'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'dddb3c23-461c-4454-9747-abeca729b1a8'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ef71ff6b-8db6-4302-aee7-53ae302cc79e'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '31cdb705-424c-4378-86a0-3aa2e9f3a99f'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2f0e3714-fb47-45db-8717-111a658860c5'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '793dba4f-15bc-4d65-8e32-c07107c4a370'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c348cfa0-6182-4bb6-874f-5b9fe6e4ce37'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'ab2839c9-b4d7-4973-a1a6-d7ca7d8b29b3'}}, '?': {'_ce4129a9f5294336acd38790b70cea9f': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'b93f4c1a-da6f-48dc-a435-50b5fc7a0c82'}, 'dockerRegistry': ''}
+2016-09-16 18:13:01,245 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2f0e3714-fb47-45db-8717-111a658860c5'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '793dba4f-15bc-4d65-8e32-c07107c4a370'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '24621d7b-f60b-4ed2-b86b-7c56c9744df2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'dddb3c23-461c-4454-9747-abeca729b1a8'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ef71ff6b-8db6-4302-aee7-53ae302cc79e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '31cdb705-424c-4378-86a0-3aa2e9f3a99f'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c348cfa0-6182-4bb6-874f-5b9fe6e4ce37'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'ab2839c9-b4d7-4973-a1a6-d7ca7d8b29b3'}}, '?': {'_ce4129a9f5294336acd38790b70cea9f': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'b93f4c1a-da6f-48dc-a435-50b5fc7a0c82'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:13:01,257 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2f0e3714-fb47-45db-8717-111a658860c5'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '793dba4f-15bc-4d65-8e32-c07107c4a370'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '24621d7b-f60b-4ed2-b86b-7c56c9744df2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'dddb3c23-461c-4454-9747-abeca729b1a8'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ef71ff6b-8db6-4302-aee7-53ae302cc79e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '31cdb705-424c-4378-86a0-3aa2e9f3a99f'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c348cfa0-6182-4bb6-874f-5b9fe6e4ce37'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'ab2839c9-b4d7-4973-a1a6-d7ca7d8b29b3'}}, '?': {'_ce4129a9f5294336acd38790b70cea9f': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'b93f4c1a-da6f-48dc-a435-50b5fc7a0c82'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_23d308b460704b9c9b9210d7a0866a88': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '54fa6d7f-1e88-4ab1-adb0-3b3744e9830a'}, 'replicas': 2}
+2016-09-16 18:13:01,407 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2f0e3714-fb47-45db-8717-111a658860c5'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '793dba4f-15bc-4d65-8e32-c07107c4a370'}}], '?': {'_ce4129a9f5294336acd38790b70cea9f': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'b93f4c1a-da6f-48dc-a435-50b5fc7a0c82'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c348cfa0-6182-4bb6-874f-5b9fe6e4ce37'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'ab2839c9-b4d7-4973-a1a6-d7ca7d8b29b3'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '24621d7b-f60b-4ed2-b86b-7c56c9744df2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'dddb3c23-461c-4454-9747-abeca729b1a8'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ef71ff6b-8db6-4302-aee7-53ae302cc79e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_13_00'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '31cdb705-424c-4378-86a0-3aa2e9f3a99f'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_23d308b460704b9c9b9210d7a0866a88': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '54fa6d7f-1e88-4ab1-adb0-3b3744e9830a'}, 'replicas': 2}
+2016-09-16 18:13:02,044 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:13:02,293 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:03:01 - Action deploy is scheduled
+
+2016-09-16 18:13:32,540 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:13:32,778 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:03:04 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:03:04 - Setting up Kubernetes cluster
+	2016-09-16T13:03:04 - Creating Kubernetes Master
+	2016-09-16T13:03:04 - Creating Kubernetes Node minion-1
+	2016-09-16T13:03:04 - Creating Gateway node for Kubernetes services
+
+2016-09-16 18:14:03,025 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:14:33,520 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:14:33,756 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:04:11 - Configuring etcd master node
+	2016-09-16T13:04:18 - Configuring etcd node minion-1
+
+2016-09-16 18:15:04,008 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:15:04,255 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:04:44 - Configuring etcd node gateway-0
+	2016-09-16T13:04:57 - Setup Flannel network on master node
+	2016-09-16T13:04:57 - Setup Kubernetes API host
+	2016-09-16T13:04:59 - Kubernetes API is now available at http://172.17.32.169:8080
+	2016-09-16T13:04:59 - Setup Flannel network on minion-1
+	2016-09-16T13:04:59 - Setup Flannel network on gateway-0
+	2016-09-16T13:05:01 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:05:01 - Setup Load Balancer on gateway-0
+	2016-09-16T13:05:03 - Gateway gateway-0 is now available at 172.17.32.179
+
+2016-09-16 18:15:34,522 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:15:34,765 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:05:04 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.170:4194
+	2016-09-16T13:05:18 - Kubernetes cluster is up and running
+	2016-09-16T13:05:18 - Deployment finished
+
+2016-09-16 18:16:04,902 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_13_00" is ready
+2016-09-16 18:16:05,399 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:16:05,449 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:16:05,499 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:16:05,499 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:16:06,459 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.169): Private key file is encrypted
+2016-09-16 18:19:32,423 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:20:39,232 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:20:39,388 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:10:38', u'name': u'murano_ci_test_2016_09_16_18_20_39', u'created': u'2016-09-16T13:10:38', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'6f34810746654740b211ff5ec5a160be'}>
+2016-09-16 18:20:39,514 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3747cd78-ad62-4ab0-9c76-881e62734685'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'a6a651c2-02ae-4d50-a21c-9392c1a1e7fc'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae872103-fea1-4471-a0e4-672ee7c2fd08'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'c393ed7b-17d8-43fc-a4b8-d3bc3ac90e52'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b2255c2a-cd94-4e73-b559-27cbd7c53f7d'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '2896f528-84e9-4722-9083-71a97533acc0'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3a116015-7cb4-49a6-b8ce-4f509dabe6f7'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '1f1a7580-d6b2-4741-9cf9-688907c62c30'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '30fd50a0-90e0-4509-8f33-3bb1b481ed8b', '_d13444ed64f147d2b41270820449997d': {'name': 'Kubernetes Cluster'}}, 'dockerRegistry': ''}
+2016-09-16 18:20:39,667 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b2255c2a-cd94-4e73-b559-27cbd7c53f7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '2896f528-84e9-4722-9083-71a97533acc0'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3747cd78-ad62-4ab0-9c76-881e62734685'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'a6a651c2-02ae-4d50-a21c-9392c1a1e7fc'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae872103-fea1-4471-a0e4-672ee7c2fd08'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'c393ed7b-17d8-43fc-a4b8-d3bc3ac90e52'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3a116015-7cb4-49a6-b8ce-4f509dabe6f7'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '1f1a7580-d6b2-4741-9cf9-688907c62c30'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '30fd50a0-90e0-4509-8f33-3bb1b481ed8b', '_d13444ed64f147d2b41270820449997d': {'name': 'Kubernetes Cluster'}}, 'name': 'KubeClusterTest'}
+2016-09-16 18:20:39,679 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b2255c2a-cd94-4e73-b559-27cbd7c53f7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '2896f528-84e9-4722-9083-71a97533acc0'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3747cd78-ad62-4ab0-9c76-881e62734685'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'a6a651c2-02ae-4d50-a21c-9392c1a1e7fc'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae872103-fea1-4471-a0e4-672ee7c2fd08'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'c393ed7b-17d8-43fc-a4b8-d3bc3ac90e52'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3a116015-7cb4-49a6-b8ce-4f509dabe6f7'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '1f1a7580-d6b2-4741-9cf9-688907c62c30'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '30fd50a0-90e0-4509-8f33-3bb1b481ed8b', '_d13444ed64f147d2b41270820449997d': {'name': 'Kubernetes Cluster'}}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_287977f3826240fe83255a57c425f603': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '6e271b91-6252-4e0a-939e-b07ca4f8ed62'}, 'replicas': 2}
+2016-09-16 18:20:39,848 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b2255c2a-cd94-4e73-b559-27cbd7c53f7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '2896f528-84e9-4722-9083-71a97533acc0'}}], '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '30fd50a0-90e0-4509-8f33-3bb1b481ed8b', '_d13444ed64f147d2b41270820449997d': {'name': 'Kubernetes Cluster'}}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3a116015-7cb4-49a6-b8ce-4f509dabe6f7'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '1f1a7580-d6b2-4741-9cf9-688907c62c30'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '3747cd78-ad62-4ab0-9c76-881e62734685'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'a6a651c2-02ae-4d50-a21c-9392c1a1e7fc'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'ae872103-fea1-4471-a0e4-672ee7c2fd08'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_20_38'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'c393ed7b-17d8-43fc-a4b8-d3bc3ac90e52'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_287977f3826240fe83255a57c425f603': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '6e271b91-6252-4e0a-939e-b07ca4f8ed62'}, 'replicas': 2}
+2016-09-16 18:20:40,508 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:20:40,765 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:10:39 - Action deploy is scheduled
+
+2016-09-16 18:21:11,018 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:21:11,260 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:10:41 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:10:42 - Setting up Kubernetes cluster
+	2016-09-16T13:10:42 - Creating Kubernetes Master
+	2016-09-16T13:10:42 - Creating Kubernetes Node minion-1
+	2016-09-16T13:10:42 - Creating Gateway node for Kubernetes services
+
+2016-09-16 18:21:41,522 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:22:12,045 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:22:12,296 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:11:51 - Configuring etcd master node
+	2016-09-16T13:11:58 - Configuring etcd node minion-1
+
+2016-09-16 18:22:42,549 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:22:42,786 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:12:24 - Configuring etcd node gateway-0
+	2016-09-16T13:12:37 - Setup Flannel network on master node
+	2016-09-16T13:12:38 - Setup Kubernetes API host
+	2016-09-16T13:12:40 - Kubernetes API is now available at http://172.17.32.181:8080
+	2016-09-16T13:12:40 - Setup Flannel network on minion-1
+	2016-09-16T13:12:40 - Setup Flannel network on gateway-0
+
+2016-09-16 18:23:13,051 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:23:14,324 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:12:42 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:12:42 - Setup Load Balancer on gateway-0
+	2016-09-16T13:12:44 - Gateway gateway-0 is now available at 172.17.32.182
+	2016-09-16T13:12:45 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.183:4194
+	2016-09-16T13:12:59 - Kubernetes cluster is up and running
+	2016-09-16T13:12:59 - Deployment finished
+
+2016-09-16 18:23:44,460 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_20_39" is ready
+2016-09-16 18:23:44,978 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:23:45,032 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:23:45,085 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:23:45,085 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:23:46,160 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.181): Private key file is encrypted
+2016-09-16 18:25:24,440 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:26:32,766 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:26:32,917 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:16:31', u'name': u'murano_ci_test_2016_09_16_18_26_32', u'created': u'2016-09-16T13:16:31', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'4057789326e04e858a3a9a000825cd1b'}>
+2016-09-16 18:26:33,041 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a48b5142-6375-430c-9302-947497127ee9'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '07bab504-bb36-4fec-96d5-db058c260daf'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1e9f1e2b-d447-43cb-86e3-0bab91cc9d22'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '83f26aba-e377-4bdf-9dfc-ce3b583067e3'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '9ed50970-7986-4242-b11a-044a5dda5e3e'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '78aa2dab-9fab-4b65-a4fd-b830059e5a60'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6ae1462d-698b-4d6c-9376-bada8f5ee15b'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'c9b13d83-c19a-44d8-89f7-d7b97cf32fa0'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_a078f85b4c1048fcbe1c571d26d35e1d': {'name': 'Kubernetes Cluster'}, 'id': 'c171f3e4-1acc-4569-9cf8-eb4f9480781f'}, 'dockerRegistry': ''}
+2016-09-16 18:26:33,198 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '9ed50970-7986-4242-b11a-044a5dda5e3e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '78aa2dab-9fab-4b65-a4fd-b830059e5a60'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a48b5142-6375-430c-9302-947497127ee9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '07bab504-bb36-4fec-96d5-db058c260daf'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1e9f1e2b-d447-43cb-86e3-0bab91cc9d22'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '83f26aba-e377-4bdf-9dfc-ce3b583067e3'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6ae1462d-698b-4d6c-9376-bada8f5ee15b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'c9b13d83-c19a-44d8-89f7-d7b97cf32fa0'}}, '?': {'_a078f85b4c1048fcbe1c571d26d35e1d': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'c171f3e4-1acc-4569-9cf8-eb4f9480781f'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:26:33,210 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '9ed50970-7986-4242-b11a-044a5dda5e3e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '78aa2dab-9fab-4b65-a4fd-b830059e5a60'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a48b5142-6375-430c-9302-947497127ee9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '07bab504-bb36-4fec-96d5-db058c260daf'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1e9f1e2b-d447-43cb-86e3-0bab91cc9d22'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '83f26aba-e377-4bdf-9dfc-ce3b583067e3'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6ae1462d-698b-4d6c-9376-bada8f5ee15b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'c9b13d83-c19a-44d8-89f7-d7b97cf32fa0'}}, '?': {'_a078f85b4c1048fcbe1c571d26d35e1d': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'c171f3e4-1acc-4569-9cf8-eb4f9480781f'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '0e21010e-84bf-45f5-9e86-a3fcd4a4e955', '_c1223da03c7f4b4bb2f06e3689a456a9': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 18:26:33,365 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '9ed50970-7986-4242-b11a-044a5dda5e3e'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '78aa2dab-9fab-4b65-a4fd-b830059e5a60'}}], '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_a078f85b4c1048fcbe1c571d26d35e1d': {'name': 'Kubernetes Cluster'}, 'id': 'c171f3e4-1acc-4569-9cf8-eb4f9480781f'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6ae1462d-698b-4d6c-9376-bada8f5ee15b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'c9b13d83-c19a-44d8-89f7-d7b97cf32fa0'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a48b5142-6375-430c-9302-947497127ee9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '07bab504-bb36-4fec-96d5-db058c260daf'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '1e9f1e2b-d447-43cb-86e3-0bab91cc9d22'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_26_32'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '83f26aba-e377-4bdf-9dfc-ce3b583067e3'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '0e21010e-84bf-45f5-9e86-a3fcd4a4e955', '_c1223da03c7f4b4bb2f06e3689a456a9': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 18:26:34,007 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:26:34,253 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:16:32 - Action deploy is scheduled
+
+2016-09-16 18:27:04,514 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:27:04,774 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:16:35 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:16:35 - Setting up Kubernetes cluster
+	2016-09-16T13:16:35 - Creating Kubernetes Master
+	2016-09-16T13:16:35 - Creating Gateway node for Kubernetes services
+	2016-09-16T13:16:35 - Creating Kubernetes Node minion-1
+
+2016-09-16 18:27:35,023 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:28:05,521 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:28:05,763 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:17:42 - Configuring etcd master node
+	2016-09-16T13:17:49 - Configuring etcd node minion-1
+
+2016-09-16 18:28:36,026 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:28:36,281 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:18:20 - Configuring etcd node gateway-0
+	2016-09-16T13:18:33 - Setup Flannel network on master node
+	2016-09-16T13:18:33 - Setup Kubernetes API host
+
+2016-09-16 18:29:06,547 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:29:06,799 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:18:36 - Kubernetes API is now available at http://172.17.32.184:8080
+	2016-09-16T13:18:36 - Setup Flannel network on minion-1
+	2016-09-16T13:18:36 - Setup Flannel network on gateway-0
+	2016-09-16T13:18:38 - Setup Load Balancer on gateway-0
+	2016-09-16T13:18:38 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:18:39 - Gateway gateway-0 is now available at 172.17.32.189
+	2016-09-16T13:18:40 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.168:4194
+	2016-09-16T13:18:54 - Kubernetes cluster is up and running
+	2016-09-16T13:18:54 - Deployment finished
+
+2016-09-16 18:29:36,929 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_26_32" is ready
+2016-09-16 18:29:37,442 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:29:37,492 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:29:37,541 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:29:37,541 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:29:38,349 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:29:38,615 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 18:30:08,891 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:30:09,194 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:19:39 - Scaling up Kubernetes cluster
+	2016-09-16T13:19:39 - Setting up Kubernetes cluster
+	2016-09-16T13:19:39 - Creating Kubernetes Node minion-1
+
+2016-09-16 18:30:39,491 - tests.base - DEBUG - Deployment status:deploy failure...nothing new..
+2016-09-16 18:30:39,793 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:20:12 - Configuring etcd node minion-1
+	2016-09-16T13:20:17 - [murano.engine.system.agent.AgentException]: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://10.0.24.5:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 33a3b0da50e2e4c2 on http://10.0.24.5:4001: Get http://10.0.24.5:4001/health: dial tcp 10.0.24.5:4001: getsockopt: connection refused\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://127.0.0.1:4001\nmember 68432f1e8bc42d5c is healthy: got healthy result from http://10.0.24.4:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:30:18.624731'}
+	2016-09-16T13:20:17 - Deployment finished with errors
+
+2016-09-16 18:30:39,985 - tests.base - ERROR - Exception found:
+ murano.engine.system.agent.AgentException: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://10.0.24.5:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 33a3b0da50e2e4c2 on http://10.0.24.5:4001: Get http://10.0.24.5:4001/health: dial tcp 10.0.24.5:4001: getsockopt: connection refused\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://127.0.0.1:4001\nmember 68432f1e8bc42d5c is healthy: got healthy result from http://10.0.24.4:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:30:18.624731'}
+Traceback (most recent call last):
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesCluster.yaml", line 471:13 in method scaleNodesUp of type com.mirantis.docker.kubernetes.KubernetesCluster
+      $.deploy()
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesCluster.yaml", line 132:13 in method deploy of type com.mirantis.docker.kubernetes.KubernetesCluster
+      $.minionNodes.take($.nodeCount).select($.setupEtcd())
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesMinionNode.yaml", line 55:29 in method setupEtcd of type com.mirantis.docker.kubernetes.KubernetesMinionNode
+      $._cluster.masterNode.instance.agent.call($template, $resources)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/helpers.py", line 51 in method evaluate
+      return value(context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_expression.py", line 85 in method __call__
+      return self._parsed_expression.evaluate(context=context)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 165 in method evaluate
+      return self(utils.NO_VALUE, context, self.engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 156 in method __call__
+      return super(Statement, self).__call__(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49 in method call
+      name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117 in method choose_overload
+      args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117 in method <genexpr>
+      args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113 in method <lambda>
+      and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_functions.py", line 167 in method op_dot
+      return operator(ctx2, receiver, expr)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 323 in method func
+      new_name, engine, new_receiver, new_context)(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/yaql/standard_library/system.py", line 34 in method op_dot
+      return expr(receiver)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 269 in method func
+      engine, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 236 in method _call
+      result = value(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_integration.py", line 247 in method payload
+      executor, __receiver, args, kwargs, __context, True), __context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_method.py", line 172 in method invoke
+      self, this, context, args, kwargs, skip_stub)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 70 in method invoke_method
+      method, this, context, args, kwargs, skip_stub=skip_stub)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 138 in method _invoke_method
+      result = call()
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 128 in method call
+      yaql_engine, context, native_this)(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 60 in method func
+      return self.get_delegate(receiver, engine, context, args, kwargs)()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_integration.py", line 192 in method payload
+      return body(__self.extension, *args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 125 in method call
+      return self._send(plan, True, timeout)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 113 in method _send
+      return self._process_v2_result(result)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 188 in method _process_v2_result
+      raise AgentException(err)
+2016-09-16 18:30:40,102 - tests.base - DEBUG - Report:
+ 	2016-09-16T13:19:36 - Action scaleNodesUp is scheduled
+	2016-09-16T13:19:39 - Scaling up Kubernetes cluster
+	2016-09-16T13:19:39 - Setting up Kubernetes cluster
+	2016-09-16T13:19:39 - Creating Kubernetes Node minion-1
+	2016-09-16T13:20:12 - Configuring etcd node minion-1
+	2016-09-16T13:20:17 - [murano.engine.system.agent.AgentException]: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://10.0.24.5:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 33a3b0da50e2e4c2 on http://10.0.24.5:4001: Get http://10.0.24.5:4001/health: dial tcp 10.0.24.5:4001: getsockopt: connection refused\nmember 33a3b0da50e2e4c2 is healthy: got healthy result from http://127.0.0.1:4001\nmember 68432f1e8bc42d5c is healthy: got healthy result from http://10.0.24.4:4001\nmember 7201cda4c14a9226 is healthy: got healthy result from http://10.0.24.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:30:18.624731'}
+	2016-09-16T13:20:17 - Deployment finished with errors
+
+
+2016-09-16 18:30:40,938 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.184): Private key file is encrypted
+2016-09-16 18:33:58,704 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:35:04,676 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:35:04,840 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:25:03', u'name': u'murano_ci_test_2016_09_16_18_35_04', u'created': u'2016-09-16T13:25:03', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'0bb575f826174fb29a926071452b7d45'}>
+2016-09-16 18:35:04,962 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '5b71e9bb-f3cd-47d5-a184-908b0df3d7a6'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'af26526f-2adc-4ed0-b34d-0b6e7392d3ca'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '68272ef1-1b55-4f58-87af-cb3f711268de'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '0314090d-86d4-4895-a9a7-2217a7afde58'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6081bc00-5cc2-423e-8c3a-dcbae9fb0ff9'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f64ace56-5784-4f6d-8c44-0fad3b748412'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6baba364-9bad-4e57-a492-2a3da3f00c3a'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '13d40b2c-ca0b-4c87-b359-f84a231c7713'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_c893a10ed0e04c82b9a28d9b4381d083': {'name': 'Kubernetes Cluster'}, 'id': '9634d3e3-8153-43e9-8dd6-ad4be2d7e87b'}, 'dockerRegistry': ''}
+2016-09-16 18:35:05,116 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6081bc00-5cc2-423e-8c3a-dcbae9fb0ff9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f64ace56-5784-4f6d-8c44-0fad3b748412'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '5b71e9bb-f3cd-47d5-a184-908b0df3d7a6'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'af26526f-2adc-4ed0-b34d-0b6e7392d3ca'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '68272ef1-1b55-4f58-87af-cb3f711268de'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '0314090d-86d4-4895-a9a7-2217a7afde58'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6baba364-9bad-4e57-a492-2a3da3f00c3a'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '13d40b2c-ca0b-4c87-b359-f84a231c7713'}}, '?': {'_c893a10ed0e04c82b9a28d9b4381d083': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '9634d3e3-8153-43e9-8dd6-ad4be2d7e87b'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:35:05,129 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6081bc00-5cc2-423e-8c3a-dcbae9fb0ff9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f64ace56-5784-4f6d-8c44-0fad3b748412'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '5b71e9bb-f3cd-47d5-a184-908b0df3d7a6'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'af26526f-2adc-4ed0-b34d-0b6e7392d3ca'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '68272ef1-1b55-4f58-87af-cb3f711268de'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '0314090d-86d4-4895-a9a7-2217a7afde58'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6baba364-9bad-4e57-a492-2a3da3f00c3a'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '13d40b2c-ca0b-4c87-b359-f84a231c7713'}}, '?': {'_c893a10ed0e04c82b9a28d9b4381d083': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '9634d3e3-8153-43e9-8dd6-ad4be2d7e87b'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'_d5ec3f0a2a0d447dae1e250fdbddcc84': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '4cfc72f5-4e71-427f-a92d-dddf7b29bcbe'}, 'replicas': 2}
+2016-09-16 18:35:05,282 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6081bc00-5cc2-423e-8c3a-dcbae9fb0ff9'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f64ace56-5784-4f6d-8c44-0fad3b748412'}}], '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_c893a10ed0e04c82b9a28d9b4381d083': {'name': 'Kubernetes Cluster'}, 'id': '9634d3e3-8153-43e9-8dd6-ad4be2d7e87b'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '6baba364-9bad-4e57-a492-2a3da3f00c3a'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '13d40b2c-ca0b-4c87-b359-f84a231c7713'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '5b71e9bb-f3cd-47d5-a184-908b0df3d7a6'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'af26526f-2adc-4ed0-b34d-0b6e7392d3ca'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '68272ef1-1b55-4f58-87af-cb3f711268de'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_35_04'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '0314090d-86d4-4895-a9a7-2217a7afde58'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_d5ec3f0a2a0d447dae1e250fdbddcc84': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': '4cfc72f5-4e71-427f-a92d-dddf7b29bcbe'}, 'replicas': 2}
+2016-09-16 18:35:05,921 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:35:06,167 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:25:03 - Action deploy is scheduled
+
+2016-09-16 18:35:36,417 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:35:36,672 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:25:06 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:25:07 - Setting up Kubernetes cluster
+	2016-09-16T13:25:07 - Creating Kubernetes Master
+	2016-09-16T13:25:07 - Creating Gateway node for Kubernetes services
+	2016-09-16T13:25:07 - Creating Kubernetes Node minion-1
+
+2016-09-16 18:36:06,936 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:36:37,437 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:36:37,689 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:26:17 - Configuring etcd master node
+	2016-09-16T13:26:23 - Configuring etcd node minion-1
+
+2016-09-16 18:37:07,946 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:37:08,191 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:26:50 - Configuring etcd node gateway-0
+
+2016-09-16 18:37:38,447 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:37:38,692 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:27:08 - Setup Flannel network on master node
+	2016-09-16T13:27:08 - Setup Kubernetes API host
+	2016-09-16T13:27:10 - Kubernetes API is now available at http://172.17.32.169:8080
+	2016-09-16T13:27:10 - Setup Flannel network on minion-1
+	2016-09-16T13:27:10 - Setup Flannel network on gateway-0
+	2016-09-16T13:27:12 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:27:12 - Setup Load Balancer on gateway-0
+	2016-09-16T13:27:14 - Gateway gateway-0 is now available at 172.17.32.179
+	2016-09-16T13:27:15 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.170:4194
+	2016-09-16T13:27:29 - Kubernetes cluster is up and running
+	2016-09-16T13:27:29 - Deployment finished
+
+2016-09-16 18:38:08,824 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_35_04" is ready
+2016-09-16 18:38:09,324 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:38:09,374 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:38:09,423 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:38:09,424 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:38:10,234 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:38:10,512 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 18:38:40,811 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:38:41,079 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:28:11 - Scaling up Kubernetes cluster
+	2016-09-16T13:28:11 - Setting up Kubernetes cluster
+	2016-09-16T13:28:11 - Creating Kubernetes Node minion-1
+
+2016-09-16 18:39:11,369 - tests.base - DEBUG - Deployment status:deploy failure...nothing new..
+2016-09-16 18:39:11,677 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:28:43 - Configuring etcd node minion-1
+	2016-09-16T13:28:48 - [murano.engine.system.agent.AgentException]: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 22ac863939dda033 is healthy: got healthy result from http://10.0.23.4:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 22ac863939dda033 on http://10.0.23.4:4001: Get http://10.0.23.4:4001/health: dial tcp 10.0.23.4:4001: getsockopt: connection refused\nmember 22ac863939dda033 is healthy: got healthy result from http://127.0.0.1:4001\nmember aa8837c76631bae7 is healthy: got healthy result from http://10.0.23.5:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:38:49.967117'}
+	2016-09-16T13:28:48 - Deployment finished with errors
+
+2016-09-16 18:39:11,872 - tests.base - ERROR - Exception found:
+ murano.engine.system.agent.AgentException: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 22ac863939dda033 is healthy: got healthy result from http://10.0.23.4:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 22ac863939dda033 on http://10.0.23.4:4001: Get http://10.0.23.4:4001/health: dial tcp 10.0.23.4:4001: getsockopt: connection refused\nmember 22ac863939dda033 is healthy: got healthy result from http://127.0.0.1:4001\nmember aa8837c76631bae7 is healthy: got healthy result from http://10.0.23.5:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:38:49.967117'}
+Traceback (most recent call last):
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesCluster.yaml", line 471:13 in method scaleNodesUp of type com.mirantis.docker.kubernetes.KubernetesCluster
+      $.deploy()
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesCluster.yaml", line 132:13 in method deploy of type com.mirantis.docker.kubernetes.KubernetesCluster
+      $.minionNodes.take($.nodeCount).select($.setupEtcd())
+  File "/tmp/murano-packages-cache/com.mirantis.docker.kubernetes.KubernetesCluster/0.0.0/c3596d2c-3e36-43c8-a69b-0d12bbc9a0d8/Classes/KubernetesMinionNode.yaml", line 55:29 in method setupEtcd of type com.mirantis.docker.kubernetes.KubernetesMinionNode
+      $._cluster.masterNode.instance.agent.call($template, $resources)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/helpers.py", line 51 in method evaluate
+      return value(context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_expression.py", line 85 in method __call__
+      return self._parsed_expression.evaluate(context=context)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 165 in method evaluate
+      return self(utils.NO_VALUE, context, self.engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 156 in method __call__
+      return super(Statement, self).__call__(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 49 in method call
+      name, all_overloads, engine, receiver, data_context, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117 in method choose_overload
+      args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 117 in method <genexpr>
+      args = tuple(arg_evaluator(i, arg) for i, arg in enumerate(args))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 113 in method <lambda>
+      and not isinstance(arg, expressions.Constant))
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_functions.py", line 167 in method op_dot
+      return operator(ctx2, receiver, expr)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 323 in method func
+      new_name, engine, new_receiver, new_context)(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/yaql/standard_library/system.py", line 34 in method op_dot
+      return expr(receiver)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 269 in method func
+      engine, args, kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/yaqltypes.py", line 236 in method _call
+      result = value(receiver, context, engine)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/expressions.py", line 37 in method __call__
+      return context(self.name, engine, receiver, context)(*self.args)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/contexts.py", line 65 in method <lambda>
+      data_context, use_convention, function_filter)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 51 in method call
+      result = delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/runner.py", line 142 in method <lambda>
+      return lambda: delegate()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_integration.py", line 247 in method payload
+      executor, __receiver, args, kwargs, __context, True), __context)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/murano_method.py", line 172 in method invoke
+      self, this, context, args, kwargs, skip_stub)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 70 in method invoke_method
+      method, this, context, args, kwargs, skip_stub=skip_stub)
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 138 in method _invoke_method
+      result = call()
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/executor.py", line 128 in method call
+      yaql_engine, context, native_this)(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 60 in method func
+      return self.get_delegate(receiver, engine, context, args, kwargs)()
+  File "/usr/lib/python2.7/dist-packages/yaql/language/specs.py", line 341 in method func
+      six.iteritems(keyword_args)))
+  File "/usr/lib/python2.7/dist-packages/murano/dsl/yaql_integration.py", line 192 in method payload
+      return body(__self.extension, *args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 125 in method call
+      return self._send(plan, True, timeout)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 113 in method _send
+      return self._process_v2_result(result)
+  File "/usr/lib/python2.7/dist-packages/murano/engine/system/agent.py", line 188 in method _process_v2_result
+      raise AgentException(err)
+2016-09-16 18:39:11,996 - tests.base - DEBUG - Report:
+ 	2016-09-16T13:28:08 - Action scaleNodesUp is scheduled
+	2016-09-16T13:28:11 - Scaling up Kubernetes cluster
+	2016-09-16T13:28:11 - Setting up Kubernetes cluster
+	2016-09-16T13:28:11 - Creating Kubernetes Node minion-1
+	2016-09-16T13:28:43 - Configuring etcd node minion-1
+	2016-09-16T13:28:48 - [murano.engine.system.agent.AgentException]: {'errorCode': 100, 'message': u'Script setup returned error code', 'extra': None, 'details': {u'stdout': u'Adding member minion-1 to etcd cluster\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 has been added\n\nAdding member gateway-0 to etcd cluster\nmember 22ac863939dda033 is healthy: got healthy result from http://10.0.23.4:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember gateway-0 has been added\n\nFlannel is configured on master node\nAdding member minion-1 to etcd cluster\nfailed to check the health of member 22ac863939dda033 on http://10.0.23.4:4001: Get http://10.0.23.4:4001/health: dial tcp 10.0.23.4:4001: getsockopt: connection refused\nmember 22ac863939dda033 is healthy: got healthy result from http://127.0.0.1:4001\nmember aa8837c76631bae7 is healthy: got healthy result from http://10.0.23.5:4001\nmember cfb3954d93b23ff2 is healthy: got healthy result from http://10.0.23.3:4001\ncluster is healthy\nMember minion-1 not added. Reason: membership: peerURL exists', u'stderr': None, u'exitCode': 1}, 'time': u'2016-09-16 15:38:49.967117'}
+	2016-09-16T13:28:48 - Deployment finished with errors
+
+
+2016-09-16 18:39:12,888 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.169): Private key file is encrypted
+2016-09-16 18:39:47,040 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:40:53,522 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:40:53,675 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:30:51', u'name': u'murano_ci_test_2016_09_16_18_40_53', u'created': u'2016-09-16T13:30:51', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'750f7d772294457cac32fdfc7545a197'}>
+2016-09-16 18:40:53,798 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'abdc21e4-4388-44c4-8e7c-db5673702239'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '91a9bc81-1be2-4c6d-95f3-32d933b07cd6'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e64412f-3034-449f-9390-0d3cb143a4fd'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '11d2b049-6f9c-451d-9a0b-291eaaf84ac7'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2b043cf8-a952-44a0-9f89-b9bf80652d7d'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f6baa044-34a6-4991-a5ac-f9658cacae25'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b5af3a15-41e7-454e-a6a6-34ee4bdf1e33'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'cd9cebeb-2b3a-4d7f-93d1-65a3c12d0c09'}}, '?': {'_67146d1c1c6d4890a9a9583e95c93436': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '38db24a3-8fbd-49f1-81e3-36110a8ba8a2'}, 'dockerRegistry': ''}
+2016-09-16 18:40:53,950 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2b043cf8-a952-44a0-9f89-b9bf80652d7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f6baa044-34a6-4991-a5ac-f9658cacae25'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'abdc21e4-4388-44c4-8e7c-db5673702239'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '91a9bc81-1be2-4c6d-95f3-32d933b07cd6'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e64412f-3034-449f-9390-0d3cb143a4fd'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '11d2b049-6f9c-451d-9a0b-291eaaf84ac7'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b5af3a15-41e7-454e-a6a6-34ee4bdf1e33'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'cd9cebeb-2b3a-4d7f-93d1-65a3c12d0c09'}}, '?': {'_67146d1c1c6d4890a9a9583e95c93436': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '38db24a3-8fbd-49f1-81e3-36110a8ba8a2'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:40:53,964 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2b043cf8-a952-44a0-9f89-b9bf80652d7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f6baa044-34a6-4991-a5ac-f9658cacae25'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'abdc21e4-4388-44c4-8e7c-db5673702239'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '91a9bc81-1be2-4c6d-95f3-32d933b07cd6'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e64412f-3034-449f-9390-0d3cb143a4fd'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '11d2b049-6f9c-451d-9a0b-291eaaf84ac7'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b5af3a15-41e7-454e-a6a6-34ee4bdf1e33'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'cd9cebeb-2b3a-4d7f-93d1-65a3c12d0c09'}}, '?': {'_67146d1c1c6d4890a9a9583e95c93436': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '38db24a3-8fbd-49f1-81e3-36110a8ba8a2'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': 'e158720d-4c5c-4b5b-bc1b-034f5c3d58b0', '_3268cb62acfd41e8a02175b7a2d8ae05': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 18:40:54,119 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '2b043cf8-a952-44a0-9f89-b9bf80652d7d'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'f6baa044-34a6-4991-a5ac-f9658cacae25'}}], '?': {'_67146d1c1c6d4890a9a9583e95c93436': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': '38db24a3-8fbd-49f1-81e3-36110a8ba8a2'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'b5af3a15-41e7-454e-a6a6-34ee4bdf1e33'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': 'cd9cebeb-2b3a-4d7f-93d1-65a3c12d0c09'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'abdc21e4-4388-44c4-8e7c-db5673702239'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '91a9bc81-1be2-4c6d-95f3-32d933b07cd6'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '4e64412f-3034-449f-9390-0d3cb143a4fd'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_40_53'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '11d2b049-6f9c-451d-9a0b-291eaaf84ac7'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': 'e158720d-4c5c-4b5b-bc1b-034f5c3d58b0', '_3268cb62acfd41e8a02175b7a2d8ae05': {'name': 'Kubernetes Pod'}}, 'replicas': 2}
+2016-09-16 18:40:54,980 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:40:55,223 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:30:52 - Action deploy is scheduled
+
+2016-09-16 18:41:25,475 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:41:25,721 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:30:55 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:30:55 - Setting up Kubernetes cluster
+	2016-09-16T13:30:55 - Creating Kubernetes Master
+	2016-09-16T13:30:56 - Creating Kubernetes Node minion-0
+	2016-09-16T13:30:56 - Creating Gateway node for Kubernetes services
+
+2016-09-16 18:41:55,976 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:42:26,470 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:42:26,722 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:32:01 - Configuring etcd master node
+	2016-09-16T13:32:11 - Configuring etcd node minion-0
+
+2016-09-16 18:42:56,971 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:42:57,212 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:32:35 - Configuring etcd node gateway-0
+	2016-09-16T13:32:49 - Setup Flannel network on master node
+	2016-09-16T13:32:49 - Setup Kubernetes API host
+	2016-09-16T13:32:51 - Kubernetes API is now available at http://172.17.32.181:8080
+	2016-09-16T13:32:51 - Setup Flannel network on minion-0
+	2016-09-16T13:32:51 - Setup Flannel network on gateway-0
+	2016-09-16T13:32:53 - Setup Load Balancer on gateway-0
+	2016-09-16T13:32:53 - Setup Kubernetes Node on minion-0
+	2016-09-16T13:32:55 - Gateway gateway-0 is now available at 172.17.32.183
+
+2016-09-16 18:43:27,472 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:43:27,717 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:32:56 - cAdvisor monitoring for Node minion-0 is now available at http://172.17.32.182:4194
+	2016-09-16T13:33:11 - Kubernetes cluster is up and running
+	2016-09-16T13:33:11 - Deployment finished
+
+2016-09-16 18:43:57,850 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_40_53" is ready
+2016-09-16 18:43:58,850 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 18:43:58,900 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 18:43:58,949 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 18:43:58,949 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 18:43:59,802 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:44:00,073 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 18:44:30,349 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:44:30,606 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:34:00 - Scaling up Kubernetes cluster
+	2016-09-16T13:34:00 - Setting up Kubernetes cluster
+	2016-09-16T13:34:00 - Creating Kubernetes Node minion-1
+
+2016-09-16 18:45:00,902 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:45:01,156 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:34:32 - Configuring etcd node minion-1
+
+2016-09-16 18:45:31,482 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:45:31,733 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:35:12 - Setup Flannel network on minion-1
+	2016-09-16T13:35:14 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:35:17 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.186:4194
+
+2016-09-16 18:46:01,998 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 18:46:02,254 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:35:30 - Kubernetes cluster is up and running
+	2016-09-16T13:35:30 - Deployment finished
+
+2016-09-16 18:46:32,392 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_40_53" is ready
+2016-09-16 18:46:33,602 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.181): Private key file is encrypted
+2016-09-16 18:56:20,381 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 18:57:33,410 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 18:57:33,557 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:47:30', u'name': u'murano_ci_test_2016_09_16_18_57_33', u'created': u'2016-09-16T13:47:30', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'6356291ab11b4132a34813eb99852319'}>
+2016-09-16 18:57:33,676 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '532ff3ad-92bf-42cf-8634-da0df1f6c389'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '605a5957-2451-4b8b-9289-a31e036e92b7'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0efffe2-f67d-481c-a65e-698c866e0da2'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'db32ae24-c1c2-4deb-99b5-d87592ad8e8d'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'f48f66b7-0252-43c2-8bf3-8cff35d21f11'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '30222aa1-424f-49c5-a6c9-67fb7b62f2ea'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '7eab80d5-2c01-45cf-a868-20ec49c4708b'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '7534578f-9f30-4fd7-8c55-cd6aea9216ce'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_5a5997ff8de542ba9d4dd5a96ba5fafc': {'name': 'Kubernetes Cluster'}, 'id': '58cfab54-0e1d-41ee-8b42-eaf296330c0c'}, 'dockerRegistry': ''}
+2016-09-16 18:57:33,826 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'f48f66b7-0252-43c2-8bf3-8cff35d21f11'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '30222aa1-424f-49c5-a6c9-67fb7b62f2ea'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '532ff3ad-92bf-42cf-8634-da0df1f6c389'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '605a5957-2451-4b8b-9289-a31e036e92b7'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0efffe2-f67d-481c-a65e-698c866e0da2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'db32ae24-c1c2-4deb-99b5-d87592ad8e8d'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '7eab80d5-2c01-45cf-a868-20ec49c4708b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '7534578f-9f30-4fd7-8c55-cd6aea9216ce'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_5a5997ff8de542ba9d4dd5a96ba5fafc': {'name': 'Kubernetes Cluster'}, 'id': '58cfab54-0e1d-41ee-8b42-eaf296330c0c'}, 'name': 'KubeClusterTest'}
+2016-09-16 18:57:33,837 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'f48f66b7-0252-43c2-8bf3-8cff35d21f11'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '30222aa1-424f-49c5-a6c9-67fb7b62f2ea'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '532ff3ad-92bf-42cf-8634-da0df1f6c389'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '605a5957-2451-4b8b-9289-a31e036e92b7'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0efffe2-f67d-481c-a65e-698c866e0da2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'db32ae24-c1c2-4deb-99b5-d87592ad8e8d'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '7eab80d5-2c01-45cf-a868-20ec49c4708b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '7534578f-9f30-4fd7-8c55-cd6aea9216ce'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_5a5997ff8de542ba9d4dd5a96ba5fafc': {'name': 'Kubernetes Cluster'}, 'id': '58cfab54-0e1d-41ee-8b42-eaf296330c0c'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', '_cd880e63d1d34b949a40fcb05c9b38d4': {'name': 'Kubernetes Pod'}, 'id': '16b33f20-31c1-4d01-84cb-3aba5782bd0f'}, 'replicas': 2}
+2016-09-16 18:57:33,983 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'f48f66b7-0252-43c2-8bf3-8cff35d21f11'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': '30222aa1-424f-49c5-a6c9-67fb7b62f2ea'}}], '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', '_5a5997ff8de542ba9d4dd5a96ba5fafc': {'name': 'Kubernetes Cluster'}, 'id': '58cfab54-0e1d-41ee-8b42-eaf296330c0c'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '7eab80d5-2c01-45cf-a868-20ec49c4708b'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '7534578f-9f30-4fd7-8c55-cd6aea9216ce'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '532ff3ad-92bf-42cf-8634-da0df1f6c389'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '605a5957-2451-4b8b-9289-a31e036e92b7'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0efffe2-f67d-481c-a65e-698c866e0da2'}, 'keyname': 'murano_ci_keypair_2016_09_16_18_57_33'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'db32ae24-c1c2-4deb-99b5-d87592ad8e8d'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', '_cd880e63d1d34b949a40fcb05c9b38d4': {'name': 'Kubernetes Pod'}, 'id': '16b33f20-31c1-4d01-84cb-3aba5782bd0f'}, 'replicas': 2}
+2016-09-16 18:57:34,614 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:57:34,852 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:47:31 - Action deploy is scheduled
+
+2016-09-16 18:58:05,103 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:58:05,414 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:47:33 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:47:34 - Setting up Kubernetes cluster
+	2016-09-16T13:47:34 - Creating Kubernetes Master
+	2016-09-16T13:47:34 - Creating Kubernetes Node minion-0
+	2016-09-16T13:47:34 - Creating Gateway node for Kubernetes services
+
+2016-09-16 18:58:35,658 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:59:06,149 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:59:06,400 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:48:41 - Configuring etcd master node
+	2016-09-16T13:48:46 - Configuring etcd node minion-0
+
+2016-09-16 18:59:36,650 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 18:59:36,899 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:49:21 - Configuring etcd node gateway-0
+
+2016-09-16 19:00:07,157 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 19:00:07,401 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:49:34 - Setup Flannel network on master node
+	2016-09-16T13:49:34 - Setup Kubernetes API host
+	2016-09-16T13:49:37 - Kubernetes API is now available at http://172.17.32.190:8080
+	2016-09-16T13:49:37 - Setup Flannel network on minion-0
+	2016-09-16T13:49:37 - Setup Flannel network on gateway-0
+	2016-09-16T13:49:38 - Setup Load Balancer on gateway-0
+	2016-09-16T13:49:38 - Setup Kubernetes Node on minion-0
+	2016-09-16T13:49:40 - Gateway gateway-0 is now available at 172.17.32.168
+	2016-09-16T13:49:41 - cAdvisor monitoring for Node minion-0 is now available at http://172.17.32.169:4194
+	2016-09-16T13:49:56 - Kubernetes cluster is up and running
+	2016-09-16T13:49:56 - Deployment finished
+
+2016-09-16 19:00:37,532 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_18_57_33" is ready
+2016-09-16 19:00:38,024 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 19:00:38,078 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 19:00:38,128 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 19:00:38,128 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 19:00:39,525 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.190): Private key file is encrypted
+2016-09-16 19:02:54,127 - tests.base - DEBUG - Removing EVERYTHING in tenant: murano_ci_gerrit_1
+2016-09-16 19:04:03,522 - tests.base - INFO - Running test: test_deploy_scale_k8s
+2016-09-16 19:04:03,670 - tests.base - DEBUG - Created Environment:
+ <Environment {u'updated': u'2016-09-16T13:54:00', u'name': u'murano_ci_test_2016_09_16_19_04_03', u'created': u'2016-09-16T13:54:00', u'tenant_id': u'9c6ae295afa348e598f034e65d5d4171', u'version': 0, u'id': u'a0953a318d44438d8e9c18b6ec7aae83'}>
+2016-09-16 19:04:03,788 - tests.base - DEBUG - Adding service:
+ {'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c0072466-f5d0-45be-94b5-2c7a6e4834a9'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ea6969e6-14f5-4f9b-a7c1-6833299543ba'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '23ba68eb-c612-49b3-9181-ebf3f6b76bbb'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '7938127b-6c78-40c3-9e37-ae5ba174a679'}, 'exposeCAdvisor': True}], 'dockerMirror': '', 'gatewayCount': 1, 'gcloudKey': '', 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0170317-5b5a-4273-8a5a-88336e02a80e'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'a2a106d1-890e-48af-8810-ac35121cfd08'}}], 'name': 'KubeClusterTest', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'assignFloatingIp': True, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03', 'flavor': 'm1.medium', 'image': 'debian-8-kubernetes', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a56d3555-c3c2-46f3-acb1-99998e8d460b'}}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '8d94e458-11f0-4230-9051-938f5c36008d'}}, '?': {'_9bb79ac51be047aeb7194469b8981b9a': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'd23073ed-a0f1-4e4f-8f30-b850c87a40d8'}, 'dockerRegistry': ''}
+2016-09-16 19:04:03,934 - tests.base - DEBUG - Create Service json: {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0170317-5b5a-4273-8a5a-88336e02a80e'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'a2a106d1-890e-48af-8810-ac35121cfd08'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c0072466-f5d0-45be-94b5-2c7a6e4834a9'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ea6969e6-14f5-4f9b-a7c1-6833299543ba'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '23ba68eb-c612-49b3-9181-ebf3f6b76bbb'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '7938127b-6c78-40c3-9e37-ae5ba174a679'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a56d3555-c3c2-46f3-acb1-99998e8d460b'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '8d94e458-11f0-4230-9051-938f5c36008d'}}, '?': {'_9bb79ac51be047aeb7194469b8981b9a': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'd23073ed-a0f1-4e4f-8f30-b850c87a40d8'}, 'name': 'KubeClusterTest'}
+2016-09-16 19:04:03,947 - tests.base - DEBUG - Adding service:
+ {'labels': 'testkey=testvalue', 'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0170317-5b5a-4273-8a5a-88336e02a80e'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'a2a106d1-890e-48af-8810-ac35121cfd08'}}], 'dockerMirror': '', 'gcloudKey': '', 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c0072466-f5d0-45be-94b5-2c7a6e4834a9'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ea6969e6-14f5-4f9b-a7c1-6833299543ba'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '23ba68eb-c612-49b3-9181-ebf3f6b76bbb'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '7938127b-6c78-40c3-9e37-ae5ba174a679'}, 'exposeCAdvisor': True}], 'nodeCount': 1, 'dockerRegistry': '', 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a56d3555-c3c2-46f3-acb1-99998e8d460b'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '8d94e458-11f0-4230-9051-938f5c36008d'}}, '?': {'_9bb79ac51be047aeb7194469b8981b9a': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'd23073ed-a0f1-4e4f-8f30-b850c87a40d8'}, 'name': 'KubeClusterTest'}, 'name': 'testpod', '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesPod', '_3926e289f8d64bb39117b5c4b589e426': {'name': 'Kubernetes Pod'}, 'id': 'e5242d87-a873-4097-945e-a888021b4bd8'}, 'replicas': 2}
+2016-09-16 19:04:04,119 - tests.base - DEBUG - Create Service json: {'kubernetesCluster': {'gatewayCount': 1, 'gatewayNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'gateway-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'd0170317-5b5a-4273-8a5a-88336e02a80e'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesGatewayNode', 'id': 'a2a106d1-890e-48af-8810-ac35121cfd08'}}], '?': {'_9bb79ac51be047aeb7194469b8981b9a': {'name': 'Kubernetes Cluster'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesCluster', 'id': 'd23073ed-a0f1-4e4f-8f30-b850c87a40d8'}, 'name': 'KubeClusterTest', 'dockerMirror': '', 'gcloudKey': '', 'nodeCount': 1, 'masterNode': {'instance': {'availabilityZone': 'nova', 'name': 'master-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'a56d3555-c3c2-46f3-acb1-99998e8d460b'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMasterNode', 'id': '8d94e458-11f0-4230-9051-938f5c36008d'}}, 'minionNodes': [{'instance': {'availabilityZone': 'nova', 'name': 'minion-0', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': 'c0072466-f5d0-45be-94b5-2c7a6e4834a9'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': 'ea6969e6-14f5-4f9b-a7c1-6833299543ba'}, 'exposeCAdvisor': True}, {'instance': {'availabilityZone': 'nova', 'name': 'minion-1', 'image': 'debian-8-kubernetes', 'assignFloatingIp': True, 'flavor': 'm1.medium', '?': {'type': 'io.murano.resources.LinuxMuranoInstance', 'id': '23ba68eb-c612-49b3-9181-ebf3f6b76bbb'}, 'keyname': 'murano_ci_keypair_2016_09_16_19_04_03'}, '?': {'type': 'com.mirantis.docker.kubernetes.KubernetesMinionNode', 'id': '7938127b-6c78-40c3-9e37-ae5ba174a679'}, 'exposeCAdvisor': True}], 'dockerRegistry': ''}, 'labels': 'testkey=testvalue', 'name': 'testpod', '?': {'_3926e289f8d64bb39117b5c4b589e426': {'name': 'Kubernetes Pod'}, 'type': 'com.mirantis.docker.kubernetes.KubernetesPod', 'id': 'e5242d87-a873-4097-945e-a888021b4bd8'}, 'replicas': 2}
+2016-09-16 19:04:04,802 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:04:05,045 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:54:01 - Action deploy is scheduled
+
+2016-09-16 19:04:35,284 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:04:35,520 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:54:04 - Creating VMs for Kubernetes cluster
+	2016-09-16T13:54:04 - Setting up Kubernetes cluster
+	2016-09-16T13:54:04 - Creating Kubernetes Master
+	2016-09-16T13:54:04 - Creating Kubernetes Node minion-0
+	2016-09-16T13:54:04 - Creating Gateway node for Kubernetes services
+
+2016-09-16 19:05:06,776 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:05:37,274 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:05:37,516 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:55:13 - Configuring etcd master node
+	2016-09-16T13:55:19 - Configuring etcd node minion-0
+
+2016-09-16 19:06:07,758 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:06:08,004 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:55:49 - Configuring etcd node gateway-0
+	2016-09-16T13:56:04 - Setup Flannel network on master node
+
+2016-09-16 19:06:38,261 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 19:06:38,503 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:56:04 - Setup Kubernetes API host
+	2016-09-16T13:56:07 - Kubernetes API is now available at http://172.17.32.170:8080
+	2016-09-16T13:56:07 - Setup Flannel network on minion-0
+	2016-09-16T13:56:07 - Setup Flannel network on gateway-0
+	2016-09-16T13:56:09 - Setup Load Balancer on gateway-0
+	2016-09-16T13:56:09 - Setup Kubernetes Node on minion-0
+	2016-09-16T13:56:11 - Gateway gateway-0 is now available at 172.17.32.179
+	2016-09-16T13:56:12 - cAdvisor monitoring for Node minion-0 is now available at http://172.17.32.181:4194
+	2016-09-16T13:56:26 - Kubernetes cluster is up and running
+	2016-09-16T13:56:26 - Deployment finished
+
+2016-09-16 19:07:08,639 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_19_04_03" is ready
+2016-09-16 19:07:09,147 - tests.base - DEBUG - Checking ports availability on "com.mirantis.docker.kubernetes.KubernetesCluster" app instance
+2016-09-16 19:07:09,198 - tests.base - DEBUG - 8080 port is opened on instance
+2016-09-16 19:07:09,248 - tests.base - DEBUG - 22 port is opened on instance
+2016-09-16 19:07:09,248 - tests.base - DEBUG - Checking com.mirantis.docker.kubernetes.KubernetesCluster app url "api/" availability
+2016-09-16 19:07:10,041 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:07:10,303 - tests.base - DEBUG - Last report from murano engine:
+
+2016-09-16 19:07:40,580 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:07:40,844 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:57:09 - Scaling up Kubernetes cluster
+	2016-09-16T13:57:09 - Setting up Kubernetes cluster
+	2016-09-16T13:57:09 - Creating Kubernetes Node minion-1
+
+2016-09-16 19:08:11,159 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:08:11,420 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:57:38 - Configuring etcd node minion-1
+
+2016-09-16 19:08:41,689 - tests.base - DEBUG - Deployment status:deploying...nothing new..
+2016-09-16 19:08:41,950 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:58:21 - Setup Flannel network on minion-1
+	2016-09-16T13:58:23 - Setup Kubernetes Node on minion-1
+	2016-09-16T13:58:26 - cAdvisor monitoring for Node minion-1 is now available at http://172.17.32.182:4194
+
+2016-09-16 19:09:12,220 - tests.base - DEBUG - Deployment status:ready...nothing new..
+2016-09-16 19:09:12,481 - tests.base - DEBUG - Last report from murano engine:
+	2016-09-16T13:58:39 - Kubernetes cluster is up and running
+	2016-09-16T13:58:39 - Deployment finished
+
+2016-09-16 19:09:42,620 - tests.base - DEBUG - Environment "murano_ci_test_2016_09_16_19_04_03" is ready
+2016-09-16 19:09:43,871 - tests.base - WARNING - Couldn't collect murano-agent logs of com.mirantis.docker.kubernetes.KubernetesCluster (IP: 172.17.32.170): Private key file is encrypted
