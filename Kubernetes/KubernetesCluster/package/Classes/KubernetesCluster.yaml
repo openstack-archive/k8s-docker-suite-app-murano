@@ -92,6 +92,14 @@ Methods:
         Then:
           - $._environment.reporter.report($this, 'Creating VMs for Kubernetes cluster')
           - $securityGroupIngress:
+              - ToPort: 65535
+                FromPort: 1
+                IpProtocol: tcp
+                External: true
+              - ToPort: 65535
+                FromPort: 65535
+                IpProtocol: udp
+                External: true
               - ToPort: 4001
                 FromPort: 4001
                 IpProtocol: tcp

@@ -95,6 +95,9 @@ Methods:
                 External: $.exposeCAdvisor
           - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
 
+          - $template: $resources.yaml('EnableCANode.template').bind(dict(ip => $.getIp()))
+          - $.instance.agent.call($template, $resources)
+
           - $._environment.reporter.report($, 'Setup Kubernetes Node on {0}'.format($.instance.name))
           - $template: $resources.yaml('KubeMinionSetup.template').bind(dict(
                 name => $.instance.name,

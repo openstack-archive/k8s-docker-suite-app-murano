@@ -71,8 +71,11 @@ Methods:
       - If: not $.getAttr(nodeConfigured, false)
         Then:
           - $resources: new(sys:Resources)
+
+          - $template: $resources.yaml('EnableCAMaster.template').bind(dict(ip => $.getIp()))
+          - $.instance.agent.call($template, $resources)
+
           - $._environment.reporter.report($this, 'Setup Kubernetes API host')
-          - $resources: new(sys:Resources)
           - $template: $resources.yaml('KubeMasterSetup.template').bind(dict(
                 name => $.instance.name,
                 ip => $.getIp()
