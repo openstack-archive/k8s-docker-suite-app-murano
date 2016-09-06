@@ -1,0 +1,8 @@
+# Mr Developer
+.idea
+
+# Linux swap file
+*.swp
+
+# Tests results
+.tox
