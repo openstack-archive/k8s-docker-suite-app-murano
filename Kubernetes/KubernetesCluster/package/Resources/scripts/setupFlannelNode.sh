@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exit 0
+
 if [[ $(which systemctl) ]]; then
   cp -f systemd/docker.service /lib/systemd/system/
   cp -f systemd/flanneld.service /etc/systemd/system/
