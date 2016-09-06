@@ -12,4 +12,3 @@ KUBELET_HOSTNAME="--hostname-override=%%IP%%"
 
 # location of the api-server
 KUBELET_API_SERVER="--api-servers=http://%%MASTER_IP%%:8080"
-
