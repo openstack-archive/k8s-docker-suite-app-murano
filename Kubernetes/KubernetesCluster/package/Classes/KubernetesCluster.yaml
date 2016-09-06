@@ -71,7 +71,7 @@ Properties:
     Usage: Out
 
 Methods:
-  .init:
+  initialize:
     Body:
       - $._environment: $.find(std:Environment).require()
 
@@ -87,6 +87,14 @@ Methods:
         Then:
           - $._environment.reporter.report($this, 'Creating VMs for Kubernetes cluster')
           - $securityGroupIngress:
+              - ToPort: 65535
+                FromPort: 1
+                IpProtocol: tcp
+                External: true
+              - ToPort: 65535
+                FromPort: 65535
+                IpProtocol: udp
+                External: true
               - ToPort: 4001
                 FromPort: 4001
                 IpProtocol: tcp
@@ -94,6 +102,18 @@ Methods:
               - ToPort: 7001
                 FromPort: 7001
                 IpProtocol: tcp
+                External: false
+              - ToPort: 2379
+                FromPort: 2379
+                IpProtocol: tcp
+                External: false
+              - ToPort: 179
+                FromPort: 179
+                IpProtocol: tcp
+                External: false
+              - ToPort: 179
+                FromPort: 179
+                IpProtocol: udp
                 External: false
               - ToPort: 10250
                 FromPort: 10250
@@ -251,7 +271,7 @@ Methods:
               - $securityGroupIngress:
                   - ToPort: $port
                     FromPort: $port
-                    IpProtocol: $applicationPort.protocol.toLower()
+                    IpProtocol: toLower($applicationPort.protocol)
                     External: $applicationPort.scope = public
               - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
 
