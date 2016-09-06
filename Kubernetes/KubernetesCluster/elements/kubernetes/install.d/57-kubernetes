@@ -25,14 +25,17 @@ mv ${SVC_ROOT}/etcd-${ETCD_LATEST_VERSION}-linux-amd64/etcdctl ${SVC_ROOT}/
 rm -rf ${SVC_ROOT}/etcd-${ETCD_LATEST_VERSION}-linux-amd64
 
 # Install latest kubernetes
-wget -O ${SVC_ROOT}/kubernetes-latest.tar.gz $KUBE_LATEST_URL
-tar xzvf ${SVC_ROOT}/kubernetes-latest.tar.gz
-rm -f ${SVC_ROOT}/kubernetes-latest.tar.gz
+#wget -O ${SVC_ROOT}/kubernetes-latest.tar.gz $KUBE_LATEST_URL
+#tar xzvf ${SVC_ROOT}/kubernetes-latest.tar.gz
+#rm -f ${SVC_ROOT}/kubernetes-latest.tar.gz
 
-tar xzvf ${SVC_ROOT}/kubernetes/server/kubernetes-server-linux-amd64.tar.gz
-mv ${SVC_ROOT}/kubernetes ${SVC_ROOT}/kubernetes-latest
+#tar xzvf ${SVC_ROOT}/kubernetes/server/kubernetes-server-linux-amd64.tar.gz
+#mv ${SVC_ROOT}/kubernetes ${SVC_ROOT}/kubernetes-latest
 
-cp ${SVC_ROOT}/kubernetes-latest/server/bin/* ${SVC_ROOT}/
+#cp ${SVC_ROOT}/kubernetes-latest/server/bin/* ${SVC_ROOT}/
+
+cp /opt/copy/hyperkube ${SVC_ROOT}/
+cp /opt/copy/cni/bin/* ${SVC_ROOT}/
 
 # Install Go
 wget -O go.tar.gz https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz

@@ -4,6 +4,37 @@
 # $2 - IP
 # $3 - MASTER_IP
 
+# Generate certs
+sed -i.bak "s/%%IP%%/$2/g" certs/openssl_worker.cnf
+cp -f certs/openssl_worker.cnf /tmp/openssl_worker.cnf
+# Generate keys.
+openssl genrsa -out worker-key.pem 2048
+openssl req -new -key worker-key.pem -out worker.csr -subj "/CN=worker-key" -config /tmp/openssl_worker.cnf
+openssl x509 -req -in worker.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out worker.pem -days 365 -extensions v3_req -extfile /tmp/openssl_worker.cnf
+# Move certs to proper location
+sudo mkdir -p /etc/kubernetes/ssl/
+sudo mv -t /etc/kubernetes/ssl/ ca.pem worker.pem worker-key.pem
+# Set permissions
+sudo chmod 600 /etc/kubernetes/ssl/worker-key.pem
+sudo chown root:root /etc/kubernetes/ssl/worker-key.pem
+
+# Install Calico on worker
+cp /opt/copy/cni/bin/* /usr/bin
+docker load /opt/copy/calico-node.tar
+
+sed -i.bak "s/%%MASTER_IP%%/$3/g" /opt/copy/network-environment
+cp -f /opt/copy/network-environment /etc
+sed -i.bak "s/%%IP%%/$2/g" /opt/copy/network-environment
+cp -f /opt/copy/network-environment /etc
+
+sed -i.bak "s/%%MASTER_IP%%/$3/g" systemd/calico-node.service
+cp -f systemd/calico-node.service /etc/systemd/system/
+systemctl enable calico-node.service
+
+mkdir -p /etc/cni/net.d
+sed -i.bak "s/%%MASTER_IP%%/$3/g" /opt/copy/10-calico.conf
+cp -f /opt/copy/10-calico.conf /etc/cni/net.d
+
 mkdir -p /var/run/murano-kubernetes
 
 if [[ $(which systemctl) ]]; then
