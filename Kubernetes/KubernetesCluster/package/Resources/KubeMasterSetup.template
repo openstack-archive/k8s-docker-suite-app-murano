@@ -41,6 +41,8 @@ Scripts:
       - systemd/kube-apiserver.service
       - systemd/kube-scheduler.service
       - systemd/kube-controller-manager.service
+      - certs/openssl_master.cnf
+      - systems/calico-node.service
 
 
     Options:
