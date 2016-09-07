@@ -8,7 +8,9 @@ ExecStart=/opt/bin/hyperkube controller-manager \
             $KUBE_LOGTOSTDERR \
             $KUBE_LOG_LEVEL \
             $KUBE_MASTER \
-            $KUBE_CONTROLLER_MANAGER_ARGS
+            $KUBE_SERVICE \
+            $KUBE_NAME \
+            $KUBE_CIDR
 Restart=on-failure
 LimitNOFILE=65536
 
