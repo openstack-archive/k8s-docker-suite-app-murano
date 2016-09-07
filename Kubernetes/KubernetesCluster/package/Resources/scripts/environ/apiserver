@@ -5,10 +5,10 @@
 #
 
 # The address on the local server to listen to.
-KUBE_API_ADDRESS="--address=0.0.0.0"
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
 
 # The port on the local server to listen on.
-# KUBE_API_PORT="--port=8080"
+# KUBE_API_PORT="--insecure-port=8080"
 
 # Port minions listen on
 # KUBELET_PORT="--kubelet-port=10250"
@@ -17,10 +17,8 @@ KUBE_API_ADDRESS="--address=0.0.0.0"
 KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:4001"
 
 # Address range to use for services
-KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.32.0.0/24"
 
 # default admission control policies
 KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota"
 
-# Add your own!
-KUBE_API_ARGS="--portal_net=11.1.0.0/16"

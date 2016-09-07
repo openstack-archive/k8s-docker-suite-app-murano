@@ -20,3 +20,12 @@ KUBE_ALLOW_PRIV="--allow-privileged"
 
 # How the controller-manager, scheduler, and proxy find the apiserver
 KUBE_MASTER="--master=http://%%MASTER_IP%%:8080"
+
+# CIDR Range for Services in cluster
+KUBE_SERVICE="--service-cluster-ip-range=10.32.0.0/24"
+
+# The instance prefix for the cluster
+KUBE_NAME="--cluster-name=kubernetes"
+
+# CIDR Range for Pods in cluster
+KUBE_CIDR="--cluster-cidr=10.200.0.0/24"
