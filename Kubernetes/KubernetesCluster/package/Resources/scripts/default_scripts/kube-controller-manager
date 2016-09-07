@@ -5,6 +5,8 @@
 
  # Use KUBE_CONTROLLER_MANAGER_OPTS to modify the start/restart options
  KUBE_CONTROLLER_MANAGER_OPTS="--master=127.0.0.1:8080 \
-   --logtostderr=false --log_dir=/var/log/kubernetes"
+   --logtostderr=false --log_dir=/var/log/kubernetes \
+   --cluster-cidr=10.200.0.0/24 --cluster-name=kubernetes \
+   --service-cluster-ip-range=10.32.0.0/24 "
 
  # Add more environment settings used by kube-controller-manager here
