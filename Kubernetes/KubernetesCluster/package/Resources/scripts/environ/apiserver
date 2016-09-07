@@ -4,11 +4,11 @@
 # The following values are used to configure the kube-apiserver
 #
 
-# The address on the local server to listen to.
-KUBE_API_ADDRESS="--address=0.0.0.0"
+# The IP address on the local server to serve the --insecure-port.
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0"
 
-# The port on the local server to listen on.
-# KUBE_API_PORT="--port=8080"
+# The port on which to serve unsecured, unauthenticated access.
+# KUBE_API_PORT="--insecure-port=8080"
 
 # Port minions listen on
 # KUBELET_PORT="--kubelet-port=10250"
@@ -16,11 +16,12 @@ KUBE_API_ADDRESS="--address=0.0.0.0"
 # Comma separated list of nodes in the etcd cluster
 KUBE_ETCD_SERVERS="--etcd-servers=http://127.0.0.1:4001"
 
-# Address range to use for services
-KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"
+# Address range to assign service cluster IPs. Must not overlap with any
+# IP ranges assigned to nodes for pods
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.32.0.0/24"
 
-# default admission control policies
+# Default admission control policies
 KUBE_ADMISSION_CONTROL="--admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ResourceQuota"
 
-# Add your own!
-KUBE_API_ARGS="--portal_net=11.1.0.0/16"
+# The IP address on which to advertise the apiserver to cluster members
+KUBE_API_IP="--advertise-address=%%MASTER_IP%%"
