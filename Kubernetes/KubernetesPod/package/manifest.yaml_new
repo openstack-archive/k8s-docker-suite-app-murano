@@ -12,11 +12,11 @@
 
 Format: 1.3
 Type: Application
-Version: 0.0.0
+Version: a.b.c
 FullName: com.mirantis.docker.kubernetes.KubernetesPod
 Name: Kubernetes Pod
 Description: |
- v0.0.0 - Kubernes Pod is a collection of containers which will be scheduled
+ va.b.c - Kubernes Pod is a collection of containers which will be scheduled
  onto the same node, which share and an IP and port space, and which can be
  created/destroyed together.
 Author: 'Mirantis, Inc'
