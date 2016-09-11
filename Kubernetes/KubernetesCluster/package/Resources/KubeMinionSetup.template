@@ -48,6 +48,7 @@ Scripts:
       - environ/kube-config
       - systemd/kube-proxy.service
       - systemd/kubelet.service
+      - kubeconfig.yaml
 
     Options:
       captureStdout: true
