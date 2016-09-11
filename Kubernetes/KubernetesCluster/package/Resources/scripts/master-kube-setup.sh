@@ -44,14 +44,14 @@ calicoctl pool add 10.0.200.0/24 --nat-outgoing
 
 #Create log folder for Kubernetes services
 mkdir -p /var/run/murano-kubernetes
+mkdir -p /etc/kubernetes/
+mkdir -p /etc/kubernetes/addons
 
 if [[ $(which systemctl) ]]; then
   systemctl stop kube*
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/kube-config
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/apiserver
   sed -i.bak "s/%%MASTER_IP%%/$2/g" default_scripts/kube-apiserver
-
-  mkdir -p /etc/kubernetes/
 
   cp -f environ/apiserver /etc/kubernetes/apiserver
   cp -f environ/kube-config /etc/kubernetes/config

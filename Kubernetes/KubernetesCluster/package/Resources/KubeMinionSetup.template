@@ -50,6 +50,7 @@ Scripts:
       - systemd/kubelet.service
       - certs/openssl_worker.cnf
       - systemd/calico-node.service
+      - kubeconfig.yaml
 
     Options:
       captureStdout: true

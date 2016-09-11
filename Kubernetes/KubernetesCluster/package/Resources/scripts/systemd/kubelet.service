@@ -15,7 +15,8 @@ ExecStart=/opt/bin/hyperkube kubelet \
             $KUBELET_PORT \
             $KUBELET_HOSTNAME \
             $KUBE_ALLOW_PRIV \
-            $KUBELET_ARGS
+            $KUBELET_CLUSTER_DNS \
+            $KUBELET_DNS_DOMAIN
 Restart=on-failure
 KillMode=process
 

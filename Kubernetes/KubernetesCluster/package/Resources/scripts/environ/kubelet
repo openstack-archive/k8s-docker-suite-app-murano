@@ -17,3 +17,8 @@ KUBELET_API_SERVER="--api-servers=http://%%MASTER_IP%%:8080"
 KUBELET_ARGS="--network-plugin=cni \
               --network-plugin-dir=/etc/cni/net.d"
 
+# IP address for a cluster DNS server
+KUBELET_CLUSTER_DNS="--cluster-dns=10.32.0.10"
+
+# Domain for this cluster
+KUBELET_DNS_DOMAIN="--cluster-domain=kubernetes.local"
