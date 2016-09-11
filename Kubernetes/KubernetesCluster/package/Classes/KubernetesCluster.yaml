@@ -138,6 +138,8 @@ Methods:
               - $.minionNodes.take($.nodeCount).pselect($.setupNode())
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
 
+          - $.deployKubeDns()
+
           - $._environment.stack.push()
           - $._updateServicePublicIps()
           - $.setAttr(lastNodeCount, $.nodeCount)
@@ -508,7 +510,6 @@ Methods:
           - $._environment.reporter.report($this, 'No gateway nodes that can be removed')
 
 
-
   scaleRc:
     Arguments:
       - rcName:
@@ -531,3 +532,21 @@ Methods:
 
     Body:
       - $.minionNodes.take($.nodeCount).pselect($.restartContainers(podName => $podName))
+
+
+  deployKubeDns:
+    Arguments:
+      - replicas:
+          Contract: $.int().notNull()
+          Default: 2
+      - dnsServerIp:
+          Contract: $.string().notNull()
+          Default: '10.32.0.10'
+
+    Body:
+      - $resources: new(sys:Resources)
+      - $template: $resources.yaml('DeployKubeDns.template').bind(dict(
+            replicas => $replicas,
+            dnsServerIp => $dnsServerIp
+          ))
+      - $.masterNode.instance.agent.call($template, $resources)

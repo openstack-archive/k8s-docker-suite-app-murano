@@ -5,14 +5,13 @@
 # $3 - MASTER_IP
 
 mkdir -p /var/run/murano-kubernetes
+mkdir -p /etc/kubernetes/
 
 if [[ $(which systemctl) ]]; then
 
   sed -i.bak "s/%%MASTER_IP%%/$3/g" environ/kube-config
   sed -i.bak "s/%%MASTER_IP%%/$3/g" environ/kubelet
   sed -i.bak "s/%%IP%%/$2/g" environ/kubelet
-
-  mkdir -p /etc/kubernetes/
 
   cp -f environ/kubelet /etc/kubernetes/
   cp -f environ/kube-config /etc/kubernetes/config
@@ -48,5 +47,8 @@ else
   service kubelet start
   service kube-proxy start
 fi
+
+sed -i.bak "s/%%MASTER_IP%%/$3/g" kubeconfig.yaml
+cp -f kubeconfig.yaml /etc/kubernetes/
 
 sleep 1
