@@ -18,10 +18,10 @@ Templates:
     instance:
       ?:
         type: io.murano.resources.LinuxMuranoInstance
-      name: generateHostname($.appConfiguration.unitNamingPattern, 1)
+      name: generateHostname($.nodesConfiguration.unitNamingPattern, 1)
       flavor: $.instanceConfiguration.flavor
       image: $.instanceConfiguration.image
-      assignFloatingIp: $.appConfiguration.assignFloatingIP
+      assignFloatingIp: $.nodesConfiguration.assignFloatingIP
       keyname: $.instanceConfiguration.keyPair
       availabilityZone: $.instanceConfiguration.availabilityZone
 
@@ -31,13 +31,13 @@ Templates:
     instance:
       ?:
         type: io.murano.resources.LinuxMuranoInstance
-      name: generateHostname($.appConfiguration.unitNamingPattern, $index + 1)
+      name: generateHostname($.nodesConfiguration.unitNamingPattern, $index + 1)
       flavor: $.instanceConfiguration.flavor
       image: $.instanceConfiguration.image
-      assignFloatingIp: $.appConfiguration.assignFloatingIP
+      assignFloatingIp: $.nodesConfiguration.assignFloatingIP
       keyname: $.instanceConfiguration.keyPair
       availabilityZone: $.instanceConfiguration.availabilityZone
-    exposeCAdvisor: $.appConfiguration.exposeCAdvisor
+    exposeCAdvisor: $.nodesConfiguration.exposeCAdvisor
 
 
   gatewayNode:
@@ -46,30 +46,30 @@ Templates:
     instance:
       ?:
         type: io.murano.resources.LinuxMuranoInstance
-      name: generateHostname($.appConfiguration.gatewayNamingPattern, $index)
+      name: generateHostname($.nodesConfiguration.gatewayNamingPattern, $index)
       flavor: $.instanceConfiguration.flavor
       image: $.instanceConfiguration.image
-      assignFloatingIp: $.appConfiguration.assignGatewayFloatingIP
+      assignFloatingIp: $.nodesConfiguration.assignGatewayFloatingIP
       keyname: $.instanceConfiguration.keyPair
       availabilityZone: $.instanceConfiguration.availabilityZone
 
 Application:
   ?:
     type: com.mirantis.docker.kubernetes.KubernetesCluster
-  name: $.appConfiguration.name
+  name: $.nodesConfiguration.name
   masterNode: $masterNode
-  minionNodes: repeat($minionNode, $.appConfiguration.maxMinionCount)
-  nodeCount: $.appConfiguration.minionCount
-  gatewayCount: $.appConfiguration.gatewayCount
-  useFlannel: $.appConfiguration.useFlannel
-  gatewayNodes: repeat($gatewayNode, $.appConfiguration.maxGatewayCount)
-  dockerRegistry: $.appConfiguration.dockerRegistry
-  dockerMirror: $.appConfiguration.dockerMirror
-  gcloudKey: $.appConfiguration.gcloudKey
-
+  minionNodes: repeat($minionNode, $.nodesConfiguration.maxMinionCount)
+  nodeCount: $.nodesConfiguration.minionCount
+  gatewayCount: $.nodesConfiguration.gatewayCount
+  useFlannel: $.kubeNetConfiguration.useFlannel
+  gatewayNodes: repeat($gatewayNode, $.nodesConfiguration.maxGatewayCount)
+  dockerRegistry: $.kubeNetConfiguration.dockerRegistry
+  dockerMirror: $.kubeNetConfiguration.dockerMirror
+  gcloudKey: $.kubeNetConfiguration.gcloudKey
+  enableKubeDns: $.kubeNetConfiguration.enableKubeDns
 
 Forms:
-  - appConfiguration:
+  - nodesConfiguration:
       fields:
         - name: license
           type: string
@@ -105,13 +105,6 @@ Forms:
           label: Assign floating IP to Kubernetes nodes
           description: >-
              Check to assign floating IP to Kubernetes nodes
-          required: false
-        - name: useFlannel
-          type: boolean
-          initial: false
-          label: Use Flannel networking instead of Calico
-          description: >-
-             Check, if you are going use the Flannel networking instead of Calico
           required: false
         - name: unitNamingPattern
           type: string
@@ -170,6 +163,23 @@ Forms:
           helpText: "# expands to gateway sequence number"
           description: >-
              Check to assign floating IP to gateway nodes
+
+  - kubeNetConfiguration:
+      fields:
+        - name: useFlannel
+          type: boolean
+          initial: false
+          label: Use Flannel networking instead of Calico
+          description: >-
+             Check, if you are going to use the Flannel networking instead of Calico
+          required: false
+        - name: enableKubeDns
+          type: boolean
+          initial: true
+          label: Enable KubeDNS addon
+          description: >-
+             Check, if you are going to use KubeDNS feature in your cluster
+          required: false
         - name: dockerRegistry
           type: string
           label: Custom Docker registry URL
