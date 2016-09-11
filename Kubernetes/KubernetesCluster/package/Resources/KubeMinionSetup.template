@@ -22,6 +22,7 @@ Parameters:
   dockerMirror: $dockerMirror
   gcloudKey: $gcloudKey
   useFlannel: $useFlannel
+  enableKubeDns: $enableKubeDns
 
 Body: |
   if args.dockerRegistry:
@@ -32,7 +33,7 @@ Body: |
     loginToGoogleRegistry("'{0}'".format(args.gcloudKey))
 
   restartDocker()
-  setup('{0} {1} {2} {3}'.format(args.name, args.ip, args.masterIp, args.useFlannel))
+  setup('{0} {1} {2} {3} {4}'.format(args.name, args.ip, args.masterIp, args.useFlannel, args.enableKubeDns))
 
 Scripts:
   setup:
