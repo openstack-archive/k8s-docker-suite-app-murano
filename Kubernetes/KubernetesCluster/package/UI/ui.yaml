@@ -67,6 +67,7 @@ Application:
   dockerMirror: $.kubeNetConfiguration.dockerMirror
   gcloudKey: $.kubeNetConfiguration.gcloudKey
   enableKubeDns: $.kubeNetConfiguration.enableKubeDns
+  enableDashboard: $.kubeNetConfiguration.enableDashboard
 
 Forms:
   - nodesConfiguration:
@@ -179,6 +180,13 @@ Forms:
           label: Enable KubeDNS addon
           description: >-
              Check, if you are going to use KubeDNS feature in your cluster
+          required: false
+        - name: enableDashboard
+          type: boolean
+          initial: true
+          label: Enable Kubernetes Dashboard addon
+          description: >-
+             Check, if you are going to use Kubernetes Dashboard in your cluster
           required: false
         - name: dockerRegistry
           type: string
