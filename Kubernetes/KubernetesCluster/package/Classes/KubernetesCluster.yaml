@@ -131,6 +131,10 @@ Methods:
                 FromPort: 8285
                 IpProtocol: udp
                 External: false
+              - ToPort: 5050    #Dashboard UI port
+                FromPort: 5050
+                IpProtocol: tcp
+                External: false
           - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
           - $.setAttr(deployed, true)
 
@@ -159,6 +163,7 @@ Methods:
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
 
           - $.deployKubeDns()
+          - $.deployKubeUI()
 
           - $._environment.stack.push()
           - $._updateServicePublicIps()
@@ -569,4 +574,10 @@ Methods:
             replicas => $replicas,
             dnsServerIp => $dnsServerIp
           ))
+      - $.masterNode.instance.agent.call($template, $resources)
+
+
+  deployKubeUI:
+    Body:
+      - $template: $resources.yaml('DeployKubeUI.template').bind(dict())
       - $.masterNode.instance.agent.call($template, $resources)

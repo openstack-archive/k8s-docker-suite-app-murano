@@ -1,6 +1,6 @@
 Docker support for Murano
 =========================
-
+ 
 Docker is an open-source project that automates the deployment of applications
 inside software containers. Docker containers could be run either by the
 Docker itself or by container management platforms that built on top of the
