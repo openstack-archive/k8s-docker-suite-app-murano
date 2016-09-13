@@ -116,6 +116,10 @@ Methods:
                 FromPort: 8285
                 IpProtocol: udp
                 External: false
+              - ToPort: 5050    #Dashboard UI port
+                FromPort: 5050
+                IpProtocol: tcp
+                External: false
           - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
           - $.setAttr(deployed, true)
 
@@ -143,6 +147,8 @@ Methods:
           - Parallel:
               - $.minionNodes.take($.nodeCount).pselect($.setupNode())
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
+
+          - $.deployKubeUI()
 
           - $._environment.stack.push()
           - $._updateServicePublicIps()
@@ -552,3 +558,9 @@ Methods:
 
     Body:
       - $.minionNodes.take($.nodeCount).pselect($.restartContainers(podName => $podName))
+
+
+  deployKubeUI:
+    Body:
+      - $template: $resources.yaml('DeployKubeUI.template').bind(dict())
+      - $.masterNode.instance.agent.call($template, $resources)
