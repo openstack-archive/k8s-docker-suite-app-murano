@@ -55,6 +55,10 @@ Properties:
     Contract: $.bool().notNull()
     Default: true
 
+  enableDashboard:
+    Contract: $.bool().notNull()
+    Default: true
+
   dockerRegistry:
     Contract: $.string()
 
@@ -152,17 +156,45 @@ Methods:
             Then:
               $._deployDns()
 
+          - If: $.enableDashboard
+            Then:
+              - $._deployDashboard()
+              - If: $.gatewayCount > 1
+                Then:
+                  - $msg: $.gatewayNodes.take($.gatewayCount).select('http://{0}:{1}'.format($.getIp(true), 9090)).join(', ')
+                  - $._environment.reporter.report($this, 'Dashboard UI is available at {0}'.format($msg))
+                Else:
+                  - $._environment.reporter.report($this, 'Dashboard UI is installed but is not accessible from outside')
+
           - $._environment.stack.push()
           - $._updateServicePublicIps()
           - $.setAttr(lastNodeCount, $.nodeCount)
           - $.setAttr(lastGatewayCount, $.gatewayCount)
           - $._environment.reporter.report($this, 'Kubernetes cluster is up and running')
+
       - $.setAttr(serviceEndpoints, $.serviceEndpoints)
 
 
   getIp:
     Body:
       Return: $.masterNode.getIp()
+
+
+  _deployDashboard:
+    Body:
+      - If: not $.getAttr(uiDeployed, false)
+        Then:
+          - $securityGroupIngress:
+              - ToPort: 9090
+                FromPort: 9090
+                IpProtocol: tcp
+                External: $.masterNode.instance.assignFloatingIp
+          - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
+
+          - $resources: new(sys:Resources)
+          - $template: $resources.yaml('DeployDashboard.template').bind(dict(ip => $.getIp()))
+          - $.masterNode.instance.agent.call($template, $resources)
+          - $.setAttr(uiDeployed, true)
 
 
   _deployDns:
