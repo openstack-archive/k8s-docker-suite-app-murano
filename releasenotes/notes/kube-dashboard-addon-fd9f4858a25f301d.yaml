@@ -1,0 +1,8 @@
+---
+features:
+  - Now Kubernetes Cluster murano application provides ability to install
+    Kubernetes Dashbord addon v1.4 during cluster deployment.
+    Dashboard (the web-based user interface of Kubernetes) allows user
+    to deploy containerized applications to a Kubernetes cluster, troubleshoot
+    them, and manage the cluster and its resources itself
+    User can find dashbord endpoint in deployment logs.
