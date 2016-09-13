@@ -113,6 +113,13 @@ Forms:
           description: >-
              Check, if you are going use the Flannel networking instead of Calico
           required: false
+          - name: enableDashboard
+          type: boolean
+          initial: true
+          label: Enable Kubernetes Dashboard addon
+          description: >-
+             Check, if you are going to use Kubernetes Dashboard in your cluster
+          required: false
         - name: unitNamingPattern
           type: string
           initial: kube-#

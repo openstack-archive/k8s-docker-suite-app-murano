@@ -51,6 +51,10 @@ Properties:
     Contract: $.bool().notNull()
     Default: false
 
+  enableDashboard:
+    Contract: $.bool().notNull()
+    Default: true
+
   dockerRegistry:
     Contract: $.string()
 
@@ -116,6 +120,10 @@ Methods:
                 FromPort: 8285
                 IpProtocol: udp
                 External: false
+              - ToPort: 5050    #Dashboard UI port
+                FromPort: 5050
+                IpProtocol: tcp
+                External: false
           - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
           - $.setAttr(deployed, true)
 
@@ -144,11 +152,15 @@ Methods:
               - $.minionNodes.take($.nodeCount).pselect($.setupNode())
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
 
+          - If: $.enableDashboard
+            Then:
+              $.deployUI()
+
           - $._environment.stack.push()
           - $._updateServicePublicIps()
           - $.setAttr(lastNodeCount, $.nodeCount)
           - $.setAttr(lastGatewayCount, $.gatewayCount)
-          - $._environment.reporter.report($this, 'Kubernetes cluster is up and running')
+          - $._environment.reporter.report($this, 'Kubernetes cluster is up. Dashboard UI is available at http://{0}:{1}'.format($.gatewayNodes.take($.gatewayCount).select($.getIp()).first(), 5050))')
       - $.setAttr(serviceEndpoints, $.serviceEndpoints)
 
 
@@ -552,3 +564,9 @@ Methods:
 
     Body:
       - $.minionNodes.take($.nodeCount).pselect($.restartContainers(podName => $podName))
+
+
+  deployDashboard:
+    Body:
+      - $template: $resources.yaml('DeployDashboard.template')
+      - $.masterNode.instance.agent.call($template, $resources)
