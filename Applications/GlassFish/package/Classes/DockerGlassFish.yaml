@@ -63,19 +63,19 @@ Methods:
     Body:
       - If: $.publish
         Then:
-          - $adminEndpoints: join(', ', $.applicationEndpoints.
+          - $adminEndpoints: $.applicationEndpoints.
               where($.scope = $this._scope and $.containerPort = 4848).
-              select(format('http://{0}:{1}', $.address, $.port)))
-          - $httpEndpoints: join(', ', $.applicationEndpoints.
+              select(format('http://{0}:{1}', $.address, $.port))
+          - $httpEndpoints: $.applicationEndpoints.
               where($.scope = $this._scope and $.containerPort = 8080).
-              select(format('http://{0}:{1}', $.address, $.port)))
-          - $httpsEndpoints: join(', ', $.applicationEndpoints.
+              select(format('http://{0}:{1}', $.address, $.port))
+          - $httpsEndpoints: $.applicationEndpoints.
               where($.scope = $this._scope and $.containerPort = 8181).
-              select(format('https://{0}:{1}', $.address, $.port)))
+              select(format('https://{0}:{1}', $.address, $.port))
 
           - $._environment.reporter.report(
               $this,
               'GlassFish {0} is available at {1} (admin) and {2} + {3} (apps)'.format(
-                $.name, $adminEndpoints, $httpEndpoints, $httpsEndpoints))
+                $.name, $adminEndpoints.join(', '), $httpEndpoints.join(', '), $httpsEndpoints.join(', ')))
         Else:
           - $._environment.reporter.report($this, 'GlassFish {0} has deployed but is not accessible from outside'.format($.name))

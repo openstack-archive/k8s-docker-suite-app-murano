@@ -61,14 +61,15 @@ Methods:
     Body:
       - If: $.publish
         Then:
-          - $adminEndpoints: join(', ', $.applicationEndpoints.
+          - $adminEndpoints: $.applicationEndpoints.
               where($.scope = $this._scope and $.containerPort = 9990).
-              select(format('http://{0}:{1}', $.address, $.port)))
-          - $httpEndpoints: join(', ', $.applicationEndpoints.
+              select(format('http://{0}:{1}', $.address, $.port))
+          - $httpEndpoints: $.applicationEndpoints.
               where($.scope = $this._scope and $.containerPort = 8080).
-              select(format('http://{0}:{1}', $.address, $.port)))
+              select(format('http://{0}:{1}', $.address, $.port))
           - $._environment.reporter.report(
               $this,
-              'JBoss {0} is available at {1} (admin) and {2} (apps)'.format($.name, $adminEndpoints, $httpEndpoints))
+              'JBoss {0} is available at {1} (admin) and {2} (apps)'.format(
+                $.name, $adminEndpoints.join(', '), $httpEndpoints.join(', ')))
         Else:
           - $._environment.reporter.report($this, 'JBoss {0} has deployed but is not accessible from outside'.format($.name))
