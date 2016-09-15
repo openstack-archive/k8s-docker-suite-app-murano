@@ -41,7 +41,6 @@ Scripts:
       - systemd/kube-apiserver.service
       - systemd/kube-scheduler.service
       - systemd/kube-controller-manager.service
-      - systemd/docker.service
 
 
     Options:

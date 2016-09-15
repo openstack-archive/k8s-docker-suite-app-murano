@@ -7,13 +7,6 @@
 mkdir -p /var/run/murano-kubernetes
 
 if [[ $(which systemctl) ]]; then
-  # On debian docker ignores /etc/default/docker file
-  # Replacing original docker.service to modified with EnvironmentFile option
-  systemctl stop docker
-  cp -f systemd/docker.service /lib/systemd/system/
-  systemctl daemon-reload
-  systemctl start docker
-
   systemctl stop kube*
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/kube-config
 
