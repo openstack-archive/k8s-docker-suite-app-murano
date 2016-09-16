@@ -1,5 +1,5 @@
-Google Kubernetes for Murano
-============================
+Murano deployed Kubernetes Cluster application
+==============================================
 
 Packages in this folder are required to deploy both Google Kubernetes and
 applications on top of it.
@@ -31,6 +31,163 @@ count is a property of KubernetesPod.
 
 For a more in-depth review of Kubernetes please refer to official
 `documentation <http://kubernetes.io/v1.1/docs/user-guide/README.html>`_.
+
+Features
+========
+
+Murano deployed Kubernetes Cluster supports following features:
+
+* KubeDNS_
+* Dashboard_
+* Networking_: Calico
+* `Container Runtime`_: Docker
+* `Rolling Updates`_ of Kubernetes application
+* Publishing services:  ClusterIP Type
+
+
+.. _KubeDNS:
+
+DNS in Kubernetes Cluster deployed by Murano
+--------------------------------------------
+
+Kubernetes Cluster deployed by Murano offers a Kube-DNS cluster addon, which is
+configured and enabled by default. The running Kubernetes Kube-DNS pod holds 3
+containers:
+
+* The kubedns container:
+
+  * Watches changes in services and endpoints
+  * Maintains in-memory lookup structures to service DNS requests
+
+* The dnsmasq container adds DNS caching to improve performance
+* The healthz container performing healthchecks for dnsmasq and kubedns
+
+Additionally, kubelets on each node has been configured to tell individual containers
+to use the DNS Service’s IP to resolve DNS names. The DNS server watches the Kubernetes
+API for new Services and creates a set of DNS records for each, so that every Service
+defined in the cluster will be assigned a DNS name. As a result Pods are able to do
+name resolution of Cluster Services automatically.
+
+The Kubernetes cluster DNS server supports: Forward lookups (A records),
+Service lookups (SRV records), Reverse IP address lookups (PTR records).
+
+Kube-DNS addon in Kubernetes Cluster has following default settings:
+
+* IP address of DNS server = 10.32.0.10
+* Default Domain of DNS server = kubernetes.local
+
+
+.. _Dashboard:
+
+Dashboard UI
+------------
+
+Dashboard (the web-based user interface for Kubernetes) allows to deploy
+containerized applications to a Kubernetes cluster, troubleshoot them, and
+manage the cluster and its resources itself. It can be used to overview
+of applications running on the cluster, as well as for creating or modifying
+individual Kubernetes resources and workloads, such as Deployments, Daemonsets,
+Replica sets, Jobs, Replication controllers, corresponding Services and Pods.
+
+
+.. _Networking:
+
+Networking
+----------
+
+Kubernetes Cluster deployed by Murano supports Calico networking by default.
+Support for Flannel is disabled.
+
+
+.. _Container runtime:
+
+Container runtime
+-----------------
+
+A container runtime responsible for pulling container images from a registry,
+unpacking the container and running the application. Kubernetes by default
+supports Docker runtime. Recently in Kubernetes version 1.3 support for rkt
+runtime has been added. More runtimes planned to be added in the future.
+
+Kubernetes Cluster deployed by Murano currently supports only Docker runtime.
+Though we planning to add rkt runtime in close future.
+
+
+.. _Rolling Updates:
+
+Rolling Updates of Kubernetes application
+-----------------------------------------
+
+Kubernetes Cluster deployed by Murano supports rolling updates with the use of
+“Deployments” and “Replication Controllers (RC)” abstractions. Rolling updates
+using  Deployments is a recommended way to perform updates.
+Rolling update via Deployments provides following benefits over RC:
+
+* Declarative way to control how service updates are performed
+* Rollback to an earlier Deployment version
+* Pause and resume a Deployment.
+
+To use Rolling updates via Deployments refer to `Kubernetes documentation <http://kubernetes.io/docs/user-guide/deployments/#updating-a-deployment>`_.
+
+**NOTE:** Currently all applications deployed from Apps Catalog has been created as
+Replication Controllers (RC). It means that  Rolling updates via Deployments
+are not available for those applications.
+
+In case application running as Replication Controllers (RC) and requires update,
+please refer to Kubernetes documentation `here <http://kubernetes.io/docs/user-guide/rolling-updates>`_.
+
+
+Interacting with Kubernetes Cluster deployed by Murano
+======================================================
+
+There are several ways to create, manage applications on Kubernetes cluster:
+
+Using Murano->Apps Catalog-> Environments view in Horizon:
+----------------------------------------------------------
+Users can perform following actions:
+
+* Deploy/Destroy Kubernetes Cluster
+* Perform Kubernetes Cluster related actions such as scale Nodes and Gateways.
+* Perform Kubernetes Pod related actions such as scale, recreate pods or restart Containers.
+* Deploy selected Application from Apps Catalog via Murano Dashboard.
+* Deploy any docker image from Docker Hub using Docker Container apps from Apps Catalog.
+
+
+Using Kubernetes Dashboard:
+---------------------------
+
+URL to access Dashboard provided after Kubernetes Cluster Deployment in the format:
+
+ * `http://<gateway-1-IP>:5050`
+
+
+Using kubectl CLI:
+------------------
+
+Deploy and manage applications using Kubernetes command-line tool - ``kubectl``
+from you laptop or any local environment:
+
+ *  * `Download and install <http://kubernetes.io/docs/getting-started-guides/minikube/#install-kubectl>`_ the ``kubectl`` executable based on OS of the choice.
+ * Configure kubectl context on local env:
+
+  * ``kubectl config set-cluster kubernetes --server=http://<kube1-floating_IP>:8080``
+  * ``kubectl config set-context kubelet-context --cluster=kubernetes --user=""``
+  * ``kubectl config use-context kubelet-context``
+
+ * Verify kubectl Configuration and Connection:
+
+  * ``kubectl config view``
+  * ``kubectl get nodes``
+
+The resulting kubeconfig file will be stored in ~/.kube/config. Can be sourced at any time after.
+
+Additionally, it is possible to access ``kubectl cli`` from Master Node (kube-1),
+where ```kubectl cli``` is installed and configured by default.
+
+**NOTE:** In case application has been deployed via Dashboard or kubectl it will be exposed
+automatically outside based on the port information provided in service yaml file.
+However, it will be required to manually add required port to the OpenStack Security
+Groups  created for this Cluster in order to be able reach application from outside.
 
 
 How murano installs Kubernetes
