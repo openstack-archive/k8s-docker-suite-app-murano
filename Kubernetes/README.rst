@@ -1,4 +1,4 @@
-Google Kubernetes for Murano
+Murano deployed Kubernetes Cluster application
 ============================
 
 Packages in this folder are required to deploy both Google Kubernetes and
@@ -33,6 +33,69 @@ For a more in-depth review of Kubernetes please refer to official
 `documentation <http://kubernetes.io/v1.1/docs/user-guide/README.html>`_.
 
 
+Features
+----------------------
+
+Murano deployed Kubernetes Cluster supports following features:
+* KubeDNS
+* Dashboard
+* Container Runtime: Docker
+* Publishing services:  ClusterIP Type
+* Rolling Updates of Kubernetes application
+* Flannel Networking by default. Calico (optional)
+
+
+Interacting with Kubernetes Cluster deployed by Murano
+============================
+
+There are several ways to create, manage applications on Kubernetes cluster:
+
+Using Murano->Apps Catalog-> Environments view in Horizon:
+----------------------
+* Deploy/Desrtoy Kubernetes Cluster
+* Perform Kubernetes Cluster related actions such as scale Nodes and Gateways.
+* Perform Kubernetes Pod related actions such as scale, recreate pods or restart Container.
+* Deploy selected Application using Openstack Apps Catalog via Murano Dashboard.
+* Deploy any docker image from Docker Hub using Docker Container apps from Apps Catalog.
+
+
+Using Kubernetes Dashboard:
+----------------------
+Dashboard (the web-based user interface of Kubernetes) allows to deploy
+containerized applications to a Kubernetes cluster, troubleshoot them, and
+manage the cluster and its resources itself. It can be used to overview
+of applications running on the cluster, as well as for creating or modifying
+individual Kubernetes resources and workloads, such as Deployments, Daemonsets,
+ Replica sets, Jobs, Replication controllers and corresponding Services, or Pods.
+* URL to access Dashboard provided after Kubernetes Cluster Deployment in the format:
+** http://<Floating_IP_of_Gatewaty_Node>:5050
+NOTE: In case application has been deployed via Dashboard it will be exposed
+automatically outside based on the port information provided in service yaml file.
+However it will be required to manually add required port to the Openstack Security 
+Groups  created for this Cluster in order to be able reach application from outside.
+
+
+Using kubectl CLI:
+----------------------
+Deploy and manage applications using  Kubernetes command-line tool, kubectl:
+* kube-1 - Controller node already contains kubectl installed and configured.
+* It is also possible to access Kubernetes Cluster from you laptop or any local environment:
+** Download and install the kubectl Executable based on OS of the choice.
+** Configure kubectl context on local env:
+kubectl config set-cluster kubernetes --server=http://Floating_IP_of_Master_Node:8080
+kubectl config set-context kubelet-context --cluster=kubernetes --user=""
+kubectl config use-context kubelet-context
+
+**Verify kubectl Configuration and Connection
+kubectl config view
+Kubectl get nodes
+
+NOTE: In case application has been deployed via kubectl it will be exposed
+automatically outside based on the port information provided in service yaml file.
+However it will be required to manually add required port to the Openstack Security
+Groups  created for this Cluster in order to be able reach application from outside.
+
+
 How murano installs Kubernetes
 ------------------------------
 
@@ -54,6 +117,49 @@ on all gateway nodes. Thus if user chose to have more than one gateway
 it will usually get several endpoints for the application. Then those endpoints
 can be registered in physical load balancer or DNS.
 
+
+DNS in Kubernetes Cluster deployed by Murano
+============================
+
+Kubernetes Cluster deployed by Murano offers a Kube-DNS cluster addon, which is
+configured and enabled by default. The running Kubernetes Kube-DNS pod holds 3 
+containers:
+* The kubedns container  Watches changes in Services and Endpoints as well as
+maintains in-memory lookup structures to service DNS requests. 
+* The dnsmasq container adds DNS caching to improve performance. 
+* The healthz container performing healthchecks for dnsmasq and kubedns
+Additionally kubelets on each node has been configured to tell individual containers
+to use the DNS Service’s IP to resolve DNS names. The DNS server watches the Kubernetes
+API for new Services and creates a set of DNS records for each, so that every Service
+defined in the cluster will be assigned a DNS name. As a result Pods are able to do
+name resolution of Cluster Services automatically.
+
+The Kubernetes cluster DNS server supports: Forward lookups (A records),
+Service lookups (SRV records), Reverse IP address lookups (PTR records). 
+
+Kube-DNS addon in Kubernetes Cluster has following default settings:
+* IP address of DNS server = 10.32.0.10
+* Default Domain of DNS server = kubernetes.local
+This settings can be customized, if required.
+
+
+Rolling Updates of Kubernetes application
+============================
+
+Kubernetes Cluster deployed by Murano supports rolling updates with the use of
+“Deployments” and “Replication Controllers (RC)” abstractions. Rolling updates
+using  Deployments is a recommended way to perform updates. 
+Rolling update via Deployments provides following benefits over RC:
+* Declarative way to control how service updates are performed
+* Rollback to an earlier Deployment version
+* Pause and resume a Deployment.
+
+In the current implementation of  Kubernetes Cluster deployed by Murano user can
+perform rolling updates using on of the following options:
+* via Kubernetes Dashboard
+* via kubectl CLI
+Since all apps deployed from Murano Catalog deployed as Deployments, users can 
+take advantage to use rolling updates of this apps via Deployment abstraction.
 
 KubernetesCluster
 =================
