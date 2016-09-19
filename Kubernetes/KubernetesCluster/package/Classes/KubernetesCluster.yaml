@@ -95,18 +95,6 @@ Methods:
                 FromPort: 7001
                 IpProtocol: tcp
                 External: false
-              - ToPort: 2379
-                FromPort: 2379
-                IpProtocol: tcp
-                External: false
-              - ToPort: 179
-                FromPort: 179
-                IpProtocol: tcp
-                External: false
-              - ToPort: 179
-                FromPort: 179
-                IpProtocol: udp
-                External: false
               - ToPort: 10250
                 FromPort: 10250
                 IpProtocol: tcp
