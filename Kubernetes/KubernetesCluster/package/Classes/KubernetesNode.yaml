@@ -76,6 +76,7 @@ Methods:
             IpProtocol: udp
             External: false
       - $environment.securityGroupManager.addGroupIngress($securityGroupIngress)
+
       - $stack: $environment.stack.current()
 
       - $portName: $stack.resources.get($this.instance.name).properties.networks[0].port.get_resource
