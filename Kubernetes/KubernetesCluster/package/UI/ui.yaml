@@ -61,6 +61,7 @@ Application:
   minionNodes: repeat($minionNode, $.appConfiguration.maxMinionCount)
   nodeCount: $.appConfiguration.minionCount
   gatewayCount: $.appConfiguration.gatewayCount
+  useFlannel: $.appConfiguration.useFlannel
   gatewayNodes: repeat($gatewayNode, $.appConfiguration.maxGatewayCount)
   dockerRegistry: $.appConfiguration.dockerRegistry
   dockerMirror: $.appConfiguration.dockerMirror
@@ -104,6 +105,13 @@ Forms:
           label: Assign floating IP to Kubernetes nodes
           description: >-
              Check to assign floating IP to Kubernetes nodes
+          required: false
+        - name: useFlannel
+          type: boolean
+          initial: false
+          label: Use Flannel networking instead of Calico
+          description: >-
+             Check, if you are going use the Flannel networking instead of Calico
           required: false
         - name: unitNamingPattern
           type: string
