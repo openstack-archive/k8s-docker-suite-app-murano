@@ -55,6 +55,7 @@ Methods:
       - $resources: new(sys:Resources)
       - $template: $resources.yaml('SetupCalicoMaster.template').bind(dict(ip => $.getIp()))
       - $.instance.agent.call($template, $resources)
+      - $._enableCalicoTraffic()
 
 
   setupFlannel:
@@ -81,6 +82,7 @@ Methods:
           - $msg: 'Kubernetes API is now available at http://{0}:8080'
           - $ip: coalesce($.instance.floatingIpAddress, $.getIp())
           - $._environment.reporter.report($this, $msg.format($ip))
+
 
   isAvailable:
     Body:
