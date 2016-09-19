@@ -21,6 +21,7 @@ Parameters:
   dockerRegistry: $dockerRegistry
   dockerMirror: $dockerMirror
   gcloudKey: $gcloudKey
+  useFlannel: $useFlannel
 
 Body: |
   if args.dockerRegistry:
@@ -29,8 +30,9 @@ Body: |
     setupMirror(args.dockerMirror)
   if args.gcloudKey:
     loginToGoogleRegistry("'{0}'".format(args.gcloudKey))
+
   restartDocker()
-  setup('{0} {1} {2}'.format(args.name, args.ip, args.masterIp))
+  setup('{0} {1} {2} {3}'.format(args.name, args.ip, args.masterIp, args.useFlannel))
 
 Scripts:
   setup:
