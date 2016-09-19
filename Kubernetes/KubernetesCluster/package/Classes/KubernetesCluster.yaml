@@ -47,6 +47,10 @@ Properties:
       - $.class(KubernetesGatewayNode).notNull()
       - 1
 
+  useFlannel:
+    Contract: $.bool().notNull()
+    Default: false
+
   dockerRegistry:
     Contract: $.string()
 
@@ -74,6 +78,7 @@ Methods:
   .init:
     Body:
       - $._environment: $.find(std:Environment).require()
+
 
   isAvailable:
     Body:
@@ -139,9 +144,7 @@ Methods:
               - $.minionNodes.take($.nodeCount).pselect($.setupNode())
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
 
-          - Parallel:
-              - $.minionNodes.take($.nodeCount).pselect($.setupFlannel())
-              - $.gatewayNodes.take($.gatewayCount).pselect($.setupFlannel())
+          - $._deployContainersNetwork()
 
           - $._environment.stack.push()
           - $._updateServicePublicIps()
@@ -154,6 +157,21 @@ Methods:
   getIp:
     Body:
       Return: $.masterNode.getIp()
+
+
+  _deployContainersNetwork:
+    Body:
+      - If: $.useFlannel
+        Then:
+          - $.masterNode.setupFlannel()
+          - Parallel:
+              - $.minionNodes.take($.nodeCount).pselect($.setupFlannel())
+              - $.gatewayNodes.take($.gatewayCount).pselect($.setupFlannel())
+        Else:
+          - Parallel:
+              - $.masterNode.setupCalico()
+              - $.minionNodes.take($.nodeCount).pselect($.setupCalico())
+              - $.gatewayNodes.take($.gatewayCount).pselect($.setupCalico())
 
 
   createPod:
