@@ -67,10 +67,11 @@ Methods:
     Body:
       - If: not $.getAttr(nodeConfigured, false)
         Then:
-          - $._environment.reporter.report($this, 'Setup Flannel network on {0}'.format($.instance.name))
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('SetupFlannelNode.template')
-          - $.instance.agent.call($template, $resources)
+          #(TODO) we need to decide should we support Flannel or not
+          #- $._environment.reporter.report($this, 'Setup Flannel network on {0}'.format($.instance.name))
+          #- $template: $resources.yaml('SetupFlannelNode.template')
+          #- $.instance.agent.call($template, $resources)
 
           - $securityGroupIngress:
               - ToPort: 4194
@@ -89,6 +90,7 @@ Methods:
                 gcloudKey => $._cluster.gcloudKey
               ))
           - $.instance.agent.call($template, $resources)
+          - $.enableCalico()
           - $.setAttr(nodeConfigured, true)
           - $msg: 'cAdvisor monitoring for Node {0} is now available at http://{1}:4194'
           - $ip: $.getIp($.exposeCAdvisor)
