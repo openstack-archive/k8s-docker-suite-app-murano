@@ -61,6 +61,8 @@ else
   service kube-controller-manager start
 fi
 
+ln -s /opt/bin/hyperkube /opt/bin/kubectl
+
 mkdir /var/log/kubernetes
 /opt/bin/kubectl delete node 127.0.0.1
 sleep 1
