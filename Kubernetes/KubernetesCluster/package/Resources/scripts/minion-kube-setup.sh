@@ -3,6 +3,7 @@
 # $1 - NAME
 # $2 - IP
 # $3 - MASTER_IP
+# $4 - USE_CALICO
 
 mkdir -p /var/run/murano-kubernetes
 
@@ -11,6 +12,10 @@ if [[ $(which systemctl) ]]; then
   sed -i.bak "s/%%MASTER_IP%%/$3/g" environ/kube-config
   sed -i.bak "s/%%MASTER_IP%%/$3/g" environ/kubelet
   sed -i.bak "s/%%IP%%/$2/g" environ/kubelet
+
+  if [ "$4" == "False" ]; then
+    echo KUBELET_ARGS=\"--network-plugin=cni --network-plugin-dir=/etc/cni/net.d\" >> environ/kubelet
+  fi
 
   mkdir -p /etc/kubernetes/
 
