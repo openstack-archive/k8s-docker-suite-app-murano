@@ -48,6 +48,8 @@ Scripts:
       - environ/kube-config
       - systemd/kube-proxy.service
       - systemd/kubelet.service
+      - certs/openssl_worker.cnf
+      - systemd/calico-node.service
 
     Options:
       captureStdout: true

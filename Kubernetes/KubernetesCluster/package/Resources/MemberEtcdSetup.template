@@ -32,6 +32,7 @@ Scripts:
       - initd_scripts/etcd
       - environ/etcd
       - systemd/etcd.service
+      - systemd/calico-node.service
 
     Options:
       captureStdout: true
