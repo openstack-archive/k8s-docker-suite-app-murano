@@ -49,3 +49,48 @@ Methods:
   setupEtcd:
   setupNode:
   removeFromCluster:
+
+
+  # TODO(ddovbii): To enable traffic for Calico the SharedIp class
+  # from murano.io probably can be used. In future we need to
+  # investigate functionallity of this class and apply it instead
+  # of this workaround if it is possible
+  _enableCalicoTraffic:
+    Arguments:
+      - address:
+          Contract: $.string().notNull()
+          Default: '192.168.0.0/16'
+    Body:
+      - $environment: $.find(std:Environment)
+      - $securityGroupIngress:
+          - ToPort: 2379
+            FromPort: 2379
+            IpProtocol: tcp
+            External: false
+          - ToPort: 179
+            FromPort: 179
+            IpProtocol: tcp
+            External: false
+          - ToPort: 179
+            FromPort: 179
+            IpProtocol: udp
+            External: false
+      - $environment.securityGroupManager.addGroupIngress($securityGroupIngress)
+      - $stack: $environment.stack.current()
+
+      - $portName: $stack.resources.get($this.instance.name).properties.networks[0].port.get_resource
+
+      - $template:
+          resources:
+            $portName:
+              properties:
+                allowed_address_pairs:
+                  - ip_address: $address
+
+      - $stack: $stack.mergeWith($template)
+
+      - $fiRecord:
+          ip_address: $this.instance.ipAddresses[0]
+
+      - $stack.resources[$portName].properties.fixed_ips[0]: $stack.resources[$portName].properties.fixed_ips[0] + $fiRecord
+      - $environment.stack.setTemplate($stack)
