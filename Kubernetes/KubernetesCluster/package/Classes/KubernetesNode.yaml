@@ -44,6 +44,8 @@ Methods:
       - $.instance.deploy()
 
 
+  setupFlannel:
+  setupCalico:
   setupEtcd:
   setupNode:
   removeFromCluster:
