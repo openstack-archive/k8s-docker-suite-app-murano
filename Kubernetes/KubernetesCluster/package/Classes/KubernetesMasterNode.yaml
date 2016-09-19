@@ -65,10 +65,12 @@ Methods:
                 ip => $.getIp()
               ))
           - $.instance.agent.call($template, $resources)
+          - $.enableCalico()
           - $.setAttr(nodeConfigured, true)
           - $msg: 'Kubernetes API is now available at http://{0}:8080'
           - $ip: coalesce($.instance.floatingIpAddress, $.getIp())
           - $._environment.reporter.report($this, $msg.format($ip))
+
 
   isAvailable:
     Body:
