@@ -63,15 +63,27 @@ Methods:
           - $.setAttr(etcdConfigured, true)
 
 
+  setupCalico:
+    Body:
+      - $._environment.reporter.report($this, 'Setup Calico network on node {0}'.format($.instance.name))
+      - $resources: new(sys:Resources)
+      - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(ip => $.getIp()))
+      - $.instance.agent.call($template, $resources)
+
+
+  setupFlannel:
+    Body:
+      - $._environment.reporter.report($this, 'Setup Flannel network on node {0}'.format($.instance.name))
+      - $resources: new(sys:Resources)
+      - $template: $resources.yaml('SetupFlannelNode.template')
+      - $.instance.agent.call($template, $resources)
+
+
   setupNode:
     Body:
       - If: not $.getAttr(nodeConfigured, false)
         Then:
-          - $._environment.reporter.report($this, 'Setup Flannel network on {0}'.format($.instance.name))
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('SetupFlannelNode.template')
-          - $.instance.agent.call($template, $resources)
-
           - $securityGroupIngress:
               - ToPort: 4194
                 FromPort: 4194
