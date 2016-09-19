@@ -59,10 +59,11 @@ Methods:
     Body:
       - If: not $.getAttr(nodeConfigured, false)
         Then:
-          - $._environment.reporter.report($this, 'Setup Flannel network on {0}'.format($.instance.name))
           - $resources: new(sys:Resources)
-          - $template: $resources.yaml('SetupFlannelNode.template')
-          - $.instance.agent.call($template, $resources)
+          #(TODO) we need to decide should we support Flannel or not
+          #- $._environment.reporter.report($this, 'Setup Flannel network on {0}'.format($.instance.name))
+          #- $template: $resources.yaml('SetupFlannelNode.template')
+          #- $.instance.agent.call($template, $resources)
 
           - $._environment.reporter.report($, 'Setup Load Balancer on {0}'.format($.instance.name))
           - $template: $resources.yaml('HAProxySetup.template').bind(dict(
@@ -71,6 +72,7 @@ Methods:
           - $.instance.agent.call($template, $resources)
           - $._environment.reporter.report(
                 $this, 'Gateway {0} is now available at {1}'.format($.instance.name, $.getIp(true)))
+          - $.enableCalico()
           - $.setAttr(nodeConfigured, true)
 
   removeFromCluster:
