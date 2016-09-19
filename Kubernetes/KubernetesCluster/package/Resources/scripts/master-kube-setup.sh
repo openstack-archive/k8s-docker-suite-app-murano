@@ -3,6 +3,22 @@
 # $1 - NAME
 # $2 - IP
 
+# Install Calico on master
+mkdir -p /opt/cni/bin
+cp /opt/copy/cni/bin/* /opt/cni/bin/
+ln -s /opt/bin/calicoctl /usr/bin/calicoctl
+docker load < /opt/copy/calico-node.tar
+
+sed -i.bak "s/%%MASTER_IP%%/$2/g" /opt/copy/network-environment
+sed -i.bak "s/%%IP%%/$2/g" /opt/copy/network-environment
+cp -f /opt/copy/network-environment /etc
+
+sed -i.bak "s/%%IP%%/$2/g" systemd/calico-node.service
+cp -f systemd/calico-node.service /etc/systemd/system/
+systemctl enable calico-node.service
+
+systemctl start calico-node
+
 #Create log folder for Kubernetes services
 mkdir -p /var/run/murano-kubernetes
 
@@ -58,6 +74,8 @@ else
   service kube-scheduler start
   service kube-controller-manager start
 fi
+
+ln -s /opt/bin/hyperkube /opt/bin/kubectl
 
 mkdir /var/log/kubernetes
 /opt/bin/kubectl delete node 127.0.0.1
