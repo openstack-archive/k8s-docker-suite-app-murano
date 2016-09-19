@@ -61,6 +61,7 @@ Methods:
       - $resources: new(sys:Resources)
       - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(ip => $.getIp()))
       - $.instance.agent.call($template, $resources)
+      - $._enableCalicoTraffic()
 
 
   setupFlannel:
@@ -84,6 +85,7 @@ Methods:
           - $._environment.reporter.report(
                 $this, 'Gateway {0} is now available at {1}'.format($.instance.name, $.getIp(true)))
           - $.setAttr(nodeConfigured, true)
+
 
   removeFromCluster:
     Body:
