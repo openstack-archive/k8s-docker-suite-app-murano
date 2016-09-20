@@ -69,6 +69,7 @@ Methods:
       - $resources: new(sys:Resources)
       - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(ip => $.getIp()))
       - $.instance.agent.call($template, $resources)
+      - $._enableCalicoTraffic()
 
 
   setupFlannel:
