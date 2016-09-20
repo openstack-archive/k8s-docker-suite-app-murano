@@ -1,4 +1,5 @@
 #!/bin/bash
+
 count=30
 
 echo "Adding flannel configuration to etcd"
