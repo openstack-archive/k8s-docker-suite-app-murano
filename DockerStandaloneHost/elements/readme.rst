@@ -37,7 +37,7 @@ To build Debian-based image
 
 .. sourcecode:: bash
 
-   sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${murano_apps_root}/Docker/DockerStandaloneHost/elements \
+   sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${k8s-docker-suite-app-murano}/DockerStandaloneHost/elements \
        DIB_RELEASE=jessie DIB_CLOUD_INIT_DATASOURCES="Ec2, ConfigDrive, OpenStack" disk-image-create vm debian murano-agent-debian \
        docker -o debian8-x64-docker
 
@@ -45,7 +45,7 @@ To build Ubuntu-based image
 
 .. sourcecode:: bash
 
-    sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${murano_apps_root}/Docker/DockerStandaloneHost/elements disk-image-create \
+    sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${k8s-docker-suite-app-murano}/DockerStandaloneHost/elements disk-image-create \
         vm ubuntu murano-agent docker -o ubuntu14.04-x64-docker
 
 Where ${murano_agent_root} is a path to murano-agent files
