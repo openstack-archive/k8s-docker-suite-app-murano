@@ -37,16 +37,15 @@ To build Debian-based image
 
 .. sourcecode:: bash
 
-   sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${murano_apps_root}/Docker/Kubernetes/KubernetesCluster/elements \
+   sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:{k8s-docker-suite-app-murano}/Kubernetes/KubernetesCluster/elements \
        DIB_RELEASE=jessie DIB_CLOUD_INIT_DATASOURCES="Ec2, ConfigDrive, OpenStack" disk-image-create vm debian murano-agent-debian \
        docker kubernetes -o debian8-x64-kubernetes
 
 To build Ubuntu-based image
 
 .. sourcecode:: bash
-
-    sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:${murano_apps_root}/Docker/Kubernetes/KubernetesCluster/elements disk-image-create \
-        vm ubuntu murano-agent docker kubernetes -o ubuntu14.04-x64-kubernetes
+   sudo ELEMENTS_PATH=${murano_agent_root}/contrib/elements:{k8s-docker-suite-app-murano}/Kubernetes/KubernetesCluster/elements disk-image-create \
+       vm ubuntu murano-agent docker kubernetes -o ubuntu14.04-x64-kubernetes
 
 Where ${murano_agent_root} is a path to murano-agent files
 and ${murano_apps_root} is a path to murano-apps files.
