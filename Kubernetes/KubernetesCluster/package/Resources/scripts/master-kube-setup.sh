@@ -9,6 +9,8 @@ mkdir -p /var/run/murano-kubernetes
 if [[ $(which systemctl) ]]; then
   systemctl stop kube*
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/kube-config
+  sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/apiserver
+  sed -i.bak "s/%%MASTER_IP%%/$2/g" default_scripts/kube-apiserver
 
   mkdir -p /etc/kubernetes/
 
