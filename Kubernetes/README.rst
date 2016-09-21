@@ -38,6 +38,7 @@ Features
 Murano deployed Kubernetes Cluster supports following features:
 
 * :doc:`KubeDNS <kube_dns>`
+* :doc:`Dashboard <kube_dashboard>`
 * Container Runtime: Docker
 * Publishing services:  ClusterIP Type
 * Rolling Updates of Kubernetes application
@@ -59,6 +60,7 @@ In the current implementation of  Kubernetes Cluster deployed by Murano user can
 perform rolling updates using on of the following options:
 
 * via kubectl CLI
+* via :doc:`Kubernetes Dashboard <kube_dashboard>`
 
 Since all apps instlled from Murano Catalog deployed as Deployments, users can
 take advantage of using rolling updates via Deployment abstraction.
