@@ -1,0 +1,1 @@
+.. include:: ../../Kubernetes/KubeDNS.rst
