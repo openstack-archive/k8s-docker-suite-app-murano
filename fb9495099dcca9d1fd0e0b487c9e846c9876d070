@@ -1,0 +1,11 @@
+Code-Review+2: Sergey Kraynev <skraynev@mirantis.com>
+Code-Review+1: Anastasia Kuznetsova <akuznetsova@mirantis.com>
+Code-Review+2: Stan Lagun <slagun@mirantis.com>
+Code-Review+2: Artem Silenkov <asilenkov@mirantis.com>
+Workflow+1: Artem Silenkov <asilenkov@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 21 Sep 2016 08:23:13 +0000
+Reviewed-on: https://review.openstack.org/370107
+Project: openstack/k8s-docker-suite-app-murano
+Branch: refs/heads/master
