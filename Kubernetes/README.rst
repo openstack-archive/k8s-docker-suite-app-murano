@@ -38,6 +38,7 @@ Features
 Murano deployed Kubernetes Cluster supports following features:
 
 * :doc:`KubeDNS <kube_dns>`
+* :doc:`Dashboard <kube_dashboard>`
 * Networking_: Calico
 * `Container Runtime`_: Docker
 * `Rolling Updates`_ of Kubernetes application
