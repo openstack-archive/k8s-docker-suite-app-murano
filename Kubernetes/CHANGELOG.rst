@@ -4,6 +4,7 @@ Release Notes
 V1.0.0 - 9/22/2016
 ------------------
 
+* Added Dashboard UI Addon v1.4
 * Added KubeDNS Addon v1.7
 * Added support for Calico Networking by default
 * Added  Rolling updates support for Kubernetes applications
@@ -12,6 +13,7 @@ V1.0.0 - 9/22/2016
 * Changed support for Flannel Networking to be disabled by default
 * Changed Readme with Calico networking information
 * Changed Readme with KubeDNS addons information
+* Changed Readme with Dashboard UI addons information
 * Changed Readme with rolling update support and usage information
 * Changed Readme with how to interact with kubernetes cluster deployed by
 murano
