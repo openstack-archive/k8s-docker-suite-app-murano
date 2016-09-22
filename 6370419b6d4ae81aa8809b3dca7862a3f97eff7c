@@ -1,0 +1,8 @@
+Code-Review+2: Sergey Kraynev <skraynev@mirantis.com>
+Workflow+1: Sergey Kraynev <skraynev@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 22 Sep 2016 16:37:23 +0000
+Reviewed-on: https://review.openstack.org/374934
+Project: openstack/k8s-docker-suite-app-murano
+Branch: refs/heads/master
