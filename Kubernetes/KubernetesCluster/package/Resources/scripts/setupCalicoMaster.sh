@@ -19,3 +19,5 @@ cp -f systemd/calico-node.service /etc/systemd/system/
 systemctl enable calico-node.service
 
 systemctl start calico-node
+
+calicoctl pool add 192.168.0.0/16 --nat-outgoing
