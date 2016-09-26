@@ -22,5 +22,5 @@ Classes:
  com.example.docker.DockerInfluxDB: DockerInfluxDB.yaml
 Require:
   com.mirantis.docker.DockerStandaloneHost:
-  com.mirantis.docker.kubernetes.KubernetesPod:
-  com.mirantis.docker.Interfaces:
+  com.mirantis.docker.kubernetes.KubernetesPod: '>=0.0.0'
+  com.mirantis.docker.Interfaces: '>=0.0.0'
