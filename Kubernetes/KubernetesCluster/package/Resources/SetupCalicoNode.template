@@ -16,9 +16,10 @@ Name: Setup Calico on Node
 
 Parameters:
   ip: $ip
+  masterIp: $masterIp
 
 Body: |
-  return setupCalico('{0}'.format(args.ip)).stdout
+  return setupCalico('{0} {1}'.format(args.ip, args.masterIp)).stdout
 
 Scripts:
   setupCalico:

@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # $1 - IP
+# $2 - MASTER_IP
 
-# TODO(asilenlov): we need to refactor this script
+# TODO(asilenkov): we need to refactor this script
 
 # Install Calico on worker
 mkdir -p /opt/cni/bin
@@ -19,7 +20,8 @@ cp -f systemd/calico-node.service /etc/systemd/system/
 systemctl enable calico-node.service
 
 mkdir -p /etc/cni/net.d
-sed -i.bak "s/%%MASTER_IP%%/$1/g" 10-calico.conf
+sed -i.bak "s/%%MASTER_IP%%/$2/g" 10-calico.conf
+sed -i.bak "s/%%IP%%/$1/g" 10-calico.conf
 cp -f 10-calico.conf /etc/cni/net.d
 
 systemctl start calico-node
