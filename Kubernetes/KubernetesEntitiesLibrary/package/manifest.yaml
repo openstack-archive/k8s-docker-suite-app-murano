@@ -22,6 +22,6 @@ Tags: [docker, kubernetes, pod]
 Classes:
  com.mirantis.docker.kubernetes.static.Pod: Pod.yaml
  com.mirantis.docker.kubernetes.static.Service: Service.yaml
- com.mirantis.docker.kubernetes.static.ReplicationController: ReplicationController.yaml
+ com.mirantis.docker.kubernetes.static.Deployments: Deployments.yaml
 Require:
   com.mirantis.docker.kubernetes.KubernetesCluster:

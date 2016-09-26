@@ -1,3 +1,4 @@
+#TO BE REMOVED
 #!/bin/bash
 
 # $1 - RC name

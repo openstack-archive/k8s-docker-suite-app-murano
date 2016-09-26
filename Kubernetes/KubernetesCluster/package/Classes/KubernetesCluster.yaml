@@ -189,7 +189,7 @@ Methods:
       - $.masterNode.instance.agent.call($template, $resources)
 
 
-  createReplicationController:
+  createDeployments:
     Arguments:
       - definition:
           Contract: {}
@@ -199,21 +199,21 @@ Methods:
     Body:
       - $.deploy()
       - $resources: new(sys:Resources)
-      - $template: $resources.yaml('UpdateReplicationController.template').bind(dict(
+      - $template: $resources.yaml('UpdateDeployments.template').bind(dict(
             controllerDefinition => $definition,
             isNew => $isNew
           ))
       - $.masterNode.instance.agent.call($template, $resources)
 
 
-  deleteReplicationController:
+  deleteDeployments:
     Arguments:
       - id:
           Contract: $.string().notNull()
     Body:
       - $.deploy()
       - $resources: new(sys:Resources)
-      - $template: $resources.yaml('DeleteReplicationController.template').bind(dict(rcId => $id))
+      - $template: $resources.yaml('DeleteDeployments.template').bind(dict(rcId => $id))
       - $.masterNode.instance.agent.call($template, $resources)
 
 
@@ -530,16 +530,16 @@ Methods:
 
 
 
-  scaleRc:
+  scaleDeployments:
     Arguments:
-      - rcName:
+      - deploymentsName:
           Contract: $.string().notNull()
       - newSize:
           Contract: $.int().notNull()
     Body:
       - $resources: new(sys:Resources)
-      - $template: $resources.yaml('ScaleRc.template').bind(dict(
-            rcName => $rcName,
+      - $template: $resources.yaml('Deployments.template').bind(dict(
+            deploymentsName => $deploymentsName,
             newSize => $newSize
           ))
       - $.masterNode.instance.agent.call($template, $resources)

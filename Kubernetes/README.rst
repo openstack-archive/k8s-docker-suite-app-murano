@@ -287,7 +287,7 @@ deploying both Kubernetes and it's nodes.
     Delete all of the services of a given pod, calling
     `kubectl delete service` for each one of them.
 
-`scaleRc(rcName, newSize)`
+`scaleDeployments(deploymentsName, newSize)`
     * `rnName` string holding the name of the RC
     * `newSize` integer holding the number of replicas.
 
