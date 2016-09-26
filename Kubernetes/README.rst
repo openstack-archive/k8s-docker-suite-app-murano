@@ -16,30 +16,63 @@ The image has to be named *debian8-x64-kubernetes.qcow2*
 Overview of Kubernetes
 ----------------------
 
-Kubernetes is an open-source container manager by Google. It is responsible to
-schedule, run and manage docker containers into its own clustered setup.
-
-Kubernetes consists of one or more master nodes running Kubernetes API and
-one or more worker nodes (aka minions) that are used to schedule containers.
-Containers are aggregated into pods. All containers in single pod are
-guaranteed to be scheduled to a single node and share common port space.
-Thus it can be considered as a container co-location.
-
-Pods can be replicated. This is achieved by creation of Replication Controller
-which creates and maintain fixed number of pod clones. In Murano replica
-count is a property of KubernetesPod.
+Kubernetes is an open-source platform for automating deployment, scaling, and
+operations of application containers across clusters of hosts. 
 
 For a more in-depth review of Kubernetes please refer to official
 `documentation <http://kubernetes.io/v1.1/docs/user-guide/README.html>`_.
+
+
+How Murano installs/upgrades Kubernetes Cluster
+===============================================
+
+Installation
+------------
+
+Kubernetes cluster deployed by Murano provisiones 3 types of VMs that can be
+observed in Openstack Horizon Dasboard with respective naming convention:
+
+Single **Master Node** (murano-kube-1) - which represents Kubernetes Control
+Plane and runs API server, Scheduler and Controller Manager. In current
+implementation of Kubernetes Cluster deployed by Murano it is not possible
+to schedule containers on Master node.
+
+One or several **Kubernetes Nodes** (murano-kube-2..n) - Kubernetes worker
+nodes that is responsible for running containers. Each Kubernetes Node runs
+Docker, kubelet and kube-proxy services.
+
+One or several **Gateway nodes** (murano-gateway-1..n) - used as an
+interconnection between Kubernetes intenal Networking_ and OpenStack external
+network (Neutron-managed). Gateway node provides Kubernetes cluster external
+endpoints and allows to reach Kubernetes pods from the outside.
+Each gateway node runs confd and HAProxy services. When end user deploys an
+application and exposes it via service, confd automatically detects it and
+adds it to the haproxy configuration. HAProxy will expose application via
+floating IP of Gateway node and required port. If user choses multiple
+Gateways it will result in several endpoints for the application.
+Then those endpoints can be registered in physical LB or DNS.
+
+**ETCD** - Kubernetes uses etcd for key value store as well sa for cluster
+consensus between different software components. In current implementation,
+Murano deploys etcd on every node. For example if Kubernetes cluster deployed
+by Murano consist of single instances of Master, Kubernets Node and Gateway,
+than etcd will run as a 3 node cluster.
+
+Upgrade
+-------
+
+In current implementation of Kubernetes Cluster deployed by Murano it is not
+possible to upgrade Kubernetes Cluster from previous version to newer.
+
 
 Features
 ========
 
 Murano deployed Kubernetes Cluster supports following features:
 
-* Networking_: Calico
-* `Container Runtime`_: Docker
-* `Rolling Updates`_ of Kubernetes application
+* Networking_: Calico by default, Flannel optional
+* `Container runtime`_: Docker
+* `Rolling updates`_ of Kubernetes application
 * Publishing services:  ClusterIP Type
 
 .. _Networking:
@@ -49,6 +82,10 @@ Networking
 
 Kubernetes Cluster deployed by Murano supports Calico networking by default.
 Support for Flannel is disabled by default, but can be enabled as an option.
+To establish required network connectivity model for the Kubernetes, Murano
+sets up an overlay network between Kubernetes nodes using Calico or Flannel
+(optional) networking.
+See `flannel <https://github.com/coreos/flannel>`_ for more information.
 
 
 .. _Container runtime:
@@ -65,9 +102,9 @@ Kubernetes Cluster deployed by Murano currently supports only Docker runtime.
 Though we planning to add rkt runtime in close future.
 
 
-.. _Rolling Updates:
+.. _Rolling updates:
 
-Rolling Updates of Kubernetes application
+Rolling updates of Kubernetes application
 -----------------------------------------
 
 Kubernetes Cluster deployed by Murano supports rolling updates with the use of
@@ -94,7 +131,7 @@ Interacting with Kubernetes Cluster deployed by Murano
 
 There are several ways to create, manage applications on Kubernetes cluster:
 
-Using Murano->Apps Catalog-> Environments view in Horizon:
+Using Murano Environments view in Horizon:
 ----------------------------------------------------------
 Users can perform following actions:
 
@@ -110,7 +147,7 @@ Using kubectl CLI:
 Deploy and manage applications using Kubernetes command-line tool - ``kubectl``
 from you laptop or any local environment:
 
- *  * `Download and install <http://kubernetes.io/docs/getting-started-guides/minikube/#install-kubectl>`_ the ``kubectl`` executable based on OS of the choice.
+ *  `Download and install <http://kubernetes.io/docs/getting-started-guides/minikube/#install-kubectl>`_ the ``kubectl`` executable based on OS of the choice.
  * Configure kubectl context on local env:
 
   * ``kubectl config set-cluster kubernetes --server=http://<kube1-floating_IP>:8080``
@@ -122,37 +159,17 @@ from you laptop or any local environment:
   * ``kubectl config view``
   * ``kubectl get nodes``
 
-The resulting kubeconfig file will be stored in ~/.kube/config. Can be sourced at any time after.
+The resulting kubeconfig file will be stored in ~/.kube/config.
+Can be sourced at any time after.
 
 Additionally, it is possible to access ``kubectl cli`` from Master Node (kube-1),
 where ```kubectl cli``` is installed and configured by default.
 
-**NOTE:** In case application has been deployed via kubectl it will be exposed
-automatically outside based on the port information provided in service yaml file.
-However, it will be required to manually add required port to the OpenStack Security
-Groups  created for this Cluster in order to be able reach application from outside.
-
-
-How murano installs Kubernetes
-------------------------------
-
-Currently Murano supports setups with only single API node and at least one
-worker node. API node cannot be used as a worker node.
-
-To establish required network connectivity model for the Kubernetes Murano
-sets up an overlay network between Kubernetes nodes using Flannel networking.
-See `flannel <https://github.com/coreos/flannel>`_ for more information.
-
-Because IP addresses of containers are in that internal network and not
-accessible from outside in order to provide public endpoints Murano sets up
-a third type of nodes: Gateway nodes.
-
-Gateway nodes are connected to both Flannel and OpenStack Neutron networks
-and serves as a gateway between them. Each gateway node runs HAProxy.
-When an application deploys all its public endpoints are automatically registered
-on all gateway nodes. Thus if user chose to have more than one gateway
-it will usually get several endpoints for the application. Then those endpoints
-can be registered in physical load balancer or DNS.
+**NOTE:** In case application has been deployed using kubectl CLI, it will be
+automatically exposed outside based on the port information provided
+in service yaml file. However, it will be needed manually update OpenStack
+Security Groups configuration  with required port information in order
+to be able reach application from outside.
 
 
 KubernetesCluster
