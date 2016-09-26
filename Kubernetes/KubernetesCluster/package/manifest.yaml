@@ -28,4 +28,4 @@ Classes:
  com.mirantis.docker.kubernetes.KubernetesGatewayNode: KubernetesGatewayNode.yaml
  com.mirantis.docker.kubernetes.KubernetesNode: KubernetesNode.yaml
 Require:
-  com.mirantis.docker.Interfaces:
+  com.mirantis.docker.Interfaces: 1.0.0
