@@ -67,7 +67,10 @@ Methods:
     Body:
       - $._environment.reporter.report($this, 'Setup Calico network on node {0}'.format($.instance.name))
       - $resources: new(sys:Resources)
-      - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(ip => $.getIp()))
+      - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(
+            ip => $.getIp(),
+            masterIp => $._cluster.masterNode.getIp()
+            ))
       - $.instance.agent.call($template, $resources)
       - $._enableCalicoTraffic()
 
