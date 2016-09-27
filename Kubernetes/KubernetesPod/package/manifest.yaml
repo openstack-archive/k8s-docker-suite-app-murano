@@ -24,5 +24,5 @@ Tags: [docker, kubernetes, pod]
 Classes:
  com.mirantis.docker.kubernetes.KubernetesPod: KubernetesPod.yaml
 Require:
-  com.mirantis.docker.Interfaces: 1.0.0
-  com.mirantis.docker.kubernetes.KubernetesCluster: 1.0.0
+  com.mirantis.docker.Interfaces:
+  com.mirantis.docker.kubernetes.KubernetesCluster:
