@@ -22,5 +22,5 @@ Classes:
  com.example.docker.DockerGlassFish: DockerGlassFish.yaml
 Require:
   com.mirantis.docker.DockerStandaloneHost:
-  com.mirantis.docker.kubernetes.KubernetesPod: '>=0.0.0'
-  com.mirantis.docker.Interfaces: '>=0.0.0'
+  com.mirantis.docker.kubernetes.KubernetesPod:
+  com.mirantis.docker.Interfaces:
