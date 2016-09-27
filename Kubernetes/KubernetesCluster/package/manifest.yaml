@@ -15,8 +15,9 @@ Type: Application
 FullName: com.mirantis.docker.kubernetes.KubernetesCluster
 Name: Kubernetes Cluster
 Description: |
- Kubernetes is an open source system for managing containerized applications across multiple hosts,
- providing basic mechanisms for deployment, maintenance, and scaling of applications.
+ v1.0.0 - Kubernetes is an open source system for managing containerized
+ applications across multiple hosts, providing basic mechanisms for deployment,
+ maintenance, and scaling of applications.
 Author: 'Mirantis, Inc'
 Tags: [Docker, Kubernetes]
 Classes:
