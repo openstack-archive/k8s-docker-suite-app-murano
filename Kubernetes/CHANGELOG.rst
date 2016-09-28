@@ -17,7 +17,7 @@ V1.0.0 - 9/23/2016
 * Added support for Calico networking by default
 * Added rolling updates support for Kubernetes applications
 * Added Kubernetes binaries for Debian image
-* Changed Kubernetes configuration to support Kubernetes v1.3
+* Changed Kubernetes configuration to support Kubernetes v1.4-beta
 * Changed support for Flannel networking to be optional, disabled by default
 * Changed Readme with Calico networking information
 * Changed Readme with rolling update support and usage information
