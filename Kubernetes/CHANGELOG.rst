@@ -3,6 +3,17 @@ Release Notes
 
 V1.0.0 - 9/23/2016
 ------------------
+* Updated Kubernetes components to:
+
+ * etcd v3.0.9
+ * kubernetes v1.4.0-beta
+ * flannel v0.5.5
+ * Go v1.7.1
+ * confd v0.7.1
+ * docker v1.12.1
+ * calico v0.22.0
+ * calico-cni v1.4.2
+
 * Added support for Calico networking by default
 * Added rolling updates support for Kubernetes applications
 * Added Kubernetes binaries for Debian image
