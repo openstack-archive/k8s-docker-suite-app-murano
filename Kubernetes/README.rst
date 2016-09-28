@@ -73,9 +73,25 @@ etcd will run as a 3 node cluster.
 
 Upgrade
 -------
+*Upgrade of Kubernetes Cluster components*: In current implementation of
+Kubernetes Cluster deployed by Murano, which uses binaries and hyperkube,
+we do not provide a scenario to upgrade Kubernetes Cluster from a previous
+version to a newer one. However, we are planning to introduce upgrade
+capability in the coming releases of Murano Kubernetes application, by
+introducing self-hosted architecture of the Kubernetes Cluster. This will
+allow to perform Rolling Update of Kubernetes Cluster itself to the new version.
 
-In current implementation of Kubernetes Cluster deployed by Murano it is not
-possible to upgrade Kubernetes Cluster from previous version to newer.
+*Framework to Update Murano Kubernetes Application to the new version:*
+Currently, Murano doesn't support versioning of application as well as not
+having a well-defined framework on how to perform an Upgrade of Murano
+Applications. This also affects the possibility to enable Kubernetes Upgrades
+via Murano. This is planned to be addressed in the coming release of Murano.
+
+*Rolling updates of application running inside of Kubernetes Cluster:*
+The Kubernetes Cluster deployed by Murano supports rolling updates with the
+use of “Deployments” and “Replication Controllers (RC)” abstractions.
+Please refer to the  `Rolling updates`_ section of the Kubernetes application
+for more details.
 
 
 Features
