@@ -2,11 +2,10 @@ Murano-deployed Kubernetes Cluster application
 ==============================================
 
 The Packages in this folder are required to deploy both Google Kubernetes and
-the applications that run on top of it.
+the applications that run on top of it. The contents of each folder need to be
+zipped and uploaded to the Murano Catalog.
 
-The contents of each folder need to be zipped and uploaded to the Murano Catalog.
-
-You will also need to build a proper image for Kubernetes.
+Additionally it is required to build a proper image for Kubernetes.
 This can be done using `diskimage-builder <https://git.openstack.org/cgit/openstack/diskimage-builder>`_
 and `DIB elements
 <https://git.openstack.org/cgit/openstack/murano/tree/contrib/elements/kubernetes>`_.
@@ -30,45 +29,47 @@ Installation
 ------------
 
 Minimum requirements for Openstack in order to deploy Kubernetes cluster with Murano:
-* Deployed Murano and Heat Openstack Services
-* 3 instances of m1.medium flavor (Master Node, Kubernetes Node, Gateway Node)
+
+* Openstack configured with Murano and Heat Services
+* 3 instances of m1.medium flavor (required for Master Node, Kubernetes Node,
+  Gateway Node)
 * 1 Floating IP for Gateway, in case required to expose applications outside
 * 2 Floating IPs for Master and Kubernetes Nodes to access kubectl CLI or
-troubleshooting
+  troubleshooting Master and Kubernetes Nodes.
 
-A Kubernetes cluster deployed by Murano provisions 3 types of VMs that can be observed in
-the Openstack Horizon Dashboard with this naming convention:
+A Kubernetes cluster deployed by Murano provisions 3 types of VMs that can be
+observed in the Openstack Horizon Dashboard with this naming convention:
 
-Single **Master Node** (murano-kube-1) - which represents the Kubernetes Control
-Plane and runs the API server, Scheduler and Controller Manager. In the current
-implementation of Kubernetes Cluster deployed by Murano, the Master Node is not
-running in HA mode. Additionally it is not possible to schedule containers
-on the Master node.
+* Single **Master Node** (murano-kube-1) - which represents the Kubernetes
+  Control Plane and runs the API server, Scheduler and Controller Manager.
+  In the current implementation of Kubernetes Cluster deployed by Murano,
+  the Master Node is not running in HA mode. Additionally it is not possible
+  to schedule containers on the Master node.
 
-One or several **Kubernetes Nodes** (murano-kube-2..n) - Kubernetes worker nodes
-that are responsible for running actual containers. Each Kubernetes Node runs
-the Docker, kubelet and kube-proxy services.
+* One or several **Kubernetes Nodes** (murano-kube-2..n) - Kubernetes worker nodes
+  that are responsible for running actual containers. Each Kubernetes Node runs
+  the Docker, kubelet and kube-proxy services.
 
-One or several **Gateway nodes** (murano-gateway-1..n) - used as an interconnection
-between Kubernetes internal Networking_ and the OpenStack external network
-(Neutron-managed). The Gateway node provides the Kubernetes cluster with
-external endpoints and allows users and services to reach Kubernetes pods from
-the outside. Each gateway node runs confd and HAProxy services. When the end
-user deploys an application and exposes it via a service, confd automatically
-detects it and adds it to the haproxy configuration. HAProxy will expose
-the application via the floating IP of the Gateway node and required port.
-If the user choses multiple Gateways, the result will be several endpoints for
-the application, which  can be registered in the physical load balancer or DNS.
+* One or several **Gateway nodes** (murano-gateway-1..n) - used as an interconnection
+  between Kubernetes internal Networking_ and the OpenStack external network
+  (Neutron-managed). The Gateway node provides the Kubernetes cluster with
+  external endpoints and allows users and services to reach Kubernetes pods from
+  the outside. Each gateway node runs confd and HAProxy services. When the end
+  user deploys an application and exposes it via a service, confd automatically
+  detects it and adds it to the haproxy configuration. HAProxy will expose
+  the application via the floating IP of the Gateway node and required port.
+  If the user choses multiple Gateways, the result will be several endpoints for
+  the application, which  can be registered in the physical load balancer or DNS.
 
-**ETCD** - Kubernetes uses etcd for key value store as well as for cluster
-consensus between different software components. Additionally, if the Kubernetes
-cluster is configured to run Calico networking, etcd will be configured to
-support Calico configurations. In the current implementation of Kubernetes
-Cluster deployed by Murano, the etcd cluster is not running on dedicated nodes.
-Instead etcd is running on each node deployed by Murano. For example, if
-Kubernetes Cluster deployed by Murano is running in the minimum available
-configuration with 3 nodes: Master Node, Kubernetes Node and Gateway, then
-etcd will run as a 3 node cluster.
+* **ETCD** - Kubernetes uses etcd for key value store as well as for cluster
+  consensus between different software components. Additionally, if the Kubernetes
+  cluster is configured to run Calico networking, etcd will be configured to
+  support Calico configurations. In the current implementation of Kubernetes
+  Cluster deployed by Murano, the etcd cluster is not running on dedicated nodes.
+  Instead etcd is running on each node deployed by Murano. For example, if
+  Kubernetes Cluster deployed by Murano is running in the minimum available
+  configuration with 3 nodes: Master Node, Kubernetes Node and Gateway, then
+  etcd will run as a 3 node cluster.
 
 
 Upgrade
@@ -116,21 +117,22 @@ layer 3 approach.
 
 Calico Networking deployed by Murano as CNI plugin contains following components:
 
-* **etcd** - distributed key-value store, which ensures Calico can always build
-an accurate network, used primerly for data storage and communication
-* **Felix**, the Calico worker process, which primarily routes and provides
-desired connectivity to and from the workloads on host. As well as provides
-the interface to kernels for outgoing endpoint traffic
+* **etcd** - distributed key-value store, which ensures Calico can always build an
+  accurate network, used primerly for data storage and communication
+* **Felix**, the Calico worker process, which primarily routes and provides desired
+  connectivity to and from the workloads on host. As well as provides the interface
+  to kernels for outgoing endpoint traffic
 * **BIRD**, BGP client that exchanges routing information between hosts
 * **Confd**, a templating process to auto-generate configuration for BIRD
 * **calicoctl**, the command line used to configure and start the Calico service
 
-See `Calico <https://github.com/coreos/flannel>`_ for more information.
+See `Project Calico <http://docs.projectcalico.org/en/latest/index.html>`_ documentation
+for more information.
 
 
 Support for Flannel is disabled by default, but can be enabled as an option.
 Flannel is simple overlay network that satisfies the Kubernetes requirements.
-See `flannel <https://www.projectcalico.org/>`_ for more information.
+See `flannel <https://github.com/coreos/flannel>`_ documentation for more information.
 
 .. _Container runtime:
 
@@ -206,7 +208,7 @@ The resulting kubeconfig file will be stored in ~/.kube/config and
 can be sourced at any time afterwards.
 
 Additionally, it is possible to access ``kubectl cli`` from Master Node (kube-1),
-where ```kubectl cli``` is installed and configured by default.
+where ``kubectl cli`` is installed and configured by default.
 
 **NOTE:**  If the application has been deployed using kubectl CLI, it will be
 automatically exposed outside based on the port information provided in
