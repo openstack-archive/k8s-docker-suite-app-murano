@@ -6,6 +6,7 @@
 # $4 - USE_CALICO
 
 mkdir -p /var/run/murano-kubernetes
+mkdir -p /etc/kubernetes/
 
 if [[ $(which systemctl) ]]; then
 
@@ -53,5 +54,8 @@ else
   service kubelet start
   service kube-proxy start
 fi
+
+sed -i.bak "s/%%MASTER_IP%%/$3/g" kubeconfig.yaml
+cp -f kubeconfig.yaml /etc/kubernetes/
 
 sleep 1

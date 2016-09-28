@@ -5,6 +5,8 @@
 
 #Create log folder for Kubernetes services
 mkdir -p /var/run/murano-kubernetes
+mkdir -p /etc/kubernetes/
+mkdir -p /etc/kubernetes/addons
 
 if [[ $(which systemctl) ]]; then
   systemctl stop kube*
