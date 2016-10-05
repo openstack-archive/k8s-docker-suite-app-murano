@@ -1,0 +1,38 @@
+---
+prelude: >
+   Kubernetes components were updates to:
+    - etcd v3.0.9
+    - kubernetes v1.4.0-beta
+    - flannel v0.5.5
+    - Go v1.7.1
+    - confd v0.7.1
+    - docker v1.12.1
+    - calico v0.22.0
+    - calico-cni v1.4.2
+
+    For detailed information about upgrades please take a look on the section
+    in the documentation:
+    http://k8s-docker-suite-app-murano.readthedocs.io/en/latest/cluster.html#upgrade
+
+features:
+  - Added support for Calico networking by default
+  - Changed support for Flannel networking to be optional, disabled by default
+  - Added Kubernetes binaries for Debian image
+  - Changed Kubernetes configuration to support Kubernetes v1.4-beta
+  - |
+    Added rolling updates support for Kubernetes applications.
+    Detailed explanation is available by link:
+    http://k8s-docker-suite-app-murano.readthedocs.io/en/latest/cluster.html#rolling-updates-of-the-kubernetes-application
+issues:
+  - Currently Upgrade of Murano deployed Kubernetes Cluster is not supported.
+  - |
+    Using Calico networking requires one fix in Heat project.
+    This patch can be applied manually for MOS 9.0:
+    https://review.openstack.org/#/c/370603/3
+
+    *NOTE*: Current fix will be included in MOS 9.1 by default.
+deprecations:
+  - Deprecated Kubernetes binaries for Ubuntu image
+  - Deprecated portal_net from api server configurations
+fixes:
+  - Fixed  service naming for applications deployed with Murano apps.
