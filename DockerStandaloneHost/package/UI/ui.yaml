@@ -55,13 +55,17 @@ Forms:
           type: string
           label: Custom Docker registry URL
           description: >-
-            Host IP or domain name of custom Docker registry to use. Leave empty for Docker default
+            Host IP or domain name of custom Docker registry to use.
+            For example, myregistrydomain.com
+            Leave empty to use Docker default.
           required: false
         - name: dockerMirror
           type: string
           label: Docker registry mirror URL
           description: >-
-            URL of Docker registry mirror to use. Leave empty to not use one
+            URL of Docker registry mirror to use in the format http://<my-docker-mirror-host>.
+            For example, http://10.0.0.2:5000
+            Leave empty to not use one.
           required: false
         - name: gcloudKey
           type: string
