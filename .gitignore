@@ -47,3 +47,5 @@ etc/*.conf
 #Linux swap file
 *.swp
 
+# Files created by releasenotes build
+releasenotes/build
