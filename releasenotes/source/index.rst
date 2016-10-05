@@ -5,4 +5,5 @@
 .. toctree::
    :maxdepth: 1
 
+   v1.0.0
    unreleased
