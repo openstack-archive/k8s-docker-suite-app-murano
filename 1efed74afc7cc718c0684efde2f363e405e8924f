@@ -1,0 +1,9 @@
+Code-Review+2: Kirill Zaitsev <kzaitsev@mirantis.com>
+Workflow+1: Dmytro Dovbii <ddovbii@mirantis.com>
+Code-Review+2: Dmytro Dovbii <ddovbii@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Thu, 06 Oct 2016 08:17:40 +0000
+Reviewed-on: https://review.openstack.org/382394
+Project: openstack/k8s-docker-suite-app-murano
+Branch: refs/heads/stable/mitaka
