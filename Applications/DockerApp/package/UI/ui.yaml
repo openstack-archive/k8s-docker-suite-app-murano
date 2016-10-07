@@ -35,8 +35,10 @@ Forms:
           type: string
           label: Application Name
           description: >-
-            Enter a desired name for the application. Just A-Z, a-z, 0-9, dash and
-            underline are allowed
+            Enter a desired name for the application. Just A-Z, a-z, 0-9 and
+            dash are allowed. Should be less than 64 characters.
+          maxLength: 63
+          regexpValidator: '^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$'
         - name: host
           type:
             - com.mirantis.docker.kubernetes.KubernetesPod
