@@ -15,6 +15,7 @@ Version: 2
 Application:
   ?:
     type: com.mirantis.docker.kubernetes.KubernetesPod
+    classVersion: 1.0.0
   name: $.appConfiguration.name
   labels: $.appConfiguration.labels
   kubernetesCluster: $.appConfiguration.kubernetesCluster
