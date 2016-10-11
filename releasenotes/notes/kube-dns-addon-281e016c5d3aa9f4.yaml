@@ -1,0 +1,7 @@
+---
+features:
+  - Now Kubernetes Cluster application provides ability to
+    install KubeDns addon v20 during cluster deployment.
+    Kubernetes DNS schedules a DNS Pod and Service on the
+    cluster, and configures the kubelets to tell individual
+    containers to use the DNS Service’s IP to resolve DNS names.
