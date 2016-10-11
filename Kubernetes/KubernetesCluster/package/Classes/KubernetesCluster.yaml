@@ -51,6 +51,10 @@ Properties:
     Contract: $.bool().notNull()
     Default: false
 
+  enableKubeDns:
+    Contract: $.bool().notNull()
+    Default: true
+
   dockerRegistry:
     Contract: $.string()
 
@@ -144,6 +148,10 @@ Methods:
               - $.minionNodes.take($.nodeCount).pselect($.setupNode())
               - $.gatewayNodes.take($.gatewayCount).pselect($.setupNode())
 
+          - If: $.enableKubeDns
+            Then:
+              $._deployDns()
+
           - $._environment.stack.push()
           - $._updateServicePublicIps()
           - $.setAttr(lastNodeCount, $.nodeCount)
@@ -155,6 +163,40 @@ Methods:
   getIp:
     Body:
       Return: $.masterNode.getIp()
+
+
+  _deployDns:
+    Body:
+      - If: not $.getAttr(dnsDeployed, false)
+        Then:
+          - $securityGroupIngress:
+              - ToPort: 8001
+                FromPort: 8001
+                IpProtocol: tcp
+                External: false
+              - ToPort: 10053
+                FromPort: 10053
+                IpProtocol: udp
+                External: false
+              - ToPort: 10053
+                FromPort: 10053
+                IpProtocol: tcp
+                External: false
+              - ToPort: 53
+                FromPort: 53
+                IpProtocol: udp
+                External: false
+              - ToPort: 53
+                FromPort: 53
+                IpProtocol: tcp
+                External: false
+
+          - $._environment.securityGroupManager.addGroupIngress($securityGroupIngress)
+
+          - $resources: new(sys:Resources)
+          - $template: $resources.yaml('DeployKubeDns.template')
+          - $.masterNode.instance.agent.call($template, $resources)
+          - $.setAttr(dnsDeployed, true)
 
 
   _deployContainersNetwork:
@@ -527,7 +569,6 @@ Methods:
           - $.deploy()
         Else:
           - $._environment.reporter.report($this, 'No gateway nodes that can be removed')
-
 
 
   scaleRc:
