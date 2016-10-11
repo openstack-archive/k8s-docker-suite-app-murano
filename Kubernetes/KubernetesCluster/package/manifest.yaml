@@ -11,6 +11,7 @@
 #  under the License.
 
 Format: 1.3
+Version: 1.1.0
 Type: Application
 FullName: com.mirantis.docker.kubernetes.KubernetesCluster
 Name: Kubernetes Cluster
@@ -27,4 +28,4 @@ Classes:
  com.mirantis.docker.kubernetes.KubernetesGatewayNode: KubernetesGatewayNode.yaml
  com.mirantis.docker.kubernetes.KubernetesNode: KubernetesNode.yaml
 Require:
-  com.mirantis.docker.Interfaces:
+  com.mirantis.docker.Interfaces: 1.0.0
