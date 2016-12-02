@@ -12,7 +12,6 @@ if [[ $(which systemctl) ]]; then
   systemctl stop kube*
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/kube-config
   sed -i.bak "s/%%MASTER_IP%%/$2/g" environ/apiserver
-  sed -i.bak "s/%%MASTER_IP%%/$2/g" default_scripts/kube-apiserver
 
   cp -f environ/apiserver /etc/kubernetes/apiserver
   cp -f environ/kube-config /etc/kubernetes/config
@@ -42,6 +41,7 @@ else
   #chmod -x /etc/init.d/kube-controller-manager
 
   sed -i.bak "s/%%MASTER_IP%%/$2/g" default_scripts/kube-scheduler
+  sed -i.bak "s/%%MASTER_IP%%/$2/g" default_scripts/kube-apiserver
 
   cp -f default_scripts/kube-apiserver /etc/default/
   cp -f default_scripts/kube-scheduler /etc/default/
