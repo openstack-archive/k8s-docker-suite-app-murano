@@ -57,22 +57,29 @@ Methods:
 
   setupCalico:
     Body:
-      - $._environment.reporter.report($this, 'Setup Calico network on gateway node {0}'.format($.instance.name))
-      - $resources: new(sys:Resources)
-      - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(
-            ip => $.getIp(),
-            masterIp => $._cluster.masterNode.getIp()
-            ))
-      - $.instance.agent.call($template, $resources)
-      - $._enableCalicoTraffic()
+      - If: not $.getAttr(calicoSetup, false)
+        Then:
+          - $._environment.reporter.report($this, 'Setup Calico network on gateway node {0}'.format($.instance.name))
+          - $resources: new(sys:Resources)
+          - $template: $resources.yaml('SetupCalicoNode.template').bind(dict(
+                ip => $.getIp(),
+                masterIp => $._cluster.masterNode.getIp()
+                ))
+          - $.instance.agent.call($template, $resources)
+          - $._enableCalicoTraffic()
+          - $.setAttr(calicoSetup, true)
+
 
 
   setupFlannel:
     Body:
-      - $._environment.reporter.report($this, 'Setup Flannel network on gateway node {0}'.format($.instance.name))
-      - $resources: new(sys:Resources)
-      - $template: $resources.yaml('SetupFlannelNode.template')
-      - $.instance.agent.call($template, $resources)
+      - If: not $.getAttr(flannelSetup, false)
+        Then:
+          - $._environment.reporter.report($this, 'Setup Flannel network on gateway node {0}'.format($.instance.name))
+          - $resources: new(sys:Resources)
+          - $template: $resources.yaml('SetupFlannelNode.template')
+          - $.instance.agent.call($template, $resources)
+          - $.setAttr(flannelSetup, true)
 
 
   setupNode:

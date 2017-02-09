@@ -18,7 +18,7 @@ Parameters:
   nodeId: $nodeId
 
 Body: |
-  removeMinion(args.nodeId)
+  removeMinion('{0}'.format(args.nodeId))
 
 Scripts:
   removeMinion:
