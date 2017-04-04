@@ -1,0 +1,9 @@
+Code-Review+2: Kirill Zaitsev <k.zaitsev@me.com>
+Code-Review+2: Victor Ryzhenkin (freerunner) <vryzhenkin@mirantis.com>
+Workflow+1: Victor Ryzhenkin (freerunner) <vryzhenkin@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 04 Apr 2017 10:33:03 +0000
+Reviewed-on: https://review.openstack.org/431599
+Project: openstack/k8s-docker-suite-app-murano
+Branch: refs/heads/master
