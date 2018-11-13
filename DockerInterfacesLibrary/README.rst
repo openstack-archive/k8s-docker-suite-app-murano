@@ -62,7 +62,7 @@ Class also has the following methods:
 * `onInstallationStart`: a method that get get called when installation starts.
   May be overridden by inheritor class to provide extra logging or reporting.
 
-* `onInstallationFinish`: a method that get get called when installation ends.
+* `onInstallationFinish`: a method that get called when installation ends.
   May be overridden by inheritor class to provide extra logging or reporting.
 
 
