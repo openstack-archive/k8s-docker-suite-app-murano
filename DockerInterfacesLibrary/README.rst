@@ -59,7 +59,7 @@ Class also has the following methods:
   See `DockerGrafana/DockerInfluxDB` as an example or connected Docker
   applications.
 
-* `onInstallationStart`: a method that get get called when installation starts.
+* `onInstallationStart`: a method that get called when installation starts.
   May be overridden by inheritor class to provide extra logging or reporting.
 
 * `onInstallationFinish`: a method that get get called when installation ends.
